@@ -84,6 +84,118 @@
         .paidegua-box p { font-size: 1.1rem; margin-bottom: 25px; color: #e2e8f0; line-height: 1.6; }
         .paidegua-btn { background: #fbbf24; color: #000; padding: 12px 25px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-block; transition: 0.3s; }
         .paidegua-btn:hover { background: #f59e0b; transform: translateY(-2px); }
+        /* NOVO DESIGN DO PAI D'ÉGUA - FOCO TOTAL NA IMAGEM */
+        .paidegua-box { 
+            background: linear-gradient(135deg, #1e3a8a, #0f172a); 
+            border: 2px solid #3b82f6; 
+            border-radius: 16px; 
+            padding: 60px 40px; 
+            margin: 50px 0; 
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centraliza tudo horizontalmente */
+            text-align: center; /* Centraliza o texto */
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Efeito de brilho de fundo para dar foco */
+        .paidegua-box::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: rgba(59, 130, 246, 0.2);
+            filter: blur(100px);
+            border-radius: 50%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .paidegua-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Container da Imagem em Destaque */
+        .paidegua-showcase {
+            z-index: 2; /* Fica acima do brilho */
+            margin-bottom: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .paidegua-showcase img { 
+            max-width: 450px; /* BEM maior para dar o foco que você quer no Desktop */
+            width: 80%; /* Adaptável */
+            height: auto; 
+            border-radius: 12px;
+            /* Sombras avançadas para dar profundidade (parece que está flutuando) */
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)) drop-shadow(0 0 10px rgba(251,191,36,0.3));
+            transition: transform 0.5s ease;
+        }
+
+        /* Efeito interativo na imagem */
+        .paidegua-box:hover .paidegua-showcase img {
+            transform: scale(1.03) rotate(-1deg);
+        }
+
+        /* Textos e Botão */
+        .paidegua-text-content {
+            z-index: 2;
+            max-width: 700px; /* Limita a largura do texto centralizado */
+        }
+
+        .paidegua-box h2 { 
+            color: #fbbf24; 
+            font-size: 2.2rem; 
+            margin-bottom: 15px; 
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .paidegua-box p { 
+            font-size: 1.15rem; 
+            margin-bottom: 30px; 
+            color: #e2e8f0; 
+            line-height: 1.7;
+        }
+
+        .paidegua-btn { 
+            background: #fbbf24; 
+            color: #000; 
+            padding: 15px 35px; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            display: inline-block; 
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(251,191,36,0.3);
+        }
+
+        .paidegua-btn:hover { 
+            background: #f59e0b; 
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(251,191,36,0.5);
+        }
+
+        /* ==========================================
+           MODO CELULAR (RESPONSIVIDADE MÁXIMA)
+           ========================================== */
+        @media (max-width: 768px) {
+            .paidegua-box { padding: 40px 20px; margin: 30px 0; }
+            .paidegua-showcase img { max-width: 280px; width: 90%; } /* Ajuste de tamanho para celular */
+            .paidegua-box h2 { font-size: 1.8rem; }
+            .paidegua-box p { font-size: 1rem; text-align: center; }
+            .paidegua-btn { width: 100%; text-align: center; padding: 12px; }
+        }
 
         /* SITES E INSTITUTOS */
         .links-list { display: flex; flex-direction: column; gap: 15px; }
@@ -284,11 +396,17 @@
     <section class="bg-light">
         <div class="container">
             
-           <div class="paidegua-box">
-                <h2>Portal Pai D'égua</h2>
-                <p>Portal de notícias políticas de destaque no Pará. Plataforma desenvolvida para alto tráfego, garantindo carregamento rápido, SEO otimizado e excelente experiência no celular.</p>
-                <a href="https://portalpaidegua.blog.br" target="_blank" class="paidegua-btn">Acessar Portal Pai D'égua</a>
-            </div>
+         <div class="paidegua-box">
+        <div class="paidegua-showcase">
+            <img src="paidegua.png" alt="Destaque Visual Portal Pai D'égua">
+        </div>
+        
+        <div class="paidegua-text-content">
+            <h2>Portal Pai D'égua</h2>
+            <p>Portal de notícias políticas de destaque no Pará. Plataforma desenvolvida para alto tráfego, garantindo carregamento rápido, SEO otimizado e excelente experiência no celular.</p>
+            <a href="https://portalpaidegua.blog.br" target="_blank" class="paidegua-btn">Acessar Portal Pai D'égua</a>
+        </div>
+    </div>
 
             <h2 class="section-title" style="margin-top: 60px;"><i class="fas fa-globe"></i> Projetos Web e Institucionais</h2>
             <p style="margin-bottom: 25px; color: var(--text-muted-dark);">Sistemas, sites e plataformas desenvolvidos de forma independente para institutos e consultorias.</p>
