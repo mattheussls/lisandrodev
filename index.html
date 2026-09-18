@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lisandro Matheus | Inteligência em Saúde</title>
+    <title>Lisandro Matheus | Inteligência em Saúde & Sistemas</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Oswald:wght@500;700&display=swap');
@@ -14,7 +14,7 @@
             --bg-white: #FFFFFF;     /* Branco puro para blocos */
             --navy-dark: #0B192C;    /* Azul Marinho Escuro (Textos Principais) */
             --navy-light: #1A365D;   /* Azul Marinho Secundário */
-            --blue-accent: #2563EB;  /* Azul Royal (Substituindo o Verde) */
+            --blue-accent: #2563EB;  /* Azul Royal */
             --blue-hover: #1d4ed8;
             --text-muted: #475569;   /* Cinza para textos de apoio */
             --border-color: #93C5FD; /* Azul claro para linhas e bordas */
@@ -31,19 +31,19 @@
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        section { padding: 80px 0; }
+        section { padding: 70px 0; }
 
         /* TIPOGRAFIA DE IMPACTO */
         h1, h2, h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
         .section-tag { font-weight: 700; color: var(--blue-accent); font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: block; }
         
         /* CABEÇALHO */
-        header { padding: 100px 0 60px 0; border-bottom: 1px solid var(--border-color); background-color: var(--bg-white); }
-        .header-title { font-size: 4rem; font-weight: 800; color: var(--navy-dark); line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
-        .header-subtitle { font-size: 1.5rem; color: var(--blue-accent); font-weight: 500; margin-bottom: 30px; font-family: 'Inter', sans-serif; }
+        header { padding: 90px 0 50px 0; border-bottom: 1px solid var(--border-color); background-color: var(--bg-white); }
+        .header-title { font-size: 3.8rem; font-weight: 800; color: var(--navy-dark); line-height: 1.1; margin-bottom: 15px; letter-spacing: -1px; }
+        .header-subtitle { font-size: 1.4rem; color: var(--blue-accent); font-weight: 500; margin-bottom: 25px; font-family: 'Inter', sans-serif; }
         
-        .header-bio-list { margin-top: 20px; margin-bottom: 40px; display: flex; flex-direction: column; gap: 12px; max-width: 800px; }
-        .bio-item { color: var(--text-muted); font-size: 1.1rem; display: flex; align-items: center; gap: 12px; line-height: 1.4; }
+        .header-bio-list { margin-top: 15px; margin-bottom: 35px; display: flex; flex-direction: column; gap: 12px; max-width: 850px; }
+        .bio-item { color: var(--text-muted); font-size: 1.05rem; display: flex; align-items: center; gap: 12px; line-height: 1.4; }
         .bio-item i { color: var(--blue-accent); font-size: 1.2rem; width: 25px; text-align: center; }
         .bio-item strong { color: var(--navy-dark); font-weight: 600; }
 
@@ -51,36 +51,18 @@
         .contact-bar a { color: var(--navy-dark); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
         .contact-bar a:hover { color: var(--blue-accent); }
 
-        /* DESTAQUE GEOSAÚDE */
-        .geosaude-wrapper { border: 1px solid var(--border-color); background: var(--bg-white); display: grid; grid-template-columns: 1fr 1fr; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
-        .geo-main { padding: 60px; border-right: 1px solid var(--border-color); }
-        .geo-main h2 { font-size: 3rem; line-height: 1.1; color: var(--navy-dark); margin-bottom: 30px; }
-        .geo-main p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; }
-        
-        .geo-footer { display: flex; justify-content: space-between; font-weight: 600; font-size: 0.85rem; color: var(--navy-light); text-transform: uppercase; }
-        .geo-footer span { display: flex; align-items: center; gap: 10px; }
-        .geo-footer i { color: var(--blue-accent); }
-
-        .geo-grid { display: grid; grid-template-columns: 1fr 1fr; }
-        .geo-item { padding: 40px; border-bottom: 1px solid var(--border-color); border-right: 1px solid var(--border-color); }
-        .geo-item:nth-child(even) { border-right: none; }
-        .geo-item:nth-last-child(-n+2) { border-bottom: none; }
-        .geo-number { font-size: 1.5rem; font-weight: 800; font-family: 'Oswald', sans-serif; color: var(--blue-accent); margin-bottom: 15px; }
-        .geo-item h3 { font-size: 1.4rem; color: var(--navy-dark); margin-bottom: 15px; }
-        .geo-item p { font-size: 0.95rem; color: var(--text-muted); }
-
         /* BLOCO DE ALTA VISIBILIDADE (ANÚNCIO) - FNS */
-        .ad-block { background: var(--navy-dark); color: var(--bg-white); padding: 60px; text-align: center; margin: 40px 0; border-radius: 8px; box-shadow: 0 20px 40px rgba(11, 25, 44, 0.15); border-bottom: 6px solid var(--blue-accent); }
-        .ad-block h2 { color: var(--bg-white); font-size: 2.5rem; margin-bottom: 20px; }
-        .ad-block p { font-size: 1.2rem; max-width: 900px; margin: 0 auto; color: #E2E8F0; }
+        .ad-block { background: var(--navy-dark); color: var(--bg-white); padding: 50px; text-align: center; margin: 40px 0; border-radius: 8px; box-shadow: 0 20px 40px rgba(11, 25, 44, 0.15); border-bottom: 6px solid var(--blue-accent); }
+        .ad-block h2 { color: var(--bg-white); font-size: 2.3rem; margin-bottom: 15px; }
+        .ad-block p { font-size: 1.1rem; max-width: 900px; margin: 0 auto; color: #E2E8F0; }
 
         /* ACORDEÃO (SPP E OUTROS) */
-        .accordion-section { background: var(--bg-white); padding: 80px 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-        .accordion-header-main { text-align: center; margin-bottom: 50px; }
-        .accordion-header-main h2 { font-size: 2.5rem; color: var(--navy-dark); }
+        .accordion-section { background: var(--bg-white); padding: 70px 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .accordion-header-main { text-align: center; margin-bottom: 40px; }
+        .accordion-header-main h2 { font-size: 2.3rem; color: var(--navy-dark); }
         
         .accordion { border-bottom: 1px solid #E2E8F0; }
-        .accordion-btn { width: 100%; background: none; border: none; padding: 30px 20px; text-align: left; font-size: 1.5rem; font-family: 'Oswald', sans-serif; text-transform: uppercase; color: var(--navy-light); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
+        .accordion-btn { width: 100%; background: none; border: none; padding: 25px 20px; text-align: left; font-size: 1.4rem; font-family: 'Oswald', sans-serif; text-transform: uppercase; color: var(--navy-light); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
         .accordion-btn:hover { background: var(--bg-base); color: var(--blue-accent); }
         .accordion-btn i { font-size: 1.2rem; color: var(--blue-accent); transition: transform 0.3s; }
         .accordion-btn.active i { transform: rotate(180deg); }
@@ -89,28 +71,28 @@
         .accordion-btn.active + .accordion-content { max-height: 2500px; padding: 0 20px 40px 20px; }
 
         /* TABELAS SPP */
-        .spp-intro { font-size: 1.1rem; margin-bottom: 20px; color: var(--text-muted); max-width: 900px; }
-        .spp-badge { display: inline-flex; align-items: center; gap: 10px; background: #eff6ff; color: var(--blue-accent); padding: 10px 20px; border-radius: 50px; font-size: 0.95rem; font-weight: 600; margin-bottom: 30px; border: 1px solid #bfdbfe; }
+        .spp-intro { font-size: 1.05rem; margin-bottom: 20px; color: var(--text-muted); max-width: 900px; }
+        .spp-badge { display: inline-flex; align-items: center; gap: 10px; background: #eff6ff; color: var(--blue-accent); padding: 8px 18px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 25px; border: 1px solid #bfdbfe; }
         
-        .table-responsive { width: 100%; overflow-x: auto; background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 40px; }
+        .table-responsive { width: 100%; overflow-x: auto; background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 30px; }
         table { width: 100%; border-collapse: collapse; min-width: 750px; }
-        th { background: var(--navy-dark); color: var(--bg-white); padding: 18px 20px; text-align: left; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
-        td { padding: 20px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+        th { background: var(--navy-dark); color: var(--bg-white); padding: 16px 20px; text-align: left; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        td { padding: 18px 20px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
         tr:hover td { background-color: var(--bg-base); }
         tr:last-child td { border-bottom: none; }
         
-        .mod-name { font-weight: 700; color: var(--navy-dark); font-size: 1.1rem; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-        .mod-name i { color: var(--blue-accent); font-size: 1.2rem; width: 25px; text-align: center; }
+        .mod-name { font-weight: 700; color: var(--navy-dark); font-size: 1.05rem; display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+        .mod-name i { color: var(--blue-accent); font-size: 1.1rem; width: 25px; text-align: center; }
         .mod-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
         .impact-table th { background: #f1f5f9; color: var(--navy-dark); font-weight: 700; }
         .impact-table td { color: var(--text-muted); vertical-align: middle; }
 
         /* OUTROS SISTEMAS (DENTRO DO ACORDEÃO) */
-        .system-row { display: flex; flex-direction: column; margin-bottom: 20px; background: var(--bg-base); padding: 35px; border-radius: 8px; border-left: 4px solid var(--blue-accent); border-right: 1px solid #e2e8f0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
-        .system-content h3 { font-size: 1.5rem; color: var(--navy-dark); margin-bottom: 12px; }
-        .system-content p { color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
-        .system-link { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-white); background: var(--navy-light); padding: 10px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; transition: 0.3s; align-self: flex-start; }
+        .system-row { display: flex; flex-direction: column; margin-bottom: 20px; background: var(--bg-base); padding: 30px; border-radius: 8px; border-left: 4px solid var(--blue-accent); border-right: 1px solid #e2e8f0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+        .system-content h3 { font-size: 1.4rem; color: var(--navy-dark); margin-bottom: 10px; }
+        .system-content p { color: var(--text-muted); margin-bottom: 15px; line-height: 1.6; font-size: 0.95rem; }
+        .system-link { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-white); background: var(--navy-light); padding: 10px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; transition: 0.3s; align-self: flex-start; font-size: 0.95rem; }
         .system-link:hover { background: var(--blue-accent); }
 
         /* DESTAQUE PAI D'ÉGUA */
@@ -118,53 +100,45 @@
             background: linear-gradient(135deg, var(--navy-light), var(--navy-dark)); 
             border: 1px solid var(--border-color); 
             border-radius: 12px; 
-            padding: 60px 40px; 
-            margin: 50px 0; 
+            padding: 50px 40px; 
+            margin: 40px 0; 
             display: flex; flex-direction: column; align-items: center; text-align: center; 
             position: relative; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
         }
-        .paidegua-showcase { z-index: 2; margin-bottom: 30px; width: 100%; display: flex; justify-content: center; }
-        .paidegua-showcase img { max-width: 450px; width: 80%; height: auto; border-radius: 12px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); transition: transform 0.5s ease; }
+        .paidegua-showcase { z-index: 2; margin-bottom: 25px; width: 100%; display: flex; justify-content: center; }
+        .paidegua-showcase img { max-width: 420px; width: 80%; height: auto; border-radius: 10px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); transition: transform 0.5s ease; }
         .paidegua-box:hover .paidegua-showcase img { transform: scale(1.03) rotate(-1deg); }
         .paidegua-text-content { z-index: 2; max-width: 700px; }
-        .paidegua-box h2 { color: var(--bg-white); font-size: 2.2rem; margin-bottom: 15px; font-weight: 800; letter-spacing: -1px; }
-        .paidegua-box p { font-size: 1.15rem; margin-bottom: 30px; color: #e2e8f0; line-height: 1.7; }
-        .paidegua-btn { background: var(--blue-accent); color: var(--bg-white); padding: 15px 35px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 1.1rem; transition: all 0.3s ease; }
+        .paidegua-box h2 { color: var(--bg-white); font-size: 2.1rem; margin-bottom: 12px; font-weight: 800; letter-spacing: -1px; }
+        .paidegua-box p { font-size: 1.1rem; margin-bottom: 25px; color: #e2e8f0; line-height: 1.6; }
+        .paidegua-btn { background: var(--blue-accent); color: var(--bg-white); padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 1rem; transition: all 0.3s ease; }
         .paidegua-btn:hover { background: var(--blue-hover); transform: scale(1.05); }
 
         /* SITES E INSTITUTOS */
         .links-list { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-        .link-row { display: flex; justify-content: space-between; align-items: center; background: var(--bg-white); padding: 25px; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none; transition: 0.3s; }
+        .link-row { display: flex; justify-content: space-between; align-items: center; background: var(--bg-white); padding: 22px 25px; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none; transition: 0.3s; }
         .link-row:hover { border-color: var(--blue-accent); box-shadow: 0 5px 15px rgba(37, 99, 235, 0.05); }
-        .link-info h4 { color: var(--navy-dark); font-size: 1.15rem; margin-bottom: 5px; font-family: 'Inter', sans-serif; font-weight: 700;}
-        .link-info p { color: var(--text-muted); font-size: 0.95rem; }
+        .link-info h4 { color: var(--navy-dark); font-size: 1.1rem; margin-bottom: 4px; font-family: 'Inter', sans-serif; font-weight: 700;}
+        .link-info p { color: var(--text-muted); font-size: 0.9rem; }
         .link-url { color: var(--blue-accent); font-family: monospace; font-size: 0.9rem; word-break: break-all; font-weight: 600;}
 
         /* FOOTER */
-        footer { background: var(--navy-dark); color: #94a3b8; padding: 50px 0; border-top: 1px solid var(--navy-light); text-align: center; }
+        footer { background: var(--navy-dark); color: #94a3b8; padding: 45px 0; border-top: 1px solid var(--navy-light); text-align: center; }
 
         /* RESPONSIVIDADE */
-        @media (max-width: 900px) {
-            .geosaude-wrapper { grid-template-columns: 1fr; }
-            .geo-main { border-right: none; border-bottom: 1px solid var(--border-color); padding: 40px 20px; }
-            .geo-item { padding: 30px 20px; }
-        }
         @media (max-width: 768px) {
-            header { padding: 60px 0; }
-            .header-title { font-size: 2.8rem; }
-            .contact-bar { flex-direction: column; gap: 15px; }
-            .geo-grid { grid-template-columns: 1fr; }
-            .geo-item:nth-child(even) { border-right: 1px solid var(--border-color); }
-            .geo-item:nth-last-child(2) { border-bottom: 1px solid var(--border-color); }
-            .accordion-btn { font-size: 1.2rem; padding: 20px 10px; }
-            .ad-block { padding: 40px 20px; }
-            .ad-block h2 { font-size: 2rem; }
-            .paidegua-box { padding: 40px 20px; }
-            .paidegua-showcase img { max-width: 280px; width: 90%; }
-            .link-row { flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px; }
-            .link-url { display: inline-block; background: #eff6ff; padding: 8px 12px; border-radius: 4px; width: 100%; }
-            th { padding: 15px; font-size: 0.9rem; }
-            td { padding: 15px; }
+            header { padding: 50px 0; }
+            .header-title { font-size: 2.5rem; }
+            .contact-bar { flex-direction: column; gap: 12px; }
+            .accordion-btn { font-size: 1.1rem; padding: 18px 10px; }
+            .ad-block { padding: 35px 20px; }
+            .ad-block h2 { font-size: 1.8rem; }
+            .paidegua-box { padding: 35px 20px; }
+            .paidegua-showcase img { max-width: 260px; width: 90%; }
+            .link-row { flex-direction: column; align-items: flex-start; gap: 10px; padding: 18px; }
+            .link-url { display: inline-block; background: #eff6ff; padding: 6px 10px; border-radius: 4px; width: 100%; }
+            th { padding: 14px; font-size: 0.85rem; }
+            td { padding: 14px; }
         }
     </style>
 </head>
@@ -188,7 +162,7 @@
                 </div>
                 <div class="bio-item">
                     <i class="fas fa-cogs"></i> 
-                    <span>Especialista na criação de ecossistemas digitais, mapeando desde o <strong>fluxo financeiro e contratual</strong> até o monitoramento territorial da atenção primária.</span>
+                    <span>Especialista na criação de ecossistemas digitais, mapeando desde o <strong>fluxo financeiro, orçamentário e contratual</strong> até o monitoramento territorial da atenção primária.</span>
                 </div>
             </div>
             
@@ -202,58 +176,11 @@
         </div>
     </header>
 
-    <!-- SEÇÃO GEOSAÚDE -->
-    <section>
-        <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                <span class="section-tag">Plataforma Integrada de Inteligência</span>
-            </div>
-            <h2 style="font-size: 2rem; color: var(--navy-dark);">SOBRE O GEOSAÚDE</h2>
-
-            <div class="geosaude-wrapper">
-                <div class="geo-main">
-                    <p style="text-transform: uppercase; font-weight: 600; color: var(--navy-light); margin-bottom: 20px;">Por que o GeoSaúde existe</p>
-                    <h2>INFORMAÇÃO ESTRATÉGICA PRECISA SER ENCONTRADA E ENTENDIDA.</h2>
-                    <p>O GeoSaúde centraliza bases complexas e transforma dados dispersos do SIAPS e CNES em painéis visuais. Ao invés de planilhas intermináveis, entrega direcionamento estratégico territorial, alarmando componentes críticos e apontando metas exatas para que as equipes de atenção primária avancem de faixa.</p>
-                    
-                    <div class="geo-footer">
-                        <span>FONTES OFICIAIS</span>
-                        <span><i class="fas fa-arrow-right"></i> LEITURA INTEGRADA</span>
-                        <span><i class="fas fa-arrow-right"></i> DECISÃO</span>
-                    </div>
-                </div>
-
-                <div class="geo-grid">
-                    <div class="geo-item">
-                        <div class="geo-number">01</div>
-                        <h3>ENCONTRAR</h3>
-                        <p>Informações estratégicas reunidas num só ambiente, eliminando a fragmentação de dados da rede de saúde.</p>
-                    </div>
-                    <div class="geo-item">
-                        <div class="geo-number">02</div>
-                        <h3>VISUALIZAR</h3>
-                        <p>Mapas georreferenciados e alertas visuais de qualidade substituem as análises manuais de longas planilhas.</p>
-                    </div>
-                    <div class="geo-item">
-                        <div class="geo-number">03</div>
-                        <h3>CONFIAR</h3>
-                        <p>Cada simulação e auditoria (como equipes incompletas) parte de fontes oficiais e validação direta com o CNES.</p>
-                    </div>
-                    <div class="geo-item">
-                        <div class="geo-number">04</div>
-                        <h3>CONSTRUIR</h3>
-                        <p>Um trabalho focado em entregar "a receita" para a gestão saber exatamente onde agir e quantas pessoas alcançar.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- BLOCO FNS / API -->
-    <section style="padding: 0;">
+    <section style="padding: 50px 0 0 0;">
         <div class="container">
             <div class="ad-block">
-                <span class="section-tag" style="color: #93C5FD; margin-bottom: 15px;">Engenharia de Dados & Integração</span>
+                <span class="section-tag" style="color: #93C5FD; margin-bottom: 12px;">Engenharia de Dados & Integração</span>
                 <h2>AUTOMAÇÃO FNS EM TEMPO REAL</h2>
                 <p>Desenvolvimento de APIs para extração parametrizada de dados financeiros do Fundo Nacional de Saúde (FNS). A arquitetura realiza o parsing de valores brutos e deduções, garantindo a ingestão automatizada no banco de dados com as fontes orçamentárias oficiais já estruturadas e mapeadas.</p>
             </div>
@@ -261,12 +188,12 @@
     </section>
 
     <!-- SEÇÃO ACORDEÃO (SPP E OUTROS SISTEMAS) -->
-    <section class="accordion-section">
+    <section class="accordion-section" style="margin-top: 20px;">
         <div class="container">
             <div class="accordion-header-main">
                 <span class="section-tag">Gestão Administrativa e Operacional</span>
                 <h2>ECOSSISTEMA SPP E OUTROS SISTEMAS</h2>
-                <p style="color: var(--text-muted); max-width: 600px; margin: 10px auto;">Clique nos módulos abaixo para explorar as plataformas desenvolvidas para garantir estabilidade, eficiência e controle operacional.</p>
+                <p style="color: var(--text-muted); max-width: 650px; margin: 10px auto;">Clique nos módulos abaixo para explorar as plataformas desenvolvidas para garantir estabilidade, eficiência e controle operacional na gestão pública.</p>
             </div>
 
             <!-- ACORDEÃO 1: SPP -->
@@ -276,7 +203,7 @@
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="accordion-content">
-                    <div style="margin-top: 30px;">
+                    <div style="margin-top: 25px;">
                         <p class="spp-intro">Meu principal projeto desenvolvido na gestão de informação da SESMA. O SPP é um sistema de controle financeiro robusto, criado para organizar o fluxo de informações e lidar com notas fiscais de mais de 2.000 credores e prestadores de serviço.</p>
                         
                         <div class="spp-badge">
@@ -294,7 +221,7 @@
                                 <tbody>
                                     <tr>
                                         <td><div class="mod-name"><i class="fas fa-file-invoice-dollar"></i> Financeiro / Notas Fiscais</div></td>
-                                        <td><div class="mod-desc">Ajuda o departamento a organizar e processar notas fiscais recebidas. Permite saber com exatidão nossos prazos de vencimento, o que temos a pagar e consultar o histórico.</div></td>
+                                        <td><div class="mod-desc">Ajuda o departamento a organizar e processar notas fiscais recebidas. Permite saber com exatidão prazos de vencimento, o que temos a pagar e consultar histórico.</div></td>
                                     </tr>
                                     <tr>
                                         <td><div class="mod-name"><i class="fas fa-file-signature"></i> Módulo Contratual</div></td>
@@ -310,13 +237,13 @@
                                     </tr>
                                     <tr>
                                         <td><div class="mod-name"><i class="fas fa-chart-pie"></i> Analytics & Gestão</div></td>
-                                        <td><div class="mod-desc">Transforma os dados em dashboards gerenciais de alto impacto. Inclui controle de gastos e gestão de equipes consumindo dados via API do Portal da Transparência.</div></td>
+                                        <td><div class="mod-desc">Transforma dados em dashboards gerenciais de alto impacto. Inclui controle de gastos e gestão de equipes consumindo dados via API do Portal da Transparência.</div></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
 
-                        <h3 style="margin-bottom: 15px; color: var(--navy-dark); font-size: 1.2rem;">Impacto na Gestão:</h3>
+                        <h3 style="margin-bottom: 15px; color: var(--navy-dark); font-size: 1.15rem;">Impacto na Gestão:</h3>
                         <div class="table-responsive" style="margin-bottom: 0;">
                             <table class="impact-table" style="min-width: 600px;">
                                 <thead>
@@ -352,7 +279,7 @@
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="accordion-content">
-                    <div style="margin-top: 30px;">
+                    <div style="margin-top: 25px;">
                         
                         <div class="system-row">
                             <div class="system-content">
@@ -385,7 +312,6 @@
             <!-- DESTAQUE PAI D'ÉGUA -->
             <div class="paidegua-box">
                 <div class="paidegua-showcase">
-                    <!-- Substitua o src pela sua imagem original "paidegua.png" -->
                     <img src="paidegua.png" alt="Destaque Visual Portal Pai D'égua">
                 </div>
                 <div class="paidegua-text-content">
@@ -396,8 +322,8 @@
             </div>
 
             <!-- PROJETOS WEB -->
-            <h2 class="section-title" style="margin-top: 80px; color: var(--navy-dark); font-size: 2rem;"><i class="fas fa-globe" style="color: var(--blue-accent); margin-right: 15px;"></i> Projetos Web e Institucionais</h2>
-            <p style="margin-bottom: 25px; color: var(--text-muted);">Sistemas, sites e plataformas desenvolvidos de forma independente para institutos e consultorias.</p>
+            <h2 class="section-title" style="margin-top: 70px; color: var(--navy-dark); font-size: 1.8rem;"><i class="fas fa-globe" style="color: var(--blue-accent); margin-right: 12px;"></i> Projetos Web e Institucionais</h2>
+            <p style="margin-bottom: 20px; color: var(--text-muted); font-size: 0.95rem;">Sistemas, sites e plataformas desenvolvidos de forma independente para institutos e consultorias.</p>
 
             <div class="links-list">
                 <a href="https://sentineladaamazonia.org" target="_blank" class="link-row">
@@ -439,10 +365,10 @@
     <!-- FOOTER -->
     <footer>
         <div class="container">
-            <p style="font-size: 1.2rem; color: var(--bg-white); font-weight: 700;">Lisandro Matheus Ramos Ribeiro</p>
-            <p style="margin-top: 5px;">Desenvolvedor & Analista de Inteligência</p>
-            <p style="margin-top: 20px; font-size: 0.95rem;">Contato: <a href="https://wa.me/5591999440334" style="color:var(--border-color); text-decoration:none;">(91) 99944-0334</a></p>
-            <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026. Todos os direitos reservados.</p>
+            <p style="font-size: 1.1rem; color: var(--bg-white); font-weight: 700;">Lisandro Matheus Ramos Ribeiro</p>
+            <p style="margin-top: 5px; font-size: 0.9rem;">Desenvolvedor & Analista de Inteligência</p>
+            <p style="margin-top: 15px; font-size: 0.9rem;">Contato: <a href="https://wa.me/5591999440334" style="color:var(--border-color); text-decoration:none;">(91) 99944-0334</a></p>
+            <p style="margin-top: 25px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026. Todos os direitos reservados.</p>
         </div>
     </footer>
 
