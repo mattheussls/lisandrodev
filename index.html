@@ -1,448 +1,288 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="light">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lisandro Matheus | Dados, sistemas e inteligência aplicada à saúde</title>
-<meta name="description" content="Portfólio de Lisandro Matheus Ramos Ribeiro. Desenvolvimento, dados e gestão da informação em saúde pública: GeoSaúde, SPP, Portal NAT, automações FNS e projetos web.">
+<title>Lisandro Matheus | Gestão da informação em saúde</title>
+<meta name="description" content="Lisandro Matheus Ramos Ribeiro — gestão da informação em saúde pública: indicadores da APS, financeiro, contratos, regulação, imunização e território.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============ TOKENS ============ */
 :root{
-  --paper:#FAF6ED;
-  --surface:#FFFFFF;
-  --deep:#08192F;
-  --deep-2:#102A4C;
-  --ink:#08192F;
-  --ink-soft:#4B5D74;
-  --brand:#1D5FE0;
-  --brand-deep:#0F3FA0;
-  --brand-tint:#E8EFFD;
-  --line:#D5DEEB;
-  --line-soft:#E7EDF5;
-  --white:#FFFFFF;
+  --paper:#FAF6ED; --surface:#FFFFFF; --deep:#08192F; --deep-2:#102A4C;
+  --ink:#08192F; --ink-soft:#4B5D74; --brand:#1D5FE0; --brand-deep:#0F3FA0;
+  --brand-tint:#E8EFFD; --line:#D5DEEB; --line-soft:#E7EDF5;
+  --ok:#1D5FE0; --warn:#B26A00; --warn-bg:#FFF4E0; --crit:#B3261E; --crit-bg:#FDE9E7;
   --shadow:0 18px 40px rgba(8,25,47,.08);
-  --radius:4px;
-  --maxw:1180px;
+  --maxw:1140px;
   --display:'Oswald',Impact,'Arial Narrow',sans-serif;
   --body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
-}
-:root:not([data-theme="light"]){
-  color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --paper:#0A1626;
-    --surface:#0F1F36;
-    --deep:#040D1A;
-    --deep-2:#0C2242;
-    --ink:#E9F0FB;
-    --ink-soft:#A3B6D0;
-    --brand:#6FA3FF;
-    --brand-deep:#2E6BE6;
-    --brand-tint:#13294B;
-    --line:#22395B;
-    --line-soft:#1A2E4C;
-    --white:#0F1F36;
+    --paper:#0A1626; --surface:#0F1F36; --deep:#040D1A; --deep-2:#0C2242;
+    --ink:#E9F0FB; --ink-soft:#A3B6D0; --brand:#6FA3FF; --brand-deep:#2E6BE6;
+    --brand-tint:#13294B; --line:#22395B; --line-soft:#1A2E4C;
+    --warn:#E9A94A; --warn-bg:#2A2110; --crit:#F08B82; --crit-bg:#2C1512;
     --shadow:0 18px 40px rgba(0,0,0,.45);
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --paper:#0A1626;
-  --surface:#0F1F36;
-  --deep:#040D1A;
-  --deep-2:#0C2242;
-  --ink:#E9F0FB;
-  --ink-soft:#A3B6D0;
-  --brand:#6FA3FF;
-  --brand-deep:#2E6BE6;
-  --brand-tint:#13294B;
-  --line:#22395B;
-  --line-soft:#1A2E4C;
-  --white:#0F1F36;
+  --paper:#0A1626; --surface:#0F1F36; --deep:#040D1A; --deep-2:#0C2242;
+  --ink:#E9F0FB; --ink-soft:#A3B6D0; --brand:#6FA3FF; --brand-deep:#2E6BE6;
+  --brand-tint:#13294B; --line:#22395B; --line-soft:#1A2E4C;
+  --warn:#E9A94A; --warn-bg:#2A2110; --crit:#F08B82; --crit-bg:#2C1512;
   --shadow:0 18px 40px rgba(0,0,0,.45);
 }
 
-/* ============ BASE ============ */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
-}
-body{
-  font-family:var(--body);
-  background:var(--paper);
-  color:var(--ink);
-  line-height:1.6;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
-img{max-width:100%;height:auto;display:block}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:2px}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;width:100%}
-.band{padding:84px 0;position:relative}
-.band--paper{background:var(--paper)}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.band{padding:78px 0}
 .band--surface{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .band--deep{background:var(--deep);color:#EAF1FB}
-.skip{position:absolute;left:-9999px;top:0;background:var(--brand);color:#fff;padding:12px 18px;z-index:200}
+.skip{position:absolute;left:-9999px;background:var(--brand);color:#fff;padding:12px 18px;z-index:200}
 .skip:focus{left:12px;top:12px}
-
-h1,h2,h3,h4{font-family:var(--display);text-transform:uppercase;line-height:1.05;letter-spacing:.2px;font-weight:700}
-.eyebrow{
-  font-family:var(--display);font-weight:600;font-size:.78rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--brand);display:block;margin-bottom:14px;
-}
+h1,h2,h3,h4{font-family:var(--display);text-transform:uppercase;line-height:1.08;font-weight:700}
+.eyebrow{font-family:var(--display);font-weight:600;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);display:block;margin-bottom:12px}
 .band--deep .eyebrow{color:#7FA8F5}
-.h-sec{font-size:clamp(1.7rem,4.2vw,2.5rem);color:var(--ink)}
+.h-sec{font-size:clamp(1.6rem,4.4vw,2.35rem)}
 .band--deep .h-sec{color:#fff}
-.lead{color:var(--ink-soft);font-size:1.02rem;max-width:66ch}
+.lead{color:var(--ink-soft);font-size:1rem;max-width:64ch;margin-top:12px}
 .band--deep .lead{color:#C3D3EA}
 
-/* ============ NAV ============ */
+/* NAV */
 .progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--brand);z-index:120;transition:width .12s linear}
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:110;
-  background:var(--paper);
-  background:color-mix(in srgb, var(--paper) 88%, transparent);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line);
-}
-.nav__in{max-width:var(--maxw);margin:0 auto;padding:0 22px;height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
-.brand__mark{
-  width:36px;height:36px;display:grid;place-items:center;background:var(--deep);color:#fff;
-  font-family:var(--display);font-weight:700;font-size:.95rem;letter-spacing:.5px;
-  border-bottom:3px solid var(--brand);
-}
-.brand__txt{font-family:var(--display);font-weight:600;font-size:.98rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);line-height:1.1}
-.brand__txt small{display:block;font-family:var(--body);font-weight:500;font-size:.65rem;letter-spacing:.12em;color:var(--ink-soft);text-transform:uppercase}
-.menu{display:flex;align-items:center;gap:4px}
-.menu a{
-  text-decoration:none;font-size:.82rem;font-weight:500;color:var(--ink-soft);
-  padding:8px 11px;border-radius:3px;transition:color .2s,background .2s;white-space:nowrap;
-}
-.menu a:hover{color:var(--brand);background:var(--brand-tint)}
-.menu a.on{color:var(--brand);background:var(--brand-tint);font-weight:600}
-.nav__side{display:flex;align-items:center;gap:8px}
-.iconbtn{
-  width:38px;height:38px;display:grid;place-items:center;background:transparent;
-  border:1px solid var(--line);color:var(--ink);cursor:pointer;border-radius:3px;transition:.2s;
-}
+.nav{position:fixed;top:0;left:0;right:0;z-index:110;background:var(--paper);border-bottom:1px solid var(--line)}
+.nav__in{max-width:var(--maxw);margin:0 auto;padding:0 18px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand__mark{width:34px;height:34px;display:grid;place-items:center;background:var(--deep);color:#fff;font-family:var(--display);font-weight:700;font-size:.9rem;border-bottom:3px solid var(--brand)}
+.brand__txt{font-family:var(--display);font-weight:600;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em;line-height:1.1;color:var(--ink)}
+.brand__txt small{display:block;font-family:var(--body);font-weight:500;font-size:.62rem;letter-spacing:.1em;color:var(--ink-soft)}
+.menu{display:flex;gap:2px}
+.menu a{text-decoration:none;font-size:.82rem;font-weight:500;color:var(--ink-soft);padding:8px 11px;border-radius:3px;white-space:nowrap}
+.menu a:hover,.menu a.on{color:var(--brand);background:var(--brand-tint)}
+.nav__side{display:flex;gap:8px}
+.iconbtn{width:38px;height:38px;display:grid;place-items:center;background:none;border:1px solid var(--line);color:var(--ink);cursor:pointer;border-radius:3px}
 .iconbtn:hover{border-color:var(--brand);color:var(--brand)}
 .burger{display:none}
-@media (max-width:1040px){
-  .menu{
-    position:fixed;inset:66px 0 auto 0;background:var(--surface);border-bottom:1px solid var(--line);
-    flex-direction:column;align-items:stretch;gap:0;padding:8px 14px 18px;
-    transform:translateY(-120%);transition:transform .32s ease;box-shadow:var(--shadow);
-  }
+@media (max-width:1000px){
+  .menu{position:fixed;inset:62px 0 auto 0;background:var(--surface);flex-direction:column;gap:0;padding:6px 14px 16px;transform:translateY(-130%);transition:transform .3s;box-shadow:var(--shadow);border-bottom:1px solid var(--line)}
   .menu.open{transform:translateY(0)}
-  .menu a{padding:14px 10px;border-bottom:1px solid var(--line-soft);font-size:.95rem}
+  .menu a{padding:14px 8px;border-bottom:1px solid var(--line-soft);font-size:.95rem}
   .burger{display:grid}
+  .brand__txt small{display:none}
 }
 
-/* ============ HERO ============ */
-.hero{padding:118px 0 0;background:var(--surface);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
-.hero__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:start}
-.hero h1{font-size:clamp(2.4rem,6.2vw,4.1rem);color:var(--ink);letter-spacing:-.5px}
+/* HERO */
+.hero{padding:104px 0 0;background:var(--surface);border-bottom:1px solid var(--line)}
+.hero__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:46px;align-items:center}
+.hero h1{font-size:clamp(2.1rem,6vw,3.6rem);letter-spacing:-.5px}
 .hero h1 span{display:block}
-.hero__role{
-  font-family:var(--body);font-weight:600;font-size:clamp(1rem,2.4vw,1.2rem);color:var(--brand);
-  margin-top:16px;letter-spacing:.01em;
-}
-.hero__txt{margin-top:18px;color:var(--ink-soft);font-size:1.03rem;max-width:56ch}
-.hero__facts{margin-top:26px;display:flex;flex-direction:column;gap:11px;border-left:2px solid var(--brand);padding-left:16px}
-.fact{display:flex;gap:10px;align-items:flex-start;font-size:.97rem;color:var(--ink-soft)}
-.fact b{color:var(--ink);font-weight:600}
-.fact svg{flex-shrink:0;margin-top:3px;color:var(--brand)}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.btn{
-  display:inline-flex;align-items:center;gap:9px;padding:13px 22px;text-decoration:none;
-  font-weight:600;font-size:.92rem;border-radius:3px;transition:.22s;border:1px solid transparent;cursor:pointer;
-}
+.hero__role{font-family:var(--body);font-weight:600;font-size:clamp(.98rem,2.4vw,1.15rem);color:var(--brand);margin-top:14px}
+.hero__txt{margin-top:16px;color:var(--ink-soft);max-width:52ch;font-size:1rem}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;text-decoration:none;font-weight:600;font-size:.9rem;border-radius:3px;border:1px solid transparent;cursor:pointer;transition:.2s}
 .btn--solid{background:var(--brand);color:#fff}
 .btn--solid:hover{background:var(--brand-deep)}
-.btn--ghost{border-color:var(--line);color:var(--ink);background:transparent}
+.btn--ghost{border-color:var(--line);color:var(--ink)}
 .btn--ghost:hover{border-color:var(--brand);color:var(--brand)}
 .btn--light{background:#fff;color:var(--deep)}
-.btn--light:hover{background:var(--brand-tint)}
-
-/* painel do hero */
-.panelcard{
-  border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);
-  border-radius:var(--radius);overflow:hidden;
-}
-.panelcard__bar{
-  background:var(--deep);padding:11px 15px;display:flex;align-items:center;gap:8px;
-}
-.dot{width:9px;height:9px;border-radius:50%;background:#31507E}
-.panelcard__title{
-  color:#fff;font-family:var(--display);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-left:6px;
-}
-.panelcard__body{padding:18px}
-.kpi{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.kpi>div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 14px}
+.kpi{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-left:1px solid var(--line);background:var(--surface)}
+.kpi>div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 16px}
 .kpi b{display:block;font-family:var(--display);font-size:1.9rem;color:var(--brand);line-height:1}
 .kpi span{display:block;font-size:.76rem;color:var(--ink-soft);margin-top:6px;line-height:1.35}
-
-/* faixa de estatísticas */
-.statstrip{border-top:1px solid var(--line);background:var(--paper)}
+.statstrip{border-top:1px solid var(--line);background:var(--paper);margin-top:48px}
 .statstrip__in{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
-.stat{padding:26px 22px;border-right:1px solid var(--line)}
+.stat{padding:22px;border-right:1px solid var(--line)}
 .stat:last-child{border-right:none}
-.stat b{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.4rem);color:var(--ink);display:block;line-height:1}
-.stat span{font-size:.8rem;color:var(--ink-soft);display:block;margin-top:7px;line-height:1.4}
+.stat b{font-family:var(--display);font-size:clamp(1.6rem,4vw,2.2rem);display:block;line-height:1}
+.stat span{font-size:.78rem;color:var(--ink-soft);display:block;margin-top:6px}
 @media (max-width:900px){
-  .hero{padding-top:96px}
-  .hero__grid{grid-template-columns:1fr;gap:34px}
+  .hero{padding-top:88px}
+  .hero__grid{grid-template-columns:1fr;gap:28px}
   .statstrip__in{grid-template-columns:1fr 1fr}
   .stat{border-bottom:1px solid var(--line)}
   .stat:nth-child(2n){border-right:none}
 }
 
-/* ============ GRID HAIRLINE (frentes) ============ */
-.cells{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:34px;background:var(--surface)}
-.cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 24px;transition:background .25s}
-.cell:hover{background:var(--brand-tint)}
-.cell h3{font-size:1.15rem;color:var(--ink);margin:12px 0 8px}
-.cell p{font-size:.92rem;color:var(--ink-soft);line-height:1.6}
-.cell__ico{color:var(--brand)}
-@media (max-width:900px){.cells{grid-template-columns:1fr}}
-
-/* ============ FILTRO + CASES ============ */
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 24px}
-.chip{
-  font-family:var(--body);font-size:.84rem;font-weight:600;padding:9px 16px;border:1px solid var(--line);
-  background:transparent;color:var(--ink-soft);cursor:pointer;border-radius:50px;transition:.2s;
+/* CARROSSEL / RAIL */
+.railhead{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:24px 0 16px;flex-wrap:wrap}
+.railnav{display:none;gap:8px}
+.railnav button{width:40px;height:40px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:50%;display:grid;place-items:center;cursor:pointer}
+.railnav button:disabled{opacity:.35;cursor:default}
+.rail{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rail--2{grid-template-columns:repeat(2,1fr)}
+.dots{display:none;justify-content:center;gap:7px;margin-top:16px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--line);display:block;transition:.25s}
+.dots i.on{background:var(--brand);width:22px;border-radius:4px}
+@media (max-width:820px){
+  .rail,.rail--2{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .rail::-webkit-scrollbar,.rail--2::-webkit-scrollbar{display:none}
+  .rail>*,.rail--2>*{flex:0 0 86%;scroll-snap-align:center}
+  .dots{display:flex}
+  .railnav{display:none}
 }
-.chip:hover{border-color:var(--brand);color:var(--brand)}
+@media (min-width:821px) and (max-width:1000px){.rail{grid-template-columns:repeat(2,1fr)}}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--brand);padding:22px;border-radius:4px}
+.card.hide{display:none}
+.card__tag{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.card h3{font-size:1.15rem;margin:8px 0 9px}
+.card p{font-size:.92rem;color:var(--ink-soft)}
+.card__metric{margin-top:13px;padding-top:12px;border-top:1px dashed var(--line);font-family:var(--display);font-size:.9rem;letter-spacing:.05em;color:var(--brand-deep);text-transform:uppercase}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{font-size:.82rem;font-weight:600;padding:9px 15px;border:1px solid var(--line);background:none;color:var(--ink-soft);cursor:pointer;border-radius:50px;white-space:nowrap}
 .chip.on{background:var(--deep);border-color:var(--deep);color:#fff}
-.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.case{
-  background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--brand);
-  padding:24px;border-radius:var(--radius);transition:transform .25s,box-shadow .25s,opacity .25s;
-}
-.case:hover{box-shadow:var(--shadow)}
-.case.hide{display:none}
-.case__tag{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
-.case h3{font-size:1.25rem;margin:9px 0 10px;color:var(--ink)}
-.case p{font-size:.94rem;color:var(--ink-soft)}
-.case__metric{
-  margin-top:14px;padding-top:13px;border-top:1px dashed var(--line);
-  font-family:var(--display);font-size:.95rem;letter-spacing:.06em;color:var(--brand-deep);text-transform:uppercase;
-}
-@media (max-width:840px){.cases{grid-template-columns:1fr}}
 
-/* ============ GEOSAÚDE (destaque) ============ */
-.geo{background:var(--deep);color:#EAF1FB;padding:84px 0;position:relative;overflow:hidden}
-.geo::after{
-  content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;
-  border:1px solid rgba(111,163,255,.18);border-radius:50%;pointer-events:none;
-}
-.geo__head{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;margin-bottom:38px}
-.geo__logo{display:flex;align-items:center;gap:12px;margin-bottom:18px}
-.geo__logo b{font-family:var(--display);font-size:2.6rem;color:#fff;letter-spacing:-1px;line-height:1}
-.geo__logo i{
-  font-style:normal;font-family:var(--display);font-size:1.05rem;letter-spacing:.14em;background:var(--brand);
-  color:#fff;padding:5px 12px;border-radius:3px;
-}
-.geo__app{border:1px solid rgba(146,180,240,.28);background:rgba(255,255,255,.03);border-radius:6px;overflow:hidden}
-.geo__tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid rgba(146,180,240,.28);background:rgba(4,13,26,.5)}
-.tab{
-  background:none;border:none;border-bottom:3px solid transparent;color:#9FBCEA;cursor:pointer;
-  font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:.82rem;
-  padding:16px 20px;transition:.22s;flex:1 1 auto;
-}
-.tab:hover{color:#fff;background:rgba(111,163,255,.08)}
+/* DOMÍNIOS */
+.dom{background:var(--surface);border:1px solid var(--line);padding:24px;border-radius:4px}
+.dom__ico{color:var(--brand);margin-bottom:12px;display:block}
+.dom h3{font-size:1.1rem;margin-bottom:8px}
+.dom p{font-size:.9rem;color:var(--ink-soft);margin-bottom:12px}
+.dom ul{margin-left:16px}
+.dom li{font-size:.86rem;color:var(--ink-soft);margin-bottom:5px}
+
+/* APP GEOSAÚDE */
+.geo{background:var(--deep);color:#EAF1FB;padding:78px 0}
+.geo__logo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.geo__logo b{font-family:var(--display);font-size:2.2rem;color:#fff;line-height:1}
+.geo__logo i{font-style:normal;font-family:var(--display);font-size:.95rem;letter-spacing:.14em;background:var(--brand);color:#fff;padding:4px 11px;border-radius:3px}
+.app{border:1px solid rgba(146,180,240,.28);background:rgba(255,255,255,.03);border-radius:6px;overflow:hidden;margin-top:30px}
+.tabs{display:flex;overflow-x:auto;border-bottom:1px solid rgba(146,180,240,.28);background:rgba(4,13,26,.5);scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:none;border:none;border-bottom:3px solid transparent;color:#9FBCEA;cursor:pointer;font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;padding:15px 18px;white-space:nowrap;flex:1 0 auto}
 .tab.on{color:#fff;border-bottom-color:var(--brand)}
-.pane{display:none;padding:26px}
-.pane.on{display:block;animation:fade .35s ease}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.pane__top{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;margin-bottom:20px}
-.pane__top h3{color:#fff;font-size:1.35rem}
-.pane__top p{font-size:.86rem;color:#9FBCEA;margin-top:4px}
-.search{
-  display:flex;align-items:center;gap:9px;border:1px solid rgba(146,180,240,.35);border-radius:3px;
-  padding:10px 14px;min-width:260px;flex:1 1 260px;max-width:360px;background:rgba(4,13,26,.45);
-}
-.search input{background:none;border:none;color:#fff;font-family:var(--body);font-size:.9rem;width:100%;outline:none}
-.search input::placeholder{color:#7A93BA}
-.search svg{color:#6FA3FF;flex-shrink:0}
-.gcards{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(146,180,240,.22);border-left:1px solid rgba(146,180,240,.22)}
-.gcards--3{grid-template-columns:repeat(3,1fr)}
-.gcard{
-  border-right:1px solid rgba(146,180,240,.22);border-bottom:1px solid rgba(146,180,240,.22);
-  padding:20px 18px;transition:background .22s;
-}
-.gcard:hover{background:rgba(111,163,255,.09)}
-.gcard.hide{display:none}
-.gcard__k{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#6FA3FF;font-weight:700}
-.gcard__t{font-family:var(--display);font-size:1.02rem;color:#fff;margin:8px 0 6px;text-transform:uppercase;line-height:1.2}
-.gcard__d{font-size:.83rem;color:#9FBCEA;line-height:1.5}
-.gcard__ico{color:#6FA3FF;margin-bottom:10px}
-.empty{padding:26px;color:#9FBCEA;font-size:.9rem;border:1px dashed rgba(146,180,240,.3);text-align:center}
-@media (max-width:980px){.geo__head{grid-template-columns:1fr}.gcards,.gcards--3{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:560px){.gcards,.gcards--3{grid-template-columns:1fr}.pane{padding:18px}}
+.pane{display:none;padding:22px}
+.pane.on{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pane__top{margin-bottom:18px}
+.pane__top h3{color:#fff;font-size:1.25rem}
+.pane__top p{font-size:.85rem;color:#9FBCEA;margin-top:5px;max-width:70ch}
+.note{font-size:.76rem;color:#7A93BA;margin-top:16px;border-left:2px solid var(--brand);padding-left:11px}
 
-/* simulador */
-.sim{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
-.sliders{display:flex;flex-direction:column;gap:18px}
-.slider label{display:flex;justify-content:space-between;font-size:.86rem;color:#C3D3EA;margin-bottom:8px;gap:12px}
-.slider label b{color:#fff;font-family:var(--display);font-size:1rem}
-input[type=range]{
-  width:100%;-webkit-appearance:none;appearance:none;height:4px;border-radius:4px;
-  background:rgba(146,180,240,.3);outline:none;cursor:pointer;
+/* linhas de indicador */
+.thead,.irow{display:grid;grid-template-columns:1.7fr .85fr 1fr .8fr 1fr;gap:10px;align-items:center}
+.thead{padding:10px 14px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#7FA8F5;font-weight:700;border-bottom:1px solid rgba(146,180,240,.28)}
+.irow{padding:14px;border-bottom:1px solid rgba(146,180,240,.16)}
+.irow:last-child{border-bottom:none}
+.irow__name{font-weight:600;color:#fff;font-size:.95rem}
+.irow__name small{display:block;color:#7A93BA;font-size:.72rem;font-weight:400;margin-top:2px}
+.irow__val{font-family:var(--display);font-size:1.25rem;color:#fff;line-height:1}
+.irow__val small{display:block;font-family:var(--body);font-size:.68rem;color:#7A93BA;font-weight:400;margin-top:3px}
+.bdg{display:inline-block;padding:5px 12px;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:1px solid}
+.bdg--reg{color:#E9A94A;border-color:#8A6524;background:rgba(233,169,74,.1)}
+.bdg--suf{color:#F0C070;border-color:#8A7534;background:rgba(240,192,112,.1)}
+.bdg--bom{color:#6FA3FF;border-color:#2E6BE6;background:rgba(111,163,255,.12)}
+.bdg--otm{color:#fff;border-color:#1D5FE0;background:#1D5FE0}
+.prob{font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:3px;display:inline-block}
+.prob--prio{color:#F08B82;background:rgba(240,139,130,.12)}
+.prob--ac{color:#E9A94A;background:rgba(233,169,74,.12)}
+.prob--ok{color:#8FBAFF;background:rgba(143,186,255,.14)}
+.irange{width:100%;margin-top:8px}
+input[type=range]{-webkit-appearance:none;appearance:none;height:4px;border-radius:4px;background:rgba(146,180,240,.3);outline:none;cursor:pointer;width:100%}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--brand);border:3px solid #fff;cursor:pointer}
+input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:50%;background:var(--brand);border:3px solid #fff;cursor:pointer}
+.resume{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;border:1px solid rgba(146,180,240,.28);border-radius:4px;padding:18px;background:rgba(4,13,26,.4)}
+.resume b{display:block;font-family:var(--display);font-size:2rem;color:#fff;line-height:1}
+.resume span{font-size:.74rem;color:#9FBCEA;display:block;margin-top:5px}
+@media (max-width:860px){
+  .thead{display:none}
+  .irow{grid-template-columns:1fr 1fr;gap:10px;padding:16px 14px;border:1px solid rgba(146,180,240,.2);border-radius:4px;margin-bottom:10px}
+  .irow>*:first-child{grid-column:1 / -1}
+  .irow .full{grid-column:1 / -1}
+  .resume{grid-template-columns:1fr;text-align:left}
+  .pane{padding:16px}
 }
-input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;
-  background:var(--brand);border:3px solid #fff;cursor:pointer;
+
+/* matriz boas práticas */
+.bphead,.bprow{display:grid;grid-template-columns:1.8fr 1.25fr .8fr .9fr;gap:12px;align-items:center}
+.bphead{padding:10px 14px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#7FA8F5;font-weight:700;border-bottom:1px solid rgba(146,180,240,.28)}
+.bprow{padding:14px;border-bottom:1px solid rgba(146,180,240,.16)}
+.bprow:last-child{border-bottom:none}
+.bp__name{color:#fff;font-weight:600;font-size:.93rem}
+.bp__name small{display:block;color:#7A93BA;font-size:.71rem;font-weight:400;margin-top:2px}
+.bp__num{font-family:var(--display);font-size:1.05rem;color:#fff}
+.bp__num small{display:block;font-family:var(--body);font-size:.7rem;color:#7A93BA;font-weight:400;margin-top:2px}
+.bp__pts{font-family:var(--display);font-size:1.15rem;color:#6FA3FF}
+.gaps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.gap{border:1px solid rgba(146,180,240,.28);background:rgba(4,13,26,.4);padding:16px;border-radius:4px;text-align:center}
+.gap span{display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#7FA8F5;font-weight:700}
+.gap b{display:block;font-family:var(--display);font-size:1.7rem;color:#fff;margin:6px 0 2px}
+.gap small{font-size:.7rem;color:#7A93BA}
+.gap.done b{color:#8FBAFF}
+@media (max-width:860px){
+  .bphead{display:none}
+  .bprow{grid-template-columns:1fr 1fr;border:1px solid rgba(146,180,240,.2);border-radius:4px;margin-bottom:10px}
+  .bprow>*:first-child{grid-column:1 / -1}
+  .bprow .full{grid-column:1 / -1}
+  .gaps{grid-template-columns:1fr}
 }
-input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--brand);border:3px solid #fff;cursor:pointer}
-.score{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
-.score__ring{position:relative;width:200px;height:200px}
-.score__val{
-  position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:2.9rem;color:#fff;line-height:1;
-}
-.score__val small{display:block;font-size:.72rem;letter-spacing:.14em;color:#9FBCEA;margin-top:6px;font-family:var(--body);font-weight:600}
-.badge{
-  display:inline-block;padding:7px 16px;border-radius:50px;font-size:.8rem;font-weight:700;
-  background:rgba(111,163,255,.16);color:#8FBAFF;border:1px solid rgba(111,163,255,.35);
-}
-@media (max-width:860px){.sim{grid-template-columns:1fr}}
 
 /* mapa */
-.mapbox{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center}
-.maplegend li{list-style:none;display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:#9FBCEA;margin-bottom:12px}
-.maplegend i{width:12px;height:12px;border-radius:2px;margin-top:5px;flex-shrink:0}
-.zone{cursor:pointer;transition:opacity .2s}
-.zone:hover{opacity:.75}
+.mapbox{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center}
+.zone{cursor:pointer}
+.zone:hover{opacity:.78}
+.mininfo{border:1px solid rgba(146,180,240,.28);background:rgba(4,13,26,.4);padding:20px;border-radius:4px}
+.mininfo b{font-family:var(--display);font-size:1.5rem;color:#fff;display:block}
+.minigrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.minigrid b{font-size:1.5rem}
+.minigrid span{font-size:.72rem;color:#9FBCEA}
 @media (max-width:860px){.mapbox{grid-template-columns:1fr}}
 
-/* ============ PIPELINE FNS ============ */
-.pipe{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:34px;counter-reset:step}
-.step{
-  border:1px solid var(--line);border-right:none;padding:24px 22px;background:var(--surface);position:relative;
-}
-.step:last-child{border-right:1px solid var(--line)}
-.step::before{
-  counter-increment:step;content:"0" counter(step);
-  font-family:var(--display);font-size:.8rem;letter-spacing:.14em;color:var(--brand);display:block;margin-bottom:10px;
-}
-.step h4{font-size:1.02rem;color:var(--ink);margin-bottom:7px}
-.step p{font-size:.86rem;color:var(--ink-soft)}
-.step__arrow{position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--brand);background:var(--paper);z-index:2}
-@media (max-width:900px){
-  .pipe{grid-template-columns:1fr}
-  .step{border-right:1px solid var(--line);border-bottom:none}
-  .step:last-child{border-bottom:1px solid var(--line)}
-  .step__arrow{display:none}
-}
-
-/* ============ ACORDEÃO ============ */
-.acc{border-top:1px solid var(--line);margin-top:34px}
+/* ACORDEÃO */
+.acc{border-top:1px solid var(--line);margin-top:26px}
 .acc__item{border-bottom:1px solid var(--line)}
-.acc__btn{
-  width:100%;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;
-  align-items:center;gap:16px;padding:24px 6px;text-align:left;color:var(--ink);
-  font-family:var(--display);font-size:clamp(1.02rem,2.6vw,1.3rem);text-transform:uppercase;letter-spacing:.04em;transition:color .2s;
-}
+.acc__btn{width:100%;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:20px 4px;text-align:left;color:var(--ink);font-family:var(--display);font-size:clamp(1rem,2.6vw,1.2rem);text-transform:uppercase;letter-spacing:.03em}
 .acc__btn:hover{color:var(--brand)}
-.acc__btn span{display:flex;align-items:center;gap:13px}
-.acc__btn svg.chev{color:var(--brand);transition:transform .3s}
+.acc__btn svg.chev{color:var(--brand);transition:transform .3s;flex-shrink:0}
 .acc__btn[aria-expanded="true"] svg.chev{transform:rotate(180deg)}
-.acc__panel{max-height:0;overflow:hidden;transition:max-height .45s ease}
-.acc__inner{padding:4px 6px 32px}
+.acc__panel{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.acc__inner{padding:2px 4px 26px}
+.acc__inner p{color:var(--ink-soft);font-size:.94rem;margin-bottom:14px}
+.mods{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+.mod{border:1px solid var(--line);border-radius:4px;padding:15px 16px;background:var(--paper)}
+.mod b{display:block;font-size:.92rem;color:var(--ink);margin-bottom:4px}
+.mod span{font-size:.85rem;color:var(--ink-soft)}
+@media (max-width:760px){.mods{grid-template-columns:1fr}}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.73rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--brand-deep);background:var(--brand-tint);padding:5px 10px;border-radius:3px}
 
-/* tabelas */
-.tbl-wrap{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-bottom:22px}
-table{width:100%;border-collapse:collapse;min-width:620px}
-th{background:var(--deep);color:#fff;text-align:left;padding:14px 18px;font-family:var(--display);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
-td{padding:16px 18px;border-bottom:1px solid var(--line-soft);vertical-align:top;font-size:.93rem;color:var(--ink-soft)}
-tr:last-child td{border-bottom:none}
-tbody tr:hover td{background:var(--brand-tint)}
-td strong{color:var(--ink);font-weight:600}
-.tbl--soft th{background:var(--brand-tint);color:var(--brand-deep)}
+/* LINKS */
+.links{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px}
+.link{display:flex;justify-content:space-between;align-items:center;gap:12px;text-decoration:none;background:var(--surface);border:1px solid var(--line);padding:16px 18px;border-radius:4px;transition:.2s}
+.link:hover{border-color:var(--brand)}
+.link b{font-family:var(--display);font-size:1rem;text-transform:uppercase;display:block}
+.link span{font-size:.8rem;color:var(--ink-soft)}
+.link i{color:var(--brand);font-style:normal;flex-shrink:0}
+@media (max-width:760px){.links{grid-template-columns:1fr}}
 
-.pill{display:inline-flex;align-items:center;gap:9px;background:var(--brand-tint);color:var(--brand-deep);
-  padding:8px 16px;border-radius:50px;font-size:.84rem;font-weight:600;margin-bottom:20px}
-
-/* ============ PROJETOS ============ */
-.feature{
-  display:grid;grid-template-columns:.95fr 1.05fr;gap:0;border:1px solid var(--line);
-  background:var(--surface);border-radius:var(--radius);overflow:hidden;margin-top:34px;
-}
-.feature__art{background:var(--deep-2);padding:34px;display:grid;place-items:center;position:relative;overflow:hidden}
-.feature__txt{padding:38px 34px}
-.feature__txt h3{font-size:clamp(1.4rem,3.4vw,1.9rem);color:var(--ink);margin-bottom:12px}
-.feature__txt p{color:var(--ink-soft);font-size:.97rem;margin-bottom:18px}
-.tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
-.tag{font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-deep);
-  background:var(--brand-tint);padding:5px 11px;border-radius:3px}
-@media (max-width:880px){.feature{grid-template-columns:1fr}.feature__txt{padding:28px 22px}}
-
-.links{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:26px}
-.link{
-  display:flex;justify-content:space-between;align-items:center;gap:14px;text-decoration:none;
-  background:var(--surface);border:1px solid var(--line);padding:20px 22px;border-radius:var(--radius);transition:.25s;
-}
-.link:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:var(--shadow)}
-.link h4{font-family:var(--display);font-size:1.05rem;color:var(--ink);margin-bottom:4px;text-transform:uppercase}
-.link p{font-size:.85rem;color:var(--ink-soft)}
-.link__url{font-size:.78rem;color:var(--brand);font-weight:600;white-space:nowrap}
-.link__go{color:var(--brand);flex-shrink:0}
-@media (max-width:760px){.links{grid-template-columns:1fr}.link{flex-direction:column;align-items:flex-start;gap:9px}}
-
-/* ============ TIMELINE ============ */
-.tl{margin-top:34px;border-left:2px solid var(--line);padding-left:28px;display:flex;flex-direction:column;gap:30px}
-.tl__item{position:relative}
-.tl__item::before{
-  content:"";position:absolute;left:-36px;top:5px;width:14px;height:14px;border-radius:50%;
-  background:var(--paper);border:3px solid var(--brand);
-}
-.tl__when{font-family:var(--display);font-size:.84rem;letter-spacing:.12em;color:var(--brand);text-transform:uppercase}
-.tl__item h3{font-size:1.2rem;margin:6px 0 3px;color:var(--ink)}
-.tl__role{font-size:.9rem;color:var(--ink-soft);font-style:italic;margin-bottom:10px}
-.tl__item ul{margin-left:18px}
-.tl__item li{font-size:.93rem;color:var(--ink-soft);margin-bottom:7px}
-.tl__item li strong{color:var(--ink)}
-
-/* ============ CONTATO ============ */
-.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
-.ccard{
-  border:1px solid rgba(146,180,240,.28);padding:26px 22px;border-radius:var(--radius);
-  text-decoration:none;display:block;transition:.25s;background:rgba(255,255,255,.03);
-}
+/* CONTATO */
+.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+.ccard{border:1px solid rgba(146,180,240,.28);padding:22px;border-radius:4px;text-decoration:none;display:block;background:rgba(255,255,255,.03)}
 .ccard:hover{border-color:#6FA3FF;background:rgba(111,163,255,.1)}
-.ccard span{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#6FA3FF;font-weight:700;margin-bottom:8px}
-.ccard b{font-family:var(--display);font-size:1.12rem;color:#fff;font-weight:600;word-break:break-word}
+.ccard span{display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#6FA3FF;font-weight:700;margin-bottom:7px}
+.ccard b{font-family:var(--display);font-size:1.05rem;color:#fff;word-break:break-word}
 @media (max-width:760px){.contact{grid-template-columns:1fr}}
+footer{background:var(--deep);color:#8FA6C4;padding:30px 0;border-top:1px solid rgba(146,180,240,.2);font-size:.85rem}
+.foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 
-footer{background:var(--deep);color:#8FA6C4;padding:34px 0;border-top:1px solid rgba(146,180,240,.2);font-size:.86rem}
-.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
-
-/* utilidades */
-.reveal{opacity:0;transform:translateY(18px)}
-.reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
-.totop{
-  position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;background:var(--brand);
-  color:#fff;border:none;display:grid;place-items:center;cursor:pointer;z-index:100;
-  opacity:0;pointer-events:none;transition:.3s;box-shadow:0 8px 20px rgba(29,95,224,.35);
-}
+.reveal{opacity:0;transform:translateY(16px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .55s ease,transform .55s ease}
+.totop{position:fixed;right:16px;bottom:16px;width:46px;height:46px;border-radius:50%;background:var(--brand);color:#fff;border:none;display:grid;place-items:center;cursor:pointer;z-index:100;opacity:0;pointer-events:none;transition:.3s}
 .totop.on{opacity:1;pointer-events:auto}
-@media (max-width:980px){.traj-grid{grid-template-columns:1fr!important;gap:48px!important}}
 @media (max-width:640px){
-  .band{padding:58px 0}
-  .geo{padding:58px 0}
+  .band,.geo{padding:52px 0}
   .wrap{padding:0 16px}
-  .case{padding:20px}
-  .score__ring,.score__ring svg{width:170px;height:170px}
-  .feature__art{padding:24px}
 }
 </style>
 </head>
@@ -450,26 +290,21 @@ footer{background:var(--deep);color:#8FA6C4;padding:34px 0;border-top:1px solid 
 <a class="skip" href="#main">Ir para o conteúdo</a>
 <div class="progress" id="progress"></div>
 
-<!-- ================= NAV ================= -->
 <nav class="nav">
   <div class="nav__in">
     <a class="brand" href="#topo">
       <span class="brand__mark">LM</span>
-      <span class="brand__txt">Lisandro Matheus
-        <small>Dados &amp; sistemas em saúde</small>
-      </span>
+      <span class="brand__txt">Lisandro Matheus<small>Gestão da informação em saúde</small></span>
     </a>
     <div class="menu" id="menu">
-      <a href="#cases">Resultados</a>
-      <a href="#geosaude">GeoSaúde</a>
-      <a href="#spp">Sistemas</a>
-      <a href="#projetos">Projetos</a>
-      <a href="#trajetoria">Trajetória</a>
-      <a href="#competencias">Competências</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#dominios">Domínios</a>
+      <a href="#siaps">Regras da APS</a>
+      <a href="#sistemas">Sistemas</a>
       <a href="#contato">Contato</a>
     </div>
     <div class="nav__side">
-      <button class="iconbtn" id="theme" aria-label="Alternar tema claro e escuro" title="Alternar tema">
+      <button class="iconbtn" id="theme" aria-label="Alternar tema">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       </button>
       <button class="iconbtn burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
@@ -480,283 +315,248 @@ footer{background:var(--deep);color:#8FA6C4;padding:34px 0;border-top:1px solid 
 </nav>
 
 <main id="main">
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 <section class="hero" id="topo">
   <div class="wrap">
     <div class="hero__grid">
       <div>
-        <span class="eyebrow">Perfil profissional</span>
+        <span class="eyebrow">Gestão da informação em saúde pública</span>
         <h1><span>Lisandro Matheus</span><span>Ramos Ribeiro</span></h1>
-        <p class="hero__role">Dados, sistemas e inteligência aplicada à saúde pública</p>
-        <p class="hero__txt">Investigo gargalos, estruturo dados, desenho a solução e acompanho a implantação até a adoção. Uno o conhecimento dos sistemas do SUS ao desenvolvimento para sustentar decisões financeiras, assistenciais, territoriais e operacionais.</p>
-
-        <div class="hero__facts">
-          <div class="fact">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1m4 0h1M9 13h1m4 0h1M9 17h1m4 0h1"/></svg>
-            <span><b>5 anos</b> na Secretaria Municipal de Saúde de Belém (SESMA).</span>
-          </div>
-          <div class="fact">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m8 16-4-4 4-4m8 0 4 4-4 4M14 4l-4 16"/></svg>
-            <span><b>3 anos</b> dedicados a desenvolvimento e gestão da informação.</span>
-          </div>
-          <div class="fact">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10 2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg>
-            <span>Ecossistemas digitais que ligam o <b>fluxo financeiro, orçamentário e contratual</b> ao monitoramento territorial da atenção primária.</span>
-          </div>
-        </div>
-
+        <p class="hero__role">Da regra do Ministério da Saúde até a decisão da equipe</p>
+        <p class="hero__txt">Trabalho de forma consultiva: entendo a norma, encontro onde o dado se perde no fluxo do setor e devolvo a informação no formato em que ela vira decisão — indicador, meta, contrato, repasse ou território.</p>
         <div class="cta">
-          <a class="btn btn--solid" href="https://wa.me/5591999440334" target="_blank" rel="noopener">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-5.8c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4 5.2 5.2 0 0 0 3.2.7 2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.1-.4-.2z"/></svg>
-            Falar no WhatsApp
-          </a>
-          <a class="btn btn--ghost" href="#cases">Ver os resultados</a>
-          <a class="btn btn--ghost" href="mailto:lisandroramos881@gmail.com">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
-            E-mail
-          </a>
+          <a class="btn btn--solid" href="#siaps">Ver a regra funcionando</a>
+          <a class="btn btn--ghost" href="https://wa.me/5591999440334" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
-
-      <div class="panelcard reveal">
-        <div class="panelcard__bar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <span class="panelcard__title">Painel de entregas</span>
-        </div>
-        <div class="panelcard__body" style="padding:0">
-          <div class="kpi">
-            <div><b data-count="7" data-suffix="">0</b><span>sistemas e plataformas em produção</span></div>
-            <div><b data-count="2000" data-suffix="+">0</b><span>credores controlados no SPP</span></div>
-            <div><b data-count="300" data-suffix="">0</b><span>equipes de saúde no planejamento territorial</span></div>
-            <div><b data-count="1600" data-suffix="+">0</b><span>agentes comunitários alcançados</span></div>
-          </div>
-          <div style="padding:20px 18px">
-            <p style="font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:14px">Bases integradas</p>
-            <div class="tags">
-              <span class="tag">SIAPS</span><span class="tag">CNES</span><span class="tag">e-SUS APS</span>
-              <span class="tag">SIA/SIH</span><span class="tag">DATASUS</span><span class="tag">FNS</span>
-              <span class="tag">Portal da Transparência</span>
-            </div>
-          </div>
-        </div>
+      <div class="kpi reveal">
+        <div><b data-count="5" data-suffix=" anos">0</b><span>na Secretaria Municipal de Saúde de Belém</span></div>
+        <div><b data-count="7" data-suffix="">0</b><span>plataformas e módulos em produção</span></div>
+        <div><b data-count="6" data-suffix="">0</b><span>áreas atendidas: APS, imunização, financeiro, contratos, regulação e território</span></div>
+        <div><b data-count="2000" data-suffix="+">0</b><span>credores controlados no sistema financeiro</span></div>
       </div>
     </div>
   </div>
-
-  <div class="statstrip" style="margin-top:56px">
+  <div class="statstrip">
     <div class="statstrip__in">
-      <div class="stat"><b data-count="5" data-suffix="+">0</b><span>anos de experiência em dados e automação</span></div>
-      <div class="stat"><b data-count="5" data-suffix="">0</b><span>setores estratégicos usando os sistemas</span></div>
-      <div class="stat"><b data-count="60" data-suffix="%">0</b><span>da malha territorial atualizada em 2 meses</span></div>
+      <div class="stat"><b data-count="300">0</b><span>equipes no planejamento territorial</span></div>
+      <div class="stat"><b data-count="1600" data-suffix="+">0</b><span>agentes comunitários alcançados</span></div>
+      <div class="stat"><b data-count="60" data-suffix="%">0</b><span>da malha territorial refeita em 2 meses</span></div>
       <div class="stat"><b data-count="400" data-prefix="R$ " data-suffix=" mil">0</b><span>de produção regularizada em uma UPA</span></div>
     </div>
   </div>
 </section>
 
-<!-- ================= FRENTES ================= -->
-<section class="band band--paper">
+<!-- RESULTADOS -->
+<section class="band" id="resultados">
   <div class="wrap">
-    <span class="eyebrow">Frentes de atuação</span>
-    <h2 class="h-sec">Como eu entro em um problema</h2>
-    <p class="lead" style="margin-top:12px">Cada frente é uma etapa do mesmo trabalho: entender o fluxo real do setor, transformar em dado confiável e devolver em ferramenta que a equipe usa todo dia.</p>
+    <span class="eyebrow">Resultados</span>
+    <h2 class="h-sec">O que estava travado e o que ficou funcionando</h2>
+    <p class="lead">Cada caso começou com um gargalo de informação: dado que ninguém confiava, processo em papel ou norma que a equipe não conseguia cumprir por falta de leitura.</p>
 
-    <div class="cells">
-      <div class="cell reveal">
-        <span class="cell__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
-        <h3>Diagnóstico e estratégia</h3>
-        <p>Mapeamento profundo dos fluxos operacionais, análise de gargalos e priorização do que dá resultado primeiro.</p>
+    <div class="railhead">
+      <div class="chips" role="group" aria-label="Filtrar resultados">
+        <button class="chip on" data-filter="all">Todos</button>
+        <button class="chip" data-filter="aps">Atenção primária</button>
+        <button class="chip" data-filter="fin">Financeiro</button>
+        <button class="chip" data-filter="ter">Território</button>
+        <button class="chip" data-filter="ope">Operação</button>
       </div>
-      <div class="cell reveal">
-        <span class="cell__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
-        <h3>Produtos e sistemas</h3>
-        <p>Ciclo de vida completo das soluções digitais — desenho, implantação e evolução — aderente às regras de negócio de cada setor.</p>
-      </div>
-      <div class="cell reveal">
-        <span class="cell__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
-        <h3>Dados e integração</h3>
-        <p>Processamento, integração e cruzamento de fontes complexas, com indicadores e painéis prontos para a alta gestão.</p>
-      </div>
-      <div class="cell reveal">
-        <span class="cell__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
-        <h3>Saúde e território</h3>
-        <p>Inteligência analítica aplicada às normativas do SUS: produção assistencial, cobertura e georreferenciamento.</p>
-      </div>
-      <div class="cell reveal">
-        <span class="cell__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/></svg></span>
-        <h3>Relação entre áreas</h3>
-        <p>Tradução de requisitos entre a TI e as áreas fins, alinhamento de expectativas e cultura orientada a dados.</p>
-      </div>
-      <div class="cell reveal" style="background:var(--deep)">
-        <h3 style="color:#fff;margin-top:0">Consultivo, não sob demanda</h3>
-        <p style="color:#9FBCEA">A entrega não termina no deploy: treino usuários, acompanho a adoção e evoluo o sistema junto com o setor.</p>
+      <div class="railnav" data-for="rail-res">
+        <button data-dir="-1" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6 9 12l6 6"/></svg></button>
+        <button data-dir="1" aria-label="Próximo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ================= CASES ================= -->
-<section class="band band--surface" id="cases">
-  <div class="wrap">
-    <span class="eyebrow">Casos e soluções</span>
-    <h2 class="h-sec">Desafios superados e resultados na prática</h2>
-    <p class="lead" style="margin-top:12px">Sete situações reais da gestão pública municipal — o problema como ele chegou e o que ficou funcionando depois. Filtre pelo tipo de entrega.</p>
-
-    <div class="chips" role="group" aria-label="Filtrar casos por tipo">
-      <button class="chip on" data-filter="all">Todos</button>
-      <button class="chip" data-filter="dados">Dados e integração</button>
-      <button class="chip" data-filter="sistemas">Sistemas</button>
-      <button class="chip" data-filter="territorio">Território</button>
-      <button class="chip" data-filter="financeiro">Financeiro</button>
-    </div>
-
-    <div class="cases" id="cases-grid">
-      <article class="case reveal" data-cat="dados">
-        <span class="case__tag">Informação dispersa</span>
-        <h3>Uma base só para decidir</h3>
-        <p>Centralização de bases complexas (SIAPS, CNES, DATASUS, FNS) e APIs na plataforma GeoSaúde, unificando análise e inteligência de dados em um único ambiente.</p>
-        <div class="case__metric">6 fontes oficiais integradas</div>
+    <div class="rail" id="rail-res">
+      <article class="card reveal" data-cat="aps ter">
+        <span class="card__tag">Monitoramento da APS</span>
+        <h3>Indicador virou plano de ação</h3>
+        <p>Leitura do SIAPS por equipe, cruzada com demografia e composição do CNES, mostrando a faixa atual, a distância para a próxima e quais procedimentos fecham a diferença.</p>
+        <div class="card__metric">7 indicadores · 11 equipes por painel</div>
       </article>
-
-      <article class="case reveal" data-cat="sistemas financeiro">
-        <span class="case__tag">Processos fragmentados</span>
-        <h3>ERP público implantado</h3>
-        <p>Sistema integrado de gestão com módulos financeiro, orçamento, contratos e faturamento, digitalizando fluxos que viviam em papel e planilha.</p>
-        <div class="case__metric">Adoção em mais de 5 setores</div>
+      <article class="card reveal" data-cat="fin ope">
+        <span class="card__tag">Processos fragmentados</span>
+        <h3>Financeiro, contratos e faturamento no mesmo fluxo</h3>
+        <p>Sistema integrado que tirou do papel a nota fiscal, o contrato e a programação de pagamento, com prazo, responsável e histórico rastreáveis.</p>
+        <div class="card__metric">Adoção em mais de 5 setores</div>
       </article>
-
-      <article class="case reveal" data-cat="territorio">
-        <span class="case__tag">Territorialização</span>
-        <h3>Malha territorial atualizada</h3>
-        <p>Recomposição de uma malha defasada há 10 anos, com execução de 60% do projeto em 2 meses e planejamento reorganizado por área de cobertura.</p>
-        <div class="case__metric">300 equipes · 1.600+ ACS</div>
+      <article class="card reveal" data-cat="ter">
+        <span class="card__tag">Territorialização</span>
+        <h3>Malha territorial de 10 anos atrás refeita</h3>
+        <p>Recomposição das áreas de cobertura e redistribuição de microáreas, devolvendo base confiável para planejar visita, equipe e lotação.</p>
+        <div class="card__metric">60% executado em 2 meses</div>
       </article>
-
-      <article class="case reveal" data-cat="financeiro">
-        <span class="case__tag">Produção não apresentada</span>
+      <article class="card reveal" data-cat="fin">
+        <span class="card__tag">Produção não apresentada</span>
         <h3>Faturamento de UPA regularizado</h3>
-        <p>Diagnóstico e correção estrutural no faturamento de uma UPA com capacidade acima de R$ 400 mil, liberando o registro de produção ambulatorial retido por 6 meses.</p>
-        <div class="case__metric">6 meses de produção recuperados</div>
+        <p>Diagnóstico da falha estrutural no registro ambulatorial e correção do fluxo, liberando seis meses de produção que estavam retidos.</p>
+        <div class="card__metric">Capacidade acima de R$ 400 mil</div>
       </article>
-
-      <article class="case reveal" data-cat="dados financeiro">
-        <span class="case__tag">Coleta de dados</span>
-        <h3>Extração automatizada</h3>
-        <p>APIs próprias para o Fundo Nacional de Saúde e o Portal da Transparência, substituindo a coleta manual por ingestão direta no banco.</p>
-        <div class="case__metric">De horas para minutos</div>
+      <article class="card reveal" data-cat="aps ter">
+        <span class="card__tag">Imunização</span>
+        <h3>Cobertura vacinal no mapa</h3>
+        <p>Doses e cobertura por imunobiológico ligadas ao território e à unidade, apontando bolsão de baixa cobertura em vez de média geral do município.</p>
+        <div class="card__metric">Leitura por bairro e unidade</div>
       </article>
-
-      <article class="case reveal" data-cat="dados territorio">
-        <span class="case__tag">Monitoramento da APS</span>
-        <h3>SIAPS traduzido em decisão</h3>
-        <p>Cruzamento dos componentes de qualidade com dados demográficos e composição do CNES para simular metas e apontar onde cada equipe precisa atuar.</p>
-        <div class="case__metric">Meta simulada por equipe</div>
+      <article class="card reveal" data-cat="fin ope">
+        <span class="card__tag">Coleta de dados</span>
+        <h3>Repasses do FNS sem digitação</h3>
+        <p>Extração automática dos repasses federais já separados entre valor bruto, deduções e fonte orçamentária, prontos para conciliação contábil.</p>
+        <div class="card__metric">De horas para minutos</div>
       </article>
-
-      <article class="case reveal" data-cat="sistemas">
-        <span class="case__tag">Suporte e chamados</span>
-        <h3>Portal NAT</h3>
-        <p>Canal único onde unidades e setores abrem e acompanham chamados técnicos e demandas operacionais, com histórico e responsável definidos.</p>
-        <div class="case__metric">Fila de atendimento rastreável</div>
+      <article class="card reveal" data-cat="ope">
+        <span class="card__tag">Suporte e demandas</span>
+        <h3>Chamado com dono e prazo</h3>
+        <p>Portal onde a própria unidade abre e acompanha a demanda operacional, acabando com o pedido informal e dando previsibilidade à fila.</p>
+        <div class="card__metric">Fila rastreável por setor</div>
       </article>
     </div>
+    <div class="dots" data-for="rail-res"></div>
   </div>
 </section>
 
-<!-- ================= GEOSAÚDE ================= -->
-<section class="geo" id="geosaude">
+<!-- DOMÍNIOS -->
+<section class="band band--surface" id="dominios">
   <div class="wrap">
-    <div class="geo__head">
-      <div>
-        <span class="eyebrow">Projeto em destaque</span>
-        <div class="geo__logo"><b>GEO</b><i>SAÚDE</i></div>
-        <h2 class="h-sec" style="color:#fff">Informação estratégica precisa ser encontrada e entendida</h2>
-      </div>
-      <div>
-        <p class="lead">O GeoSaúde transforma dados dispersos em leituras visuais, objetivas e acessíveis, apoiadas em fontes oficiais e construídas junto com os setores e departamentos da secretaria.</p>
-        <div class="tags" style="margin-top:18px">
-          <span class="tag" style="background:rgba(111,163,255,.14);color:#8FBAFF">Leaflet</span>
-          <span class="tag" style="background:rgba(111,163,255,.14);color:#8FBAFF">OpenStreetMap</span>
-          <span class="tag" style="background:rgba(111,163,255,.14);color:#8FBAFF">PHP · Node.js</span>
-          <span class="tag" style="background:rgba(111,163,255,.14);color:#8FBAFF">MySQL</span>
-          <span class="tag" style="background:rgba(111,163,255,.14);color:#8FBAFF">APIs oficiais</span>
-        </div>
+    <span class="eyebrow">Domínio de regra de negócio</span>
+    <h2 class="h-sec">Onde eu já entrei e conheço a norma</h2>
+    <p class="lead">Não é conhecimento genérico de dados: é saber como cada área é cobrada, por qual portaria e com qual prazo.</p>
+
+    <div class="railhead">
+      <span style="font-size:.85rem;color:var(--ink-soft)">Arraste para ver todas as áreas</span>
+      <div class="railnav" data-for="rail-dom">
+        <button data-dir="-1" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6 9 12l6 6"/></svg></button>
+        <button data-dir="1" aria-label="Próximo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
     </div>
 
-    <div class="geo__app">
-      <div class="geo__tabs" role="tablist">
-        <button class="tab on" role="tab" aria-selected="true" data-pane="p1">Unidades de saúde</button>
-        <button class="tab" role="tab" aria-selected="false" data-pane="p2">Dados georreferenciados</button>
-        <button class="tab" role="tab" aria-selected="false" data-pane="p3">Simulador de metas</button>
-        <button class="tab" role="tab" aria-selected="false" data-pane="p4">Como funciona</button>
+    <div class="rail" id="rail-dom">
+      <div class="dom reveal">
+        <span class="dom__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12a9 9 0 1 1-9-9v9z"/></svg></span>
+        <h3>Atenção primária</h3>
+        <p>Indicadores do SIAPS, boas práticas, cadastro e vínculo, com a classificação por faixa e a contribuição de cada procedimento.</p>
+        <ul><li>Componentes de qualidade por equipe</li><li>Simulação de meta e plano de ação</li><li>Cadastro, população e microárea</li></ul>
+      </div>
+      <div class="dom reveal">
+        <span class="dom__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m12 2 4 4-8 8-4-4zM3 21l3-3M14 6l4 4-8 8H6v-4z"/></svg></span>
+        <h3>Imunização</h3>
+        <p>Doses aplicadas, cobertura por imunobiológico e leitura territorial da rede para orientar busca ativa.</p>
+        <ul><li>Cobertura por unidade e bairro</li><li>Mapa de cobertura vacinal</li><li>Série histórica por imunobiológico</li></ul>
+      </div>
+      <div class="dom reveal">
+        <span class="dom__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+        <h3>Financeiro e repasses</h3>
+        <p>Programação de pagamento, notas fiscais, repasses federais, estaduais e municipais e leitura de despesa contra receita.</p>
+        <ul><li>Fundo Municipal de Saúde</li><li>Fontes orçamentárias mapeadas</li><li>Prazos e vencimentos por credor</li></ul>
+      </div>
+      <div class="dom reveal">
+        <span class="dom__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 14h6M9 17h4"/></svg></span>
+        <h3>Contratos</h3>
+        <p>Ciclo de vida contratual completo na plataforma, do início ao encerramento, com aditivo, vigência e fiscalização.</p>
+        <ul><li>Vigência e aditivos controlados</li><li>Ligação contrato ↔ pagamento</li><li>Fim da busca em arquivo físico</li></ul>
+      </div>
+      <div class="dom reveal">
+        <span class="dom__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 3v18h18"/><path d="m7 15 4-5 3 3 5-7"/></svg></span>
+        <h3>Regulação e faturamento</h3>
+        <p>Produção SIA/SIH da rede própria e dos convênios, com apuração do que foi aprovado, glosado ou não apresentado.</p>
+        <ul><li>Produção aprovada por unidade</li><li>Rastreio de produção retida</li><li>Relatórios para a regulação</li></ul>
+      </div>
+      <div class="dom reveal">
+        <span class="dom__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+        <h3>Território e rede</h3>
+        <p>Georreferenciamento da rede, áreas de cobertura, bases do SAMU, locação de imóveis e quadro funcional por unidade.</p>
+        <ul><li>Malha territorial atualizada</li><li>Cobertura por equipe e microárea</li><li>Rede assistencial no mapa</li></ul>
+      </div>
+    </div>
+    <div class="dots" data-for="rail-dom"></div>
+  </div>
+</section>
+
+<!-- SIAPS -->
+<section class="geo" id="siaps">
+  <div class="wrap">
+    <span class="eyebrow">Regra de negócio aplicada</span>
+    <div class="geo__logo"><b>GEO</b><i>SAÚDE</i></div>
+    <h2 class="h-sec" style="color:#fff">A norma do Ministério traduzida em decisão de equipe</h2>
+    <p class="lead">O painel não mostra só o número: mostra em que faixa a equipe está, quanto falta para a próxima e quais procedimentos fecham essa diferença. Mexa nos controles abaixo para ver a regra funcionando.</p>
+
+    <div class="app">
+      <div class="tabs" role="tablist">
+        <button class="tab on" role="tab" aria-selected="true" data-pane="p1">Indicadores eSF / eAP</button>
+        <button class="tab" role="tab" aria-selected="false" data-pane="p2">Boas práticas do SIAPS</button>
+        <button class="tab" role="tab" aria-selected="false" data-pane="p3">Território e imunização</button>
       </div>
 
       <!-- PANE 1 -->
       <div class="pane on" id="p1" role="tabpanel">
         <div class="pane__top">
-          <div>
-            <h3>Conheça o perfil de cada unidade</h3>
-            <p>Consulte informações técnicas por unidade, bairro ou número CNES.</p>
-          </div>
-          <label class="search">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-            <input type="search" id="geo-search" placeholder="Pesquisar painel, unidade ou base" aria-label="Pesquisar painéis do GeoSaúde">
-          </label>
+          <h3>Componentes de qualidade por equipe</h3>
+          <p>Cada indicador tem faixas próprias: Regular vale 25 pontos, Suficiente 50, Bom 75 e Ótimo 100. O índice final é a média dos pontos e define se a equipe entra em plano de ação, acompanhamento ou mantém o incentivo.</p>
         </div>
 
-        <div class="gcards gcards--3" id="geo-list">
-          <div class="gcard" data-k="atenção primária qualidade siaps">
-            <span class="gcard__ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12a9 9 0 1 1-9-9v9z"/></svg></span>
-            <span class="gcard__k">Atenção primária à saúde</span>
-            <div class="gcard__t">Componentes de qualidade</div>
-            <p class="gcard__d">Indicadores do SIAPS por equipe, com evolução e distância para a meta.</p>
-          </div>
-          <div class="gcard" data-k="imunização vacina cobertura">
-            <span class="gcard__ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m12 2 4 4-8 8-4-4zM3 21l3-3M14 6l4 4-8 8H6v-4z"/></svg></span>
-            <span class="gcard__k">Imunização</span>
-            <div class="gcard__t">Cobertura vacinal</div>
-            <p class="gcard__d">Doses aplicadas e cobertura por imunobiológico, unidade e território.</p>
-          </div>
-          <div class="gcard" data-k="equipes aps força de trabalho cnes">
-            <span class="gcard__ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 11.5a3 3 0 1 0-1.8-5.4M18 20a6 6 0 0 0-2.4-4.8"/></svg></span>
-            <span class="gcard__k">Força de trabalho APS</span>
-            <div class="gcard__t">Equipes APS</div>
-            <p class="gcard__d">Composição, carga horária e vínculo profissional conforme o CNES.</p>
-          </div>
-          <div class="gcard" data-k="serviços de saúde rede unidades">
-            <span class="gcard__ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.8 8.6a5 5 0 0 0-8.8-3 5 5 0 0 0-8.8 3c0 5 8.8 11 8.8 11s8.8-6 8.8-11z"/></svg></span>
-            <span class="gcard__k">Rede assistencial</span>
-            <div class="gcard__t">Serviços de saúde</div>
-            <p class="gcard__d">Tipos de estabelecimento, serviços habilitados e abrangência.</p>
-          </div>
-          <div class="gcard" data-k="quadro funcional servidores rh">
-            <span class="gcard__ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2.3"/><path d="M5.5 17a4 4 0 0 1 7 0M15 9h4M15 13h4"/></svg></span>
-            <span class="gcard__k">Gestão de pessoas</span>
-            <div class="gcard__t">Quadro funcional</div>
-            <p class="gcard__d">Lotação por unidade cruzada com a base oficial de pessoal.</p>
-          </div>
-          <div class="gcard" data-k="samu urgência bases">
-            <span class="gcard__ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 16V8h11v8M14 11h4l3 3v2h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><path d="M8 10v3M6.5 11.5h3"/></svg></span>
-            <span class="gcard__k">Urgência e emergência</span>
-            <div class="gcard__t">Bases SAMU</div>
-            <p class="gcard__d">Localização das bases e raio de atendimento sobre o mapa da cidade.</p>
-          </div>
+        <div class="thead">
+          <span>Indicador</span><span>Resultado</span><span>Situação</span><span>Índice</span><span>Problema</span>
         </div>
-        <div class="empty" id="geo-empty" style="display:none">Nenhum painel corresponde a essa busca. Tente “vacinal”, “equipes” ou “território”.</div>
+
+        <div id="ind-list">
+          <div class="irow" data-nome="Desenvolvimento Infantil" data-base="11.9" data-reg="10" data-suf="30" data-bom="50" data-otm="70"></div>
+          <div class="irow" data-nome="Gestação e Puerpério" data-base="17.5" data-reg="15" data-suf="30" data-bom="45" data-otm="60"></div>
+          <div class="irow" data-nome="Prevenção de Câncer" data-base="29.8" data-reg="15" data-suf="25" data-bom="40" data-otm="55"></div>
+          <div class="irow" data-nome="Pessoa com Diabetes" data-base="47.6" data-reg="20" data-suf="40" data-bom="60" data-otm="75"></div>
+          <div class="irow" data-nome="Pessoa Idosa" data-base="40.5" data-reg="20" data-suf="35" data-bom="55" data-otm="70"></div>
+          <div class="irow" data-nome="Pessoa com Hipertensão" data-base="56.9" data-reg="25" data-suf="40" data-bom="55" data-otm="70"></div>
+          <div class="irow" data-nome="Mais Acesso APS" data-base="57.9" data-reg="20" data-suf="35" data-bom="45" data-otm="55"></div>
+        </div>
+
+        <div class="resume">
+          <div><b id="idx-final">—</b><span>índice final da equipe (0 a 100 pontos)</span></div>
+          <div><b id="idx-faixa">—</b><span>classificação resultante</span></div>
+          <div><b id="idx-prio">—</b><span>indicadores prioritários para agir agora</span></div>
+        </div>
+
+        <p class="note">Simulação de apoio à decisão. A classificação oficial continua sendo a recebida do SIAPS por equipe e competência — o painel antecipa o resultado para a equipe agir dentro do quadrimestre.</p>
       </div>
 
       <!-- PANE 2 -->
       <div class="pane" id="p2" role="tabpanel">
         <div class="pane__top">
-          <div>
-            <h3>Dados georreferenciados</h3>
-            <p>Representação da malha territorial: toque em um distrito para ver a leitura que o painel entrega.</p>
-          </div>
+          <h3>Matriz de boas práticas</h3>
+          <p>As linhas usam os mesmos procedimentos da matriz. A contribuição é realizado ÷ referência × peso oficial. Altere o realizado e veja quantos registros combinados ainda faltam para cada faixa.</p>
+        </div>
+
+        <div class="bphead">
+          <span>Boa prática</span><span>Realizado / referência</span><span>Contribuição</span><span>Percentual</span>
+        </div>
+
+        <div id="bp-list">
+          <div class="bprow" data-nome="1ª consulta até o 30º dia" data-sub="Primeira Consulta 30D" data-real="90" data-ref="343" data-peso="20"></div>
+          <div class="bprow" data-nome="9 consultas até 2 anos" data-sub="Consultas 9 Até 2A" data-real="11" data-ref="343" data-peso="20"></div>
+          <div class="bprow" data-nome="9 registros de peso e altura" data-sub="Peso Altura 9 Até 2A" data-real="3" data-ref="343" data-peso="20"></div>
+          <div class="bprow" data-nome="2 visitas domiciliares ACS/TACS" data-sub="Visitas ACS 2 Até 6M" data-real="57" data-ref="343" data-peso="20"></div>
+          <div class="bprow" data-nome="Esquema vacinal recomendado" data-sub="Vacinas Recomendadas" data-real="64" data-ref="343" data-peso="20"></div>
+        </div>
+
+        <div class="resume" style="grid-template-columns:repeat(2,1fr)">
+          <div><b id="bp-total">—</b><span>pontos acumulados na matriz (máximo 100)</span></div>
+          <div><b id="bp-faixa">—</b><span>faixa atual do componente</span></div>
+        </div>
+
+        <div class="gaps" id="bp-gaps"></div>
+
+        <p class="note">Total de crianças de referência: 343. Cada boa prática pesa 20 pontos. Faixas: Suficiente a partir de 25 pontos, Bom a partir de 50 e Ótimo a partir de 75 — as mesmas do cálculo oficial.</p>
+      </div>
+
+      <!-- PANE 3 -->
+      <div class="pane" id="p3" role="tabpanel">
+        <div class="pane__top">
+          <h3>Rede, cobertura e território</h3>
+          <p>Toque em um distrito para ver a leitura que o painel entrega sobre equipes, cobertura vacinal e rede assistencial.</p>
         </div>
 
         <div class="mapbox">
-          <svg viewBox="0 0 520 380" role="img" aria-label="Mapa esquemático de distritos com nível de cobertura" style="width:100%;height:auto;border:1px solid rgba(146,180,240,.22);border-radius:4px;background:rgba(4,13,26,.35)">
-            <g id="zones" stroke="#0A1626" stroke-width="2">
+          <svg viewBox="0 0 520 380" role="img" aria-label="Mapa esquemático dos distritos" style="width:100%;height:auto;border:1px solid rgba(146,180,240,.22);border-radius:4px;background:rgba(4,13,26,.35)">
+            <g stroke="#0A1626" stroke-width="2">
               <polygon class="zone" data-z="DABEN" points="30,40 180,30 200,120 60,140" fill="#1D5FE0"/>
               <polygon class="zone" data-z="DAGUA" points="180,30 340,45 330,130 200,120" fill="#3E7BEC"/>
               <polygon class="zone" data-z="DAICO" points="340,45 490,60 470,160 330,130" fill="#6FA3FF"/>
@@ -773,101 +573,16 @@ footer{background:var(--deep);color:#8FA6C4;padding:34px 0;border-top:1px solid 
             </g>
           </svg>
 
-          <div>
-            <div style="border:1px solid rgba(146,180,240,.28);padding:22px;border-radius:4px;background:rgba(4,13,26,.4);margin-bottom:20px">
-              <span class="gcard__k" id="z-label">Distrito selecionado</span>
-              <div class="gcard__t" id="z-name" style="font-size:1.4rem;margin-top:6px">Selecione um distrito</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">
-                <div><b style="font-family:var(--display);font-size:1.7rem;color:#fff;display:block" id="z-eq">—</b><span style="font-size:.76rem;color:#9FBCEA">equipes de APS</span></div>
-                <div><b style="font-family:var(--display);font-size:1.7rem;color:#6FA3FF;display:block" id="z-cob">—</b><span style="font-size:.76rem;color:#9FBCEA">cobertura estimada</span></div>
-                <div><b style="font-family:var(--display);font-size:1.7rem;color:#fff;display:block" id="z-acs">—</b><span style="font-size:.76rem;color:#9FBCEA">agentes comunitários</span></div>
-                <div><b style="font-family:var(--display);font-size:1.7rem;color:#fff;display:block" id="z-un">—</b><span style="font-size:.76rem;color:#9FBCEA">unidades cadastradas</span></div>
-              </div>
+          <div class="mininfo">
+            <span style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#6FA3FF;font-weight:700">Leitura do território</span>
+            <b id="z-name" style="margin-top:6px">Selecione um distrito</b>
+            <div class="minigrid">
+              <div><b id="z-eq">—</b><span>equipes de APS</span></div>
+              <div><b id="z-cob" style="color:#6FA3FF">—</b><span>cobertura vacinal</span></div>
+              <div><b id="z-acs">—</b><span>agentes comunitários</span></div>
+              <div><b id="z-un">—</b><span>unidades na rede</span></div>
             </div>
-            <ul class="maplegend">
-              <li><i style="background:#1D5FE0"></i> Áreas de cobertura desenhadas sobre a malha de setores censitários.</li>
-              <li><i style="background:#6FA3FF"></i> Mapa dos indicadores, locação de imóveis e bases SAMU sobrepostos.</li>
-              <li><i style="background:#B7D0FF"></i> Lista de unidades e quadro funcional ligados a cada polígono.</li>
-            </ul>
-            <p style="font-size:.78rem;color:#7A93BA">Valores ilustrativos para demonstração pública. Na plataforma, cada polígono consome a base oficial atualizada.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- PANE 3 -->
-      <div class="pane" id="p3" role="tabpanel">
-        <div class="pane__top">
-          <div>
-            <h3>Simulador de metas da APS</h3>
-            <p>Ajuste os componentes de qualidade e veja o desempenho da equipe recalculado na hora — a mesma lógica aplicada no painel do SIAPS.</p>
-          </div>
-        </div>
-
-        <div class="sim">
-          <div class="sliders">
-            <div class="slider">
-              <label for="s1">Cadastro e vínculo da população <b><span data-out="s1">72</span>%</b></label>
-              <input type="range" id="s1" min="0" max="100" value="72" data-w="0.25">
-            </div>
-            <div class="slider">
-              <label for="s2">Pré-natal e saúde da mulher <b><span data-out="s2">64</span>%</b></label>
-              <input type="range" id="s2" min="0" max="100" value="64" data-w="0.25">
-            </div>
-            <div class="slider">
-              <label for="s3">Cobertura vacinal infantil <b><span data-out="s3">81</span>%</b></label>
-              <input type="range" id="s3" min="0" max="100" value="81" data-w="0.25">
-            </div>
-            <div class="slider">
-              <label for="s4">Acompanhamento de crônicos <b><span data-out="s4">58</span>%</b></label>
-              <input type="range" id="s4" min="0" max="100" value="58" data-w="0.25">
-            </div>
-            <p style="font-size:.82rem;color:#9FBCEA;border-left:2px solid var(--brand);padding-left:12px">
-              Abaixo de 60 a equipe entra em plano de ação; de 60 a 79 recebe acompanhamento; a partir de 80 mantém o incentivo integral.
-            </p>
-          </div>
-
-          <div class="score">
-            <div class="score__ring">
-              <svg viewBox="0 0 120 120" width="200" height="200">
-                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(146,180,240,.22)" stroke-width="10"/>
-                <circle id="ring" cx="60" cy="60" r="52" fill="none" stroke="#6FA3FF" stroke-width="10" stroke-linecap="round"
-                        stroke-dasharray="326.7" stroke-dashoffset="90" transform="rotate(-90 60 60)" style="transition:stroke-dashoffset .4s ease,stroke .4s ease"/>
-              </svg>
-              <div class="score__val"><span><span id="score">69</span><small>Desempenho da equipe</small></span></div>
-            </div>
-            <span class="badge" id="score-badge">Acompanhamento</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- PANE 4 -->
-      <div class="pane" id="p4" role="tabpanel">
-        <div class="pane__top">
-          <div>
-            <h3>Da fonte oficial até a decisão</h3>
-            <p>O caminho que todo indicador percorre dentro da plataforma.</p>
-          </div>
-        </div>
-        <div class="gcards">
-          <div class="gcard">
-            <span class="gcard__k">Encontrar</span>
-            <div class="gcard__t">Tudo em um ambiente</div>
-            <p class="gcard__d">Informações estratégicas reunidas em um só lugar, sem caçar planilha em pasta de rede.</p>
-          </div>
-          <div class="gcard">
-            <span class="gcard__k">Visualizar</span>
-            <div class="gcard__t">Mapa no lugar da planilha</div>
-            <p class="gcard__d">Mapas, indicadores e painéis substituem longas tabelas de conferência manual.</p>
-          </div>
-          <div class="gcard">
-            <span class="gcard__k">Confiar</span>
-            <div class="gcard__t">Fonte oficial rastreável</div>
-            <p class="gcard__d">Cada análise parte de sistemas e bases oficiais, com origem e data visíveis.</p>
-          </div>
-          <div class="gcard">
-            <span class="gcard__k">Construir</span>
-            <div class="gcard__t">Feito com quem usa</div>
-            <p class="gcard__d">Trabalho integrado entre setores e departamentos, ajustado a cada rodada de uso.</p>
+            <p class="note" style="margin-top:16px">Valores ilustrativos nesta demonstração pública. Na plataforma cada polígono consome a base oficial atualizada.</p>
           </div>
         </div>
       </div>
@@ -875,310 +590,110 @@ footer{background:var(--deep);color:#8FA6C4;padding:34px 0;border-top:1px solid 
   </div>
 </section>
 
-<!-- ================= FNS / PIPELINE ================= -->
-<section class="band band--paper">
+<!-- SISTEMAS -->
+<section class="band" id="sistemas">
   <div class="wrap">
-    <span class="eyebrow">Engenharia de dados e integração</span>
-    <h2 class="h-sec">Automação do Fundo Nacional de Saúde</h2>
-    <p class="lead" style="margin-top:12px">APIs próprias para extração parametrizada dos dados financeiros do FNS. A arquitetura faz o parsing de valores brutos e deduções e entrega no banco as fontes orçamentárias oficiais já estruturadas e mapeadas.</p>
-
-    <div class="pipe">
-      <div class="step reveal">
-        <h4>Consulta parametrizada</h4>
-        <p>Competência, bloco e fonte definidos por parâmetro, sem navegação manual no portal.</p>
-        <span class="step__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
-      </div>
-      <div class="step reveal">
-        <h4>Parsing de valores</h4>
-        <p>Separação entre valor bruto, deduções e líquido, com tratamento de formato e inconsistência.</p>
-        <span class="step__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
-      </div>
-      <div class="step reveal">
-        <h4>Mapeamento orçamentário</h4>
-        <p>Cada repasse cai na fonte orçamentária correspondente, pronto para conciliação.</p>
-        <span class="step__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
-      </div>
-      <div class="step reveal">
-        <h4>Ingestão e painel</h4>
-        <p>Carga automática no banco e leitura imediata de receita x despesa pela gestão.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SISTEMAS / SPP ================= -->
-<section class="band band--surface" id="spp">
-  <div class="wrap">
-    <span class="eyebrow">Gestão administrativa e operacional</span>
-    <h2 class="h-sec">Ecossistema SPP e demais sistemas</h2>
-    <p class="lead" style="margin-top:12px">Abra cada bloco para ver as plataformas que sustentam estabilidade, eficiência e controle na rotina da secretaria.</p>
+    <span class="eyebrow">Sistemas em operação</span>
+    <h2 class="h-sec">Plataformas que sustentam a rotina</h2>
+    <p class="lead">Abra cada bloco para ver o que o sistema resolve na prática.</p>
 
     <div class="acc">
       <div class="acc__item">
         <button class="acc__btn" aria-expanded="false">
-          <span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>
-            Sistema de Programação de Pagamentos (SPP)
-          </span>
+          <span>SPP — programação de pagamentos, contratos e faturamento</span>
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <div class="acc__panel">
-          <div class="acc__inner">
-            <p class="lead" style="margin-bottom:18px">Principal projeto desenvolvido na gestão da informação da SESMA. Sistema de controle financeiro robusto, criado para organizar o fluxo de informação e lidar com notas fiscais de mais de 2.000 credores e prestadores de serviço.</p>
-            <span class="pill">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4 10-10"/></svg>
-              Em operação como espinha dorsal da gestão local há 3 anos
-            </span>
-
-            <div class="tbl-wrap">
-              <table>
-                <thead><tr><th style="width:32%">Módulo</th><th>O que resolve</th></tr></thead>
-                <tbody>
-                  <tr><td><strong>Financeiro / Notas fiscais</strong></td><td>Organiza e processa as notas recebidas: prazos de vencimento, o que há a pagar e histórico completo de consulta.</td></tr>
-                  <tr><td><strong>Contratual</strong></td><td>Todo o ciclo de vida dos contratos da SESMA na plataforma, do início ao encerramento, sem procurar em arquivo físico.</td></tr>
-                  <tr><td><strong>Repasses (FMS)</strong></td><td>Instalado no Fundo Municipal de Saúde, captura repasses federais, estaduais e municipais e mostra a despesa em relação à receita.</td></tr>
-                  <tr><td><strong>Faturamento SIA/SIH</strong></td><td>Roda na regulação: visualização e relatórios de toda a produção aprovada, da rede própria e dos convênios.</td></tr>
-                  <tr><td><strong>Analytics e gestão</strong></td><td>Painéis gerenciais com controle de gastos e gestão de equipes, consumindo a API do Portal da Transparência.</td></tr>
-                </tbody>
-              </table>
-            </div>
-
-            <h3 style="font-size:1.05rem;margin-bottom:12px;color:var(--ink)">Impacto na gestão</h3>
-            <div class="tbl-wrap" style="margin-bottom:0">
-              <table class="tbl--soft">
-                <thead><tr><th style="width:32%">Área operacional</th><th>Resultado prático</th></tr></thead>
-                <tbody>
-                  <tr><td><strong>Gestão de credores</strong></td><td>Acompanhamento automático de prazos e pagamentos de mais de 2.000 prestadores.</td></tr>
-                  <tr><td><strong>Ciclo contratual</strong></td><td>Centralização digital que eliminou perda de documento físico e retrabalho de conferência.</td></tr>
-                  <tr><td><strong>Auditoria de pessoal</strong></td><td>Dados consolidados de primeira mão, consumidos direto da base oficial.</td></tr>
-                </tbody>
-              </table>
-            </div>
+        <div class="acc__panel"><div class="acc__inner">
+          <p>Principal projeto da gestão da informação na secretaria, em operação há três anos como espinha dorsal do controle financeiro. Nasceu de um mapeamento do fluxo real entre financeiro, contratos, Fundo Municipal e regulação, e hoje concentra a nota fiscal de mais de 2.000 credores.</p>
+          <div class="mods">
+            <div class="mod"><b>Financeiro e notas fiscais</b><span>Prazos, vencimentos, o que há a pagar e histórico completo de consulta.</span></div>
+            <div class="mod"><b>Contratual</b><span>Ciclo de vida inteiro do contrato na plataforma, com vigência e aditivos.</span></div>
+            <div class="mod"><b>Repasses do FMS</b><span>Captura federal, estadual e municipal, com despesa lida contra a receita.</span></div>
+            <div class="mod"><b>Faturamento SIA/SIH</b><span>Produção aprovada da rede própria e dos convênios, para a regulação.</span></div>
+            <div class="mod"><b>Contabilidade e orçamento</b><span>Fontes orçamentárias mapeadas e conciliação apoiada por dado de origem.</span></div>
+            <div class="mod"><b>Gestão e painéis</b><span>Controle de gastos e de equipes com dados oficiais consumidos por API.</span></div>
           </div>
-        </div>
+          <div class="tags"><span class="tag">2.000+ credores</span><span class="tag">5+ setores</span><span class="tag">3 anos em produção</span></div>
+        </div></div>
       </div>
 
       <div class="acc__item">
         <button class="acc__btn" aria-expanded="false">
-          <span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 0 1 16 0M4 12v4a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2zm16 0v4a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2z"/><path d="M17 18v1a2 2 0 0 1-2 2h-3"/></svg>
-            Portal NAT — chamados e demandas
-          </span>
+          <span>GeoSaúde — inteligência territorial e assistencial</span>
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <div class="acc__panel">
-          <div class="acc__inner">
-            <p class="lead">Ferramenta implantada para que as próprias unidades de saúde e setores abram e acompanhem chamados técnicos e demandas operacionais. Cada solicitação tem responsável, status e histórico, o que acabou com o pedido informal por mensagem solta e deu previsibilidade à fila de atendimento.</p>
-            <div class="tags" style="margin-top:18px">
-              <span class="tag">Abertura pela própria unidade</span>
-              <span class="tag">Acompanhamento em tempo real</span>
-              <span class="tag">Histórico por setor</span>
-              <span class="tag">Indicadores de atendimento</span>
-            </div>
+        <div class="acc__panel"><div class="acc__inner">
+          <p>Plataforma que reúne o que estava espalhado entre sistemas oficiais e planilhas de setor: indicadores da APS, cobertura vacinal, equipes, quadro funcional, rede assistencial, bases do SAMU e áreas de cobertura, todos amarrados ao mesmo território.</p>
+          <div class="mods">
+            <div class="mod"><b>Perfil da unidade</b><span>Consulta por unidade, bairro ou CNES com a ficha técnica completa.</span></div>
+            <div class="mod"><b>Componentes de qualidade</b><span>Indicadores do SIAPS por equipe com faixa, meta e plano de ação.</span></div>
+            <div class="mod"><b>Cobertura vacinal</b><span>Doses e cobertura por imunobiológico sobre o mapa da cidade.</span></div>
+            <div class="mod"><b>Dados georreferenciados</b><span>Áreas de cobertura, equipes, imóveis, bases SAMU e lista de unidades.</span></div>
           </div>
-        </div>
+        </div></div>
       </div>
 
       <div class="acc__item">
         <button class="acc__btn" aria-expanded="false">
-          <span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/></svg>
-            Lumi Educa — acompanhamento escolar com IA
-          </span>
+          <span>Portal NAT e Lumi Educa</span>
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <div class="acc__panel">
-          <div class="acc__inner">
-            <p class="lead">Controle pedagógico que vai além da nota. Algoritmos e inteligência artificial analisam a performance do aluno, apontam pontos fortes e áreas de melhoria e geram relatórios de acompanhamento para professores e responsáveis.</p>
-            <a class="btn btn--solid" style="margin-top:18px" href="https://lumieduca.com.br" target="_blank" rel="noopener">
-              Abrir lumieduca.com.br
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4h6v6M20 4 10 14M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
-            </a>
+        <div class="acc__panel"><div class="acc__inner">
+          <p><strong>Portal NAT:</strong> canal onde a própria unidade ou setor abre e acompanha chamados técnicos e demandas operacionais, com responsável, status e histórico. Acabou com o pedido informal e deu previsibilidade à fila de atendimento.</p>
+          <p><strong>Lumi Educa:</strong> acompanhamento pedagógico que vai além da nota, usando análise de performance para apontar pontos fortes e áreas de melhoria em relatórios para professores e responsáveis.</p>
+          <a class="btn btn--solid" href="https://lumieduca.com.br" target="_blank" rel="noopener">Abrir lumieduca.com.br</a>
+        </div></div>
+      </div>
+
+      <div class="acc__item">
+        <button class="acc__btn" aria-expanded="false">
+          <span>Trajetória, formação e ferramentas</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="acc__panel"><div class="acc__inner">
+          <p><strong>SESMA — Secretaria Municipal de Saúde de Belém.</strong> Cinco anos na casa, os três últimos dedicados a desenvolvimento e gestão da informação, atuando como Assessor III na Coordenação de Desenvolvimento. Antes disso, experiência comercial e administrativa e primeira passagem por TI e financeiro em ambiente corporativo.</p>
+          <p><strong>Formação complementar:</strong> Governança de Dados (30h), Fiscalização e Controle da Administração Pública Municipal (10h), Administration of Government Cloud Services (30h), Informação de Documentos e Mineração de Conhecimentos (4h) e conferência presencial sobre IA generativa aplicada a empresas.</p>
+          <p style="margin-bottom:8px"><strong>Ferramentas que uso para chegar no resultado:</strong></p>
+          <div class="tags">
+            <span class="tag">MySQL</span><span class="tag">PHP</span><span class="tag">JavaScript</span><span class="tag">Node.js</span>
+            <span class="tag">Python</span><span class="tag">Power BI</span><span class="tag">Leaflet</span><span class="tag">APIs oficiais</span>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= PROJETOS ================= -->
-<section class="band band--paper" id="projetos">
-  <div class="wrap">
-    <span class="eyebrow">Projetos web e institucionais</span>
-    <h2 class="h-sec">Plataformas fora da secretaria</h2>
-    <p class="lead" style="margin-top:12px">Sites, portais e sistemas desenvolvidos de forma independente para institutos, consultorias e comunicação.</p>
-
-    <div class="feature reveal">
-      <div class="feature__art">
-        <svg viewBox="0 0 320 230" width="100%" style="max-width:340px" role="img" aria-label="Representação da interface do Portal Pai D'égua">
-          <rect x="4" y="4" width="312" height="222" rx="8" fill="#0A1626" stroke="#2E6BE6" stroke-width="1.5"/>
-          <rect x="4" y="4" width="312" height="26" rx="8" fill="#102A4C"/>
-          <circle cx="20" cy="17" r="3.5" fill="#6FA3FF"/><circle cx="32" cy="17" r="3.5" fill="#3E7BEC"/><circle cx="44" cy="17" r="3.5" fill="#1D5FE0"/>
-          <rect x="60" y="12" width="120" height="10" rx="5" fill="#16305A"/>
-          <rect x="18" y="44" width="180" height="16" rx="3" fill="#6FA3FF"/>
-          <rect x="18" y="68" width="120" height="10" rx="3" fill="#2E6BE6"/>
-          <rect x="18" y="92" width="284" height="60" rx="4" fill="#13294B"/>
-          <rect x="28" y="104" width="90" height="36" rx="3" fill="#1D5FE0" opacity=".8"/>
-          <rect x="128" y="104" width="160" height="8" rx="4" fill="#20406F"/>
-          <rect x="128" y="120" width="130" height="8" rx="4" fill="#20406F"/>
-          <rect x="128" y="136" width="80" height="6" rx="3" fill="#2E6BE6"/>
-          <rect x="18" y="164" width="88" height="48" rx="4" fill="#13294B"/>
-          <rect x="116" y="164" width="88" height="48" rx="4" fill="#13294B"/>
-          <rect x="214" y="164" width="88" height="48" rx="4" fill="#13294B"/>
-          <rect x="26" y="196" width="60" height="6" rx="3" fill="#2E6BE6"/>
-          <rect x="124" y="196" width="60" height="6" rx="3" fill="#2E6BE6"/>
-          <rect x="222" y="196" width="60" height="6" rx="3" fill="#2E6BE6"/>
-        </svg>
-      </div>
-      <div class="feature__txt">
-        <span class="eyebrow">Portal de notícias</span>
-        <h3>Portal Pai D'égua</h3>
-        <p>Portal de notícias políticas de destaque no Pará. Plataforma preparada para alto tráfego, com carregamento rápido, SEO trabalhado e leitura confortável no celular, onde está a maior parte do público.</p>
-        <div class="tags">
-          <span class="tag">Alto tráfego</span><span class="tag">SEO</span><span class="tag">Mobile first</span><span class="tag">Publicação editorial</span>
-        </div>
-        <a class="btn btn--solid" href="https://portalpaidegua.blog.br" target="_blank" rel="noopener">
-          Abrir o portal
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4h6v6M20 4 10 14M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
-        </a>
+        </div></div>
       </div>
     </div>
 
+    <h3 style="font-size:1.1rem;margin-top:36px">Projetos web independentes</h3>
     <div class="links">
-      <a class="link reveal" href="https://sentineladaamazonia.org" target="_blank" rel="noopener">
-        <div>
-          <h4>Sentinela da Amazônia</h4>
-          <p>Plataforma do instituto voltada a demandas ambientais e regionais.</p>
-          <span class="link__url">sentineladaamazonia.org</span>
-        </div>
-        <span class="link__go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      <a class="link" href="https://portalpaidegua.blog.br" target="_blank" rel="noopener">
+        <div><b>Portal Pai D'égua</b><span>Portal de notícias políticas preparado para alto tráfego.</span></div>
+        <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i>
       </a>
-      <a class="link reveal" href="https://shinkaiamazon.com.br" target="_blank" rel="noopener">
-        <div>
-          <h4>Shinkai Amazon</h4>
-          <p>Site institucional completo para o instituto.</p>
-          <span class="link__url">shinkaiamazon.com.br</span>
-        </div>
-        <span class="link__go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      <a class="link" href="https://sentineladaamazonia.org" target="_blank" rel="noopener">
+        <div><b>Sentinela da Amazônia</b><span>Plataforma para demandas ambientais e regionais.</span></div>
+        <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i>
       </a>
-      <a class="link reveal" href="https://shinkaiboard.com.br" target="_blank" rel="noopener">
-        <div>
-          <h4>Shinkai Board</h4>
-          <p>Plataforma dedicada à consultoria empresarial.</p>
-          <span class="link__url">shinkaiboard.com.br</span>
-        </div>
-        <span class="link__go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      <a class="link" href="https://shinkaiamazon.com.br" target="_blank" rel="noopener">
+        <div><b>Shinkai Amazon</b><span>Site institucional do instituto.</span></div>
+        <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i>
       </a>
-      <a class="link reveal" href="https://institutojairneves.com.br" target="_blank" rel="noopener">
-        <div>
-          <h4>Instituto Jair Neves</h4>
-          <p>Site institucional com foco em alcance social e informativo.</p>
-          <span class="link__url">institutojairneves.com.br</span>
-        </div>
-        <span class="link__go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      <a class="link" href="https://shinkaiboard.com.br" target="_blank" rel="noopener">
+        <div><b>Shinkai Board</b><span>Plataforma de consultoria empresarial.</span></div>
+        <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ================= TRAJETÓRIA ================= -->
-<section class="band band--surface" id="trajetoria">
-  <div class="wrap">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px" class="traj-grid">
-      <div>
-        <span class="eyebrow">Experiência profissional</span>
-        <h2 class="h-sec">Trajetória</h2>
-        <div class="tl">
-          <div class="tl__item reveal">
-            <span class="tl__when">fev/2026 — out/2026</span>
-            <h3>SESMA — Secretaria Municipal de Saúde de Belém</h3>
-            <p class="tl__role">Assessor III · Coordenação de Desenvolvimento</p>
-            <ul>
-              <li><strong>Diagnóstico consultivo:</strong> investigação de gargalos e tradução das necessidades dos setores em requisitos, prioridades e soluções viáveis.</li>
-              <li><strong>Condução de projetos:</strong> desenho, desenvolvimento, testes, implantação, capacitação de usuários, suporte e evolução contínua.</li>
-              <li><strong>Governança da informação:</strong> integração e validação de bases assistenciais, territoriais, financeiras e administrativas, com rastreabilidade.</li>
-              <li><strong>Adoção e relacionamento:</strong> articulação com referências de negócio para garantir aderência e continuidade das entregas.</li>
-            </ul>
-          </div>
-          <div class="tl__item reveal">
-            <span class="tl__when">jul/2021 — fev/2026</span>
-            <h3>SESMA — Secretaria Municipal de Saúde de Belém</h3>
-            <p class="tl__role">Assistente administrativo</p>
-            <ul>
-              <li>Base de conhecimento do funcionamento interno da secretaria, dos fluxos financeiros e dos sistemas do SUS que depois viraram produto.</li>
-            </ul>
-          </div>
-          <div class="tl__item reveal">
-            <span class="tl__when">2019 — 2020</span>
-            <h3>Bravo Segurança</h3>
-            <p class="tl__role">Consultor de vendas e apoio administrativo</p>
-            <ul>
-              <li>Atendimento comercial, organização administrativa, acompanhamento de metas e controle de prazos em empresa de menor porte.</li>
-            </ul>
-          </div>
-          <div class="tl__item reveal">
-            <span class="tl__when">2016 — 2018</span>
-            <h3>ArqDigital</h3>
-            <p class="tl__role">Aprendiz · apoio em TI e financeiro</p>
-            <ul>
-              <li>Primeira experiência corporativa em ambiente multinacional, com passagem por TI e financeiro.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div id="competencias">
-        <span class="eyebrow">Competências técnicas</span>
-        <h2 class="h-sec">O que eu uso no dia a dia</h2>
-        <div class="tbl-wrap" style="margin-top:26px">
-          <table style="min-width:420px">
-            <thead><tr><th style="width:38%">Área</th><th>Competências</th></tr></thead>
-            <tbody>
-              <tr><td><strong>Dados, BI e governança</strong></td><td>MySQL, Power BI, ETL, indicadores, qualidade, validação, tratamento, análise e visualização de dados.</td></tr>
-              <tr><td><strong>Desenvolvimento e integração</strong></td><td>PHP, JavaScript, Node.js, Python, automação web, Git, FTP/SFTP e integração entre fontes.</td></tr>
-              <tr><td><strong>Geointeligência</strong></td><td>Georreferenciamento, territorialização, Leaflet, OpenStreetMap e análise de cobertura.</td></tr>
-              <tr><td><strong>Informação em saúde</strong></td><td>SIAPS, CNES, e-SUS APS, SIA/SIH, DATASUS, FNS, produção, faturamento e indicadores da APS.</td></tr>
-              <tr><td><strong>Processos</strong></td><td>Requisitos, mapeamento, priorização, implantação e treinamento em finanças, orçamento, contratos e faturamento.</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3 style="font-size:1.1rem;margin:30px 0 14px;color:var(--ink)">Formação complementar</h3>
-        <ul style="margin-left:18px;color:var(--ink-soft);font-size:.93rem;display:flex;flex-direction:column;gap:9px">
-          <li>Conferência presencial sobre IA generativa e aplicações corporativas — São Paulo/SP, 3 dias.</li>
-          <li>Governança de Dados — 30h.</li>
-          <li>Fiscalização e Controle da Administração Pública Municipal — 10h.</li>
-          <li>Administration of Government Cloud Services — 30h.</li>
-          <li>Informação de Documentos e Mineração de Conhecimentos — 4h.</li>
-          <li>Ensino médio completo · 27 anos · Belém - PA.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CONTATO ================= -->
+<!-- CONTATO -->
 <section class="band band--deep" id="contato">
   <div class="wrap">
     <span class="eyebrow">Contato</span>
-    <h2 class="h-sec">Vamos falar sobre o seu gargalo de informação</h2>
-    <p class="lead" style="margin-top:12px">Se existe um processo travado, um dado que ninguém confia ou um sistema que ninguém usa, é exatamente aí que eu começo.</p>
-
+    <h2 class="h-sec">Vamos olhar o seu gargalo de informação</h2>
+    <p class="lead">Se existe um processo travado, um indicador que ninguém consegue explicar ou um sistema que ninguém usa, é exatamente aí que eu começo.</p>
     <div class="contact">
-      <a class="ccard" href="https://wa.me/5591999440334" target="_blank" rel="noopener">
-        <span>WhatsApp</span><b>(91) 99944-0334</b>
-      </a>
-      <a class="ccard" href="mailto:lisandroramos881@gmail.com">
-        <span>E-mail</span><b>lisandroramos881@gmail.com</b>
-      </a>
-      <a class="ccard" href="https://lisandro-developer.vercel.app" target="_blank" rel="noopener">
-        <span>Portfólio anterior</span><b>lisandro-developer.vercel.app</b>
-      </a>
-    </div>
-
-    <div style="margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;align-items:center">
-      <a class="btn btn--light" href="https://wa.me/5591999440334" target="_blank" rel="noopener">Chamar agora no WhatsApp</a>
-      <span style="color:#9FBCEA;font-size:.9rem">Belém - PA · Tv. José Pio, 1051 — Umarizal · disponível para projetos e atuação consultiva.</span>
+      <a class="ccard" href="https://wa.me/5591999440334" target="_blank" rel="noopener"><span>WhatsApp</span><b>(91) 99944-0334</b></a>
+      <a class="ccard" href="mailto:lisandroramos881@gmail.com"><span>E-mail</span><b>lisandroramos881@gmail.com</b></a>
+      <a class="ccard" href="https://lisandro-developer.vercel.app" target="_blank" rel="noopener"><span>Mais projetos</span><b>lisandro-developer.vercel.app</b></a>
     </div>
   </div>
 </section>
@@ -1186,11 +701,8 @@ footer{background:var(--deep);color:#8FA6C4;padding:34px 0;border-top:1px solid 
 
 <footer>
   <div class="wrap foot">
-    <div>
-      <strong style="color:#fff;font-family:var(--display);font-size:1.05rem;letter-spacing:.04em">LISANDRO MATHEUS RAMOS RIBEIRO</strong>
-      <div>Dados, sistemas e inteligência aplicada à saúde · Belém - PA</div>
-    </div>
-    <div>&copy; <span id="year">2026</span> · Todos os direitos reservados.</div>
+    <div><strong style="color:#fff;font-family:var(--display);letter-spacing:.04em">LISANDRO MATHEUS RAMOS RIBEIRO</strong><div>Gestão da informação em saúde · Belém - PA</div></div>
+    <div>&copy; <span id="year">2026</span></div>
   </div>
 </footer>
 
@@ -1200,215 +712,242 @@ footer{background:var(--deep);color:#8FA6C4;padding:34px 0;border-top:1px solid 
 
 <script>
 (function(){
-  "use strict";
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+"use strict";
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('year').textContent = new Date().getFullYear();
 
-  /* ---------- ano ---------- */
-  document.getElementById('year').textContent = new Date().getFullYear();
+/* tema */
+var root=document.documentElement, tbtn=document.getElementById('theme');
+try{var st=localStorage.getItem('lm-theme'); if(st) root.setAttribute('data-theme',st);}catch(e){}
+tbtn.addEventListener('click',function(){
+  var now = root.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme',now);
+  try{localStorage.setItem('lm-theme',now);}catch(e){}
+});
 
-  /* ---------- tema ---------- */
-  var root = document.documentElement, themeBtn = document.getElementById('theme');
-  var stored = null;
-  try { stored = localStorage.getItem('lm-theme'); } catch(e){}
-  if (stored === 'dark' || stored === 'light') root.setAttribute('data-theme', stored);
-  themeBtn.addEventListener('click', function(){
-    var now = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', now);
-    try { localStorage.setItem('lm-theme', now); } catch(e){}
+/* menu */
+var burger=document.getElementById('burger'), menu=document.getElementById('menu');
+burger.addEventListener('click',function(){
+  var o=menu.classList.toggle('open'); burger.setAttribute('aria-expanded',o?'true':'false');
+});
+menu.addEventListener('click',function(e){ if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');} });
+
+/* progresso, topo, link ativo */
+var bar=document.getElementById('progress'), top=document.getElementById('totop');
+var links=[].slice.call(menu.querySelectorAll('a'));
+var targets=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+function onScroll(){
+  var h=document.documentElement.scrollHeight-window.innerHeight;
+  bar.style.width=(h>0?(window.scrollY/h)*100:0)+'%';
+  top.classList.toggle('on',window.scrollY>600);
+  var idx=-1;
+  targets.forEach(function(t,i){ if(t && t.getBoundingClientRect().top<=140) idx=i; });
+  links.forEach(function(a,i){ a.classList.toggle('on',i===idx); });
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+top.addEventListener('click',function(){window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});});
+
+/* reveal */
+var rev=document.querySelectorAll('.reveal');
+if(reduce||!('IntersectionObserver' in window)){ rev.forEach(function(e){e.classList.add('in');}); }
+else{
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.1});
+  rev.forEach(function(e){io.observe(e);});
+}
+
+/* contadores */
+function count(el){
+  var end=parseFloat(el.getAttribute('data-count'))||0;
+  var pre=el.getAttribute('data-prefix')||'', suf=el.getAttribute('data-suffix')||'';
+  if(reduce){el.textContent=pre+end.toLocaleString('pt-BR')+suf;return;}
+  var s=null;
+  function tick(ts){ if(!s)s=ts; var p=Math.min((ts-s)/1100,1);
+    el.textContent=pre+Math.floor(end*(1-Math.pow(1-p,3))).toLocaleString('pt-BR')+suf;
+    if(p<1)requestAnimationFrame(tick); else el.textContent=pre+end.toLocaleString('pt-BR')+suf; }
+  requestAnimationFrame(tick);
+}
+var cs=document.querySelectorAll('[data-count]');
+if(!('IntersectionObserver' in window)) cs.forEach(count);
+else{ var co=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){count(x.target);co.unobserve(x.target);}});},{threshold:.4});
+  cs.forEach(function(e){co.observe(e);}); }
+
+/* filtro */
+var chips=document.querySelectorAll('.chip'), cards=document.querySelectorAll('#rail-res .card');
+chips.forEach(function(c){
+  c.addEventListener('click',function(){
+    chips.forEach(function(x){x.classList.remove('on');}); c.classList.add('on');
+    var f=c.getAttribute('data-filter');
+    cards.forEach(function(k){
+      k.classList.toggle('hide', f!=='all' && (k.getAttribute('data-cat')||'').indexOf(f)===-1);
+    });
+    buildDots('rail-res');
   });
+});
 
-  /* ---------- menu mobile ---------- */
-  var burger = document.getElementById('burger'), menu = document.getElementById('menu');
-  burger.addEventListener('click', function(){
-    var open = menu.classList.toggle('open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+/* carrossel: pontinhos */
+function buildDots(id){
+  var rail=document.getElementById(id);
+  var dots=document.querySelector('.dots[data-for="'+id+'"]');
+  if(!rail||!dots) return;
+  var items=[].slice.call(rail.children).filter(function(c){return !c.classList.contains('hide');});
+  dots.innerHTML='';
+  items.forEach(function(){ dots.appendChild(document.createElement('i')); });
+  markDots(id);
+}
+function markDots(id){
+  var rail=document.getElementById(id), dots=document.querySelector('.dots[data-for="'+id+'"]');
+  if(!rail||!dots||!dots.children.length) return;
+  var items=[].slice.call(rail.children).filter(function(c){return !c.classList.contains('hide');});
+  if(!items.length) return;
+  var w=items[0].getBoundingClientRect().width+12;
+  var i=Math.round(rail.scrollLeft/w);
+  [].slice.call(dots.children).forEach(function(d,k){ d.classList.toggle('on',k===Math.min(i,dots.children.length-1)); });
+}
+['rail-res','rail-dom'].forEach(function(id){
+  buildDots(id);
+  var rail=document.getElementById(id);
+  if(rail) rail.addEventListener('scroll',function(){markDots(id);},{passive:true});
+});
+window.addEventListener('resize',function(){ buildDots('rail-res'); buildDots('rail-dom'); });
+
+/* abas */
+var tabs=document.querySelectorAll('.tab');
+tabs.forEach(function(t){
+  t.addEventListener('click',function(){
+    tabs.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false');});
+    document.querySelectorAll('.pane').forEach(function(p){p.classList.remove('on');});
+    t.classList.add('on'); t.setAttribute('aria-selected','true');
+    var p=document.getElementById(t.getAttribute('data-pane')); if(p)p.classList.add('on');
   });
-  menu.addEventListener('click', function(e){
-    if (e.target.tagName === 'A'){ menu.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+});
+
+/* ---------- INDICADORES eSF/eAP ---------- */
+var EQUIPES=11;
+function faixa(v,d){
+  if(v>=d.otm) return {nome:'Ótimo',pts:100,cls:'otm'};
+  if(v>=d.bom) return {nome:'Bom',pts:75,cls:'bom'};
+  if(v>=d.suf) return {nome:'Suficiente',pts:50,cls:'suf'};
+  if(v>=d.reg) return {nome:'Regular',pts:25,cls:'reg'};
+  return {nome:'Insuficiente',pts:0,cls:'reg'};
+}
+var irows=[].slice.call(document.querySelectorAll('.irow'));
+irows.forEach(function(row,i){
+  var base=parseFloat(row.getAttribute('data-base'));
+  row.innerHTML =
+    '<div class="irow__name">'+row.getAttribute('data-nome')+'<small>eSF/eAP · '+EQUIPES+' equipes</small></div>'+
+    '<div class="full"><div class="irow__val"><span data-out>'+base.toFixed(1).replace('.',',')+'</span><small>resultado (%)</small></div>'+
+    '<input class="irange" type="range" min="0" max="100" step="0.1" value="'+base+'" aria-label="Resultado de '+row.getAttribute('data-nome')+'"></div>'+
+    '<div><span class="bdg" data-bdg>—</span></div>'+
+    '<div class="irow__val"><span data-pts>—</span><small>pts</small></div>'+
+    '<div><span class="prob" data-prob>—</span></div>';
+  row.querySelector('input').addEventListener('input',calcInd);
+});
+function calcInd(){
+  var soma=0, prio=0;
+  irows.forEach(function(row){
+    var d={reg:+row.getAttribute('data-reg'),suf:+row.getAttribute('data-suf'),bom:+row.getAttribute('data-bom'),otm:+row.getAttribute('data-otm')};
+    var v=parseFloat(row.querySelector('input').value);
+    var f=faixa(v,d);
+    row.querySelector('[data-out]').textContent=v.toFixed(1).replace('.',',');
+    var b=row.querySelector('[data-bdg]');
+    b.textContent=f.nome; b.className='bdg bdg--'+f.cls;
+    row.querySelector('[data-pts]').textContent=f.pts.toFixed(1).replace('.',',');
+    var p=row.querySelector('[data-prob]');
+    if(f.pts<=25){p.textContent='Prioritário';p.className='prob prob--prio';prio++;}
+    else if(f.pts===50){p.textContent='Acompanhar';p.className='prob prob--ac';}
+    else {p.textContent='OK';p.className='prob prob--ok';}
+    soma+=f.pts;
   });
+  var media=soma/irows.length;
+  document.getElementById('idx-final').textContent=media.toFixed(1).replace('.',',');
+  document.getElementById('idx-faixa').textContent = media>=70?'Incentivo integral':(media>=40?'Acompanhamento':'Plano de ação');
+  document.getElementById('idx-prio').textContent=prio;
+}
+calcInd();
 
-  /* ---------- barra de progresso + botão topo ---------- */
-  var bar = document.getElementById('progress'), top = document.getElementById('totop');
-  function onScroll(){
-    var h = document.documentElement.scrollHeight - window.innerHeight;
-    var p = h > 0 ? (window.scrollY / h) * 100 : 0;
-    bar.style.width = p + '%';
-    top.classList.toggle('on', window.scrollY > 600);
-    spy();
-  }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  top.addEventListener('click', function(){ window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); });
-
-  /* ---------- link ativo ---------- */
-  var links = Array.prototype.slice.call(menu.querySelectorAll('a'));
-  var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
-  function spy(){
-    var y = 140, idx = -1;
-    targets.forEach(function(t,i){ if (t && t.getBoundingClientRect().top <= y) idx = i; });
-    links.forEach(function(a,i){ a.classList.toggle('on', i === idx); });
-  }
-
-  /* ---------- reveal ---------- */
-  var revealEls = document.querySelectorAll('.reveal');
-  if (reduce || !('IntersectionObserver' in window)) {
-    revealEls.forEach(function(el){ el.classList.add('in'); });
-  } else {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-      });
-    }, {threshold:.12, rootMargin:'0px 0px -40px'});
-    revealEls.forEach(function(el){ io.observe(el); });
-  }
-
-  /* ---------- contadores ---------- */
-  function runCount(el){
-    var end = parseFloat(el.getAttribute('data-count')) || 0;
-    var pre = el.getAttribute('data-prefix') || '';
-    var suf = el.getAttribute('data-suffix') || '';
-    if (reduce){ el.textContent = pre + end.toLocaleString('pt-BR') + suf; return; }
-    var start = null, dur = 1200;
-    function tick(ts){
-      if (!start) start = ts;
-      var pr = Math.min((ts - start) / dur, 1);
-      var val = Math.floor(end * (1 - Math.pow(1 - pr, 3)));
-      el.textContent = pre + val.toLocaleString('pt-BR') + suf;
-      if (pr < 1) requestAnimationFrame(tick);
-      else el.textContent = pre + end.toLocaleString('pt-BR') + suf;
+/* ---------- BOAS PRÁTICAS ---------- */
+var bprows=[].slice.call(document.querySelectorAll('.bprow'));
+var REF=343, PESO=20;
+bprows.forEach(function(row){
+  var real=+row.getAttribute('data-real');
+  row.innerHTML =
+    '<div class="bp__name">'+row.getAttribute('data-nome')+'<small>'+row.getAttribute('data-sub')+' · peso oficial 20,0 pts</small></div>'+
+    '<div class="full"><div class="bp__num"><span data-real>'+real+'</span> / '+REF+'<small>registros realizados</small></div>'+
+    '<input class="irange" type="range" min="0" max="'+REF+'" value="'+real+'" aria-label="Realizado de '+row.getAttribute('data-nome')+'"></div>'+
+    '<div class="bp__pts"><span data-pts>—</span><small style="display:block;font-family:var(--body);font-size:.68rem;color:#7A93BA;font-weight:400">contribuição</small></div>'+
+    '<div class="bp__num"><span data-pct>—</span><small>da referência</small></div>';
+  row.querySelector('input').addEventListener('input',calcBP);
+});
+function calcBP(){
+  var total=0;
+  bprows.forEach(function(row){
+    var v=+row.querySelector('input').value;
+    var pts=(v/REF)*PESO;
+    total+=pts;
+    row.querySelector('[data-real]').textContent=v;
+    row.querySelector('[data-pts]').textContent=pts.toFixed(1).replace('.',',')+' pts';
+    row.querySelector('[data-pct]').textContent=((v/REF)*100).toFixed(1).replace('.',',')+'%';
+  });
+  document.getElementById('bp-total').textContent=total.toFixed(1).replace('.',',');
+  var faixaNome = total>=75?'Ótimo':(total>=50?'Bom':(total>=25?'Suficiente':'Regular'));
+  document.getElementById('bp-faixa').textContent=faixaNome;
+  var alvos=[{n:'Suficiente',v:25},{n:'Bom',v:50},{n:'Ótimo',v:75}];
+  var box=document.getElementById('bp-gaps');
+  box.innerHTML='';
+  alvos.forEach(function(a){
+    var d=document.createElement('div');
+    d.className='gap';
+    if(total>=a.v){
+      d.className='gap done';
+      d.innerHTML='<span>'+a.n+'</span><b>Atingida</b><small>faixa já alcançada</small>';
+    }else{
+      var falta=Math.ceil((a.v-total)*REF/PESO);
+      d.innerHTML='<span>'+a.n+'</span><b>+'+falta.toLocaleString('pt-BR')+'</b><small>registros combinados</small>';
     }
-    requestAnimationFrame(tick);
-  }
-  var counters = document.querySelectorAll('[data-count]');
-  if (!('IntersectionObserver' in window)) {
-    counters.forEach(runCount);
-  } else {
-    var co = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if (en.isIntersecting){ runCount(en.target); co.unobserve(en.target); }
-      });
-    }, {threshold:.5});
-    counters.forEach(function(el){ co.observe(el); });
-  }
-
-  /* ---------- filtro de cases ---------- */
-  var chips = document.querySelectorAll('.chip');
-  var cases = document.querySelectorAll('#cases-grid .case');
-  chips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      chips.forEach(function(c){ c.classList.remove('on'); });
-      chip.classList.add('on');
-      var f = chip.getAttribute('data-filter');
-      cases.forEach(function(card){
-        var cat = card.getAttribute('data-cat') || '';
-        card.classList.toggle('hide', f !== 'all' && cat.indexOf(f) === -1);
-      });
-    });
+    box.appendChild(d);
   });
+}
+calcBP();
 
-  /* ---------- abas GeoSaúde ---------- */
-  var tabs = document.querySelectorAll('.tab');
-  tabs.forEach(function(tab){
-    tab.addEventListener('click', function(){
-      tabs.forEach(function(t){ t.classList.remove('on'); t.setAttribute('aria-selected','false'); });
-      document.querySelectorAll('.pane').forEach(function(p){ p.classList.remove('on'); });
-      tab.classList.add('on');
-      tab.setAttribute('aria-selected','true');
-      var pane = document.getElementById(tab.getAttribute('data-pane'));
-      if (pane) pane.classList.add('on');
-    });
+/* ---------- mapa ---------- */
+var zd={
+  DABEN:{n:'Distrito de Benguí',eq:38,cob:'78%',acs:212,un:19},
+  DAGUA:{n:'Distrito de Guamá',eq:52,cob:'71%',acs:288,un:24},
+  DAICO:{n:'Distrito de Icoaraci',eq:41,cob:'69%',acs:231,un:18},
+  DAENT:{n:'Distrito de Entroncamento',eq:44,cob:'74%',acs:246,un:20},
+  DABEL:{n:'Distrito de Belém',eq:49,cob:'82%',acs:265,un:26},
+  DASAC:{n:'Distrito de Sacramenta',eq:35,cob:'66%',acs:198,un:16},
+  DAOUT:{n:'Distrito de Outeiro',eq:22,cob:'85%',acs:121,un:9},
+  DAMOS:{n:'Distrito de Mosqueiro',eq:19,cob:'88%',acs:104,un:8}
+};
+document.querySelectorAll('.zone').forEach(function(z){
+  z.addEventListener('click',function(){
+    var d=zd[z.getAttribute('data-z')]; if(!d)return;
+    document.querySelectorAll('.zone').forEach(function(o){o.setAttribute('stroke','#0A1626');o.setAttribute('stroke-width','2');});
+    z.setAttribute('stroke','#FFFFFF'); z.setAttribute('stroke-width','3');
+    document.getElementById('z-name').textContent=d.n;
+    document.getElementById('z-eq').textContent=d.eq;
+    document.getElementById('z-cob').textContent=d.cob;
+    document.getElementById('z-acs').textContent=d.acs;
+    document.getElementById('z-un').textContent=d.un;
   });
+});
 
-  /* ---------- busca nos painéis ---------- */
-  var search = document.getElementById('geo-search');
-  var gcards = document.querySelectorAll('#geo-list .gcard');
-  var emptyBox = document.getElementById('geo-empty');
-  if (search){
-    search.addEventListener('input', function(){
-      var q = search.value.toLowerCase().trim();
-      var visible = 0;
-      gcards.forEach(function(c){
-        var txt = (c.textContent + ' ' + (c.getAttribute('data-k')||'')).toLowerCase();
-        var hit = q === '' || txt.indexOf(q) !== -1;
-        c.classList.toggle('hide', !hit);
-        if (hit) visible++;
-      });
-      emptyBox.style.display = visible ? 'none' : 'block';
-    });
-  }
-
-  /* ---------- mapa de distritos ---------- */
-  var zdata = {
-    DABEN: {nome:'Distrito de Benguí',       eq:38, cob:'78%', acs:212, un:19},
-    DAGUA: {nome:'Distrito de Guamá',        eq:52, cob:'71%', acs:288, un:24},
-    DAICO: {nome:'Distrito de Icoaraci',     eq:41, cob:'69%', acs:231, un:18},
-    DAENT: {nome:'Distrito de Entroncamento',eq:44, cob:'74%', acs:246, un:20},
-    DABEL: {nome:'Distrito de Belém',        eq:49, cob:'82%', acs:265, un:26},
-    DASAC: {nome:'Distrito de Sacramenta',   eq:35, cob:'66%', acs:198, un:16},
-    DAOUT: {nome:'Distrito de Outeiro',      eq:22, cob:'85%', acs:121, un:9},
-    DAMOS: {nome:'Distrito de Mosqueiro',    eq:19, cob:'88%', acs:104, un:8}
-  };
-  document.querySelectorAll('.zone').forEach(function(z){
-    z.addEventListener('click', function(){
-      var d = zdata[z.getAttribute('data-z')];
-      if (!d) return;
-      document.querySelectorAll('.zone').forEach(function(o){ o.setAttribute('stroke','#0A1626'); o.setAttribute('stroke-width','2'); });
-      z.setAttribute('stroke','#FFFFFF'); z.setAttribute('stroke-width','3');
-      document.getElementById('z-label').textContent = 'Leitura do território';
-      document.getElementById('z-name').textContent = d.nome;
-      document.getElementById('z-eq').textContent = d.eq;
-      document.getElementById('z-cob').textContent = d.cob;
-      document.getElementById('z-acs').textContent = d.acs;
-      document.getElementById('z-un').textContent = d.un;
-    });
+/* acordeão */
+document.querySelectorAll('.acc__btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    var panel=b.nextElementSibling, open=b.getAttribute('aria-expanded')==='true';
+    document.querySelectorAll('.acc__btn').forEach(function(o){o.setAttribute('aria-expanded','false');o.nextElementSibling.style.maxHeight=null;});
+    if(!open){ b.setAttribute('aria-expanded','true'); panel.style.maxHeight=panel.scrollHeight+60+'px'; }
   });
-
-  /* ---------- simulador de metas ---------- */
-  var sliders = document.querySelectorAll('.sliders input[type=range]');
-  var ring = document.getElementById('ring');
-  var scoreEl = document.getElementById('score');
-  var badge = document.getElementById('score-badge');
-  var CIRC = 2 * Math.PI * 52;
-  function calc(){
-    var total = 0;
-    sliders.forEach(function(s){
-      var w = parseFloat(s.getAttribute('data-w')) || 0;
-      total += (parseFloat(s.value) || 0) * w;
-      var out = document.querySelector('[data-out="' + s.id + '"]');
-      if (out) out.textContent = s.value;
-    });
-    var v = Math.round(total);
-    scoreEl.textContent = v;
-    ring.setAttribute('stroke-dashoffset', String(CIRC - (CIRC * v / 100)));
-    var color = v >= 80 ? '#8FBAFF' : (v >= 60 ? '#6FA3FF' : '#3E7BEC');
-    ring.setAttribute('stroke', color);
-    badge.textContent = v >= 80 ? 'Incentivo integral' : (v >= 60 ? 'Acompanhamento' : 'Plano de ação');
-  }
-  ring.setAttribute('stroke-dasharray', String(CIRC));
-  sliders.forEach(function(s){ s.addEventListener('input', calc); });
-  calc();
-
-  /* ---------- acordeão ---------- */
-  document.querySelectorAll('.acc__btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var panel = btn.nextElementSibling;
-      var isOpen = btn.getAttribute('aria-expanded') === 'true';
-      document.querySelectorAll('.acc__btn').forEach(function(o){
-        o.setAttribute('aria-expanded','false');
-        o.nextElementSibling.style.maxHeight = null;
-      });
-      if (!isOpen){
-        btn.setAttribute('aria-expanded','true');
-        panel.style.maxHeight = panel.scrollHeight + 80 + 'px';
-      }
-    });
+});
+window.addEventListener('resize',function(){
+  document.querySelectorAll('.acc__btn[aria-expanded="true"]').forEach(function(b){
+    b.nextElementSibling.style.maxHeight=b.nextElementSibling.scrollHeight+60+'px';
   });
-  window.addEventListener('resize', function(){
-    document.querySelectorAll('.acc__btn[aria-expanded="true"]').forEach(function(b){
-      b.nextElementSibling.style.maxHeight = b.nextElementSibling.scrollHeight + 80 + 'px';
-    });
-  });
+});
 
-  onScroll();
+onScroll();
 })();
 </script>
 </body>
