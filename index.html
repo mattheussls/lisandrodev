@@ -1,451 +1,1415 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lisandro Matheus | Inteligência em Saúde & Sistemas</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Oswald:wght@500;700&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lisandro Matheus | Dados, sistemas e inteligência aplicada à saúde</title>
+<meta name="description" content="Portfólio de Lisandro Matheus Ramos Ribeiro. Desenvolvimento, dados e gestão da informação em saúde pública: GeoSaúde, SPP, Portal NAT, automações FNS e projetos web.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:#FAF6ED;
+  --surface:#FFFFFF;
+  --deep:#08192F;
+  --deep-2:#102A4C;
+  --ink:#08192F;
+  --ink-soft:#4B5D74;
+  --brand:#1D5FE0;
+  --brand-deep:#0F3FA0;
+  --brand-tint:#E8EFFD;
+  --line:#D5DEEB;
+  --line-soft:#E7EDF5;
+  --white:#FFFFFF;
+  --shadow:0 18px 40px rgba(8,25,47,.08);
+  --radius:4px;
+  --maxw:1180px;
+  --display:'Oswald',Impact,'Arial Narrow',sans-serif;
+  --body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+}
+:root:not([data-theme="light"]){
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#0A1626;
+    --surface:#0F1F36;
+    --deep:#040D1A;
+    --deep-2:#0C2242;
+    --ink:#E9F0FB;
+    --ink-soft:#A3B6D0;
+    --brand:#6FA3FF;
+    --brand-deep:#2E6BE6;
+    --brand-tint:#13294B;
+    --line:#22395B;
+    --line-soft:#1A2E4C;
+    --white:#0F1F36;
+    --shadow:0 18px 40px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0A1626;
+  --surface:#0F1F36;
+  --deep:#040D1A;
+  --deep-2:#0C2242;
+  --ink:#E9F0FB;
+  --ink-soft:#A3B6D0;
+  --brand:#6FA3FF;
+  --brand-deep:#2E6BE6;
+  --brand-tint:#13294B;
+  --line:#22395B;
+  --line-soft:#1A2E4C;
+  --white:#0F1F36;
+  --shadow:0 18px 40px rgba(0,0,0,.45);
+}
 
-        :root {
-            --bg-base: #F8F7F3;
-            --bg-white: #FFFFFF;
-            --navy-dark: #0B192C;
-            --navy-light: #1A365D;
-            --blue-accent: #2563EB;
-            --blue-hover: #1d4ed8;
-            --text-muted: #475569;
-            --border-color: #93C5FD;
-        }
+/* ============ BASE ============ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+body{
+  font-family:var(--body);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;width:100%}
+.band{padding:84px 0;position:relative}
+.band--paper{background:var(--paper)}
+.band--surface{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band--deep{background:var(--deep);color:#EAF1FB}
+.skip{position:absolute;left:-9999px;top:0;background:var(--brand);color:#fff;padding:12px 18px;z-index:200}
+.skip:focus{left:12px;top:12px}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg-base); 
-            color: var(--navy-dark); 
-            line-height: 1.6; 
-            overflow-x: hidden;
-        }
+h1,h2,h3,h4{font-family:var(--display);text-transform:uppercase;line-height:1.05;letter-spacing:.2px;font-weight:700}
+.eyebrow{
+  font-family:var(--display);font-weight:600;font-size:.78rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--brand);display:block;margin-bottom:14px;
+}
+.band--deep .eyebrow{color:#7FA8F5}
+.h-sec{font-size:clamp(1.7rem,4.2vw,2.5rem);color:var(--ink)}
+.band--deep .h-sec{color:#fff}
+.lead{color:var(--ink-soft);font-size:1.02rem;max-width:66ch}
+.band--deep .lead{color:#C3D3EA}
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        section { padding: 75px 0; }
+/* ============ NAV ============ */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--brand);z-index:120;transition:width .12s linear}
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:110;
+  background:var(--paper);
+  background:color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav__in{max-width:var(--maxw);margin:0 auto;padding:0 22px;height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand__mark{
+  width:36px;height:36px;display:grid;place-items:center;background:var(--deep);color:#fff;
+  font-family:var(--display);font-weight:700;font-size:.95rem;letter-spacing:.5px;
+  border-bottom:3px solid var(--brand);
+}
+.brand__txt{font-family:var(--display);font-weight:600;font-size:.98rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);line-height:1.1}
+.brand__txt small{display:block;font-family:var(--body);font-weight:500;font-size:.65rem;letter-spacing:.12em;color:var(--ink-soft);text-transform:uppercase}
+.menu{display:flex;align-items:center;gap:4px}
+.menu a{
+  text-decoration:none;font-size:.82rem;font-weight:500;color:var(--ink-soft);
+  padding:8px 11px;border-radius:3px;transition:color .2s,background .2s;white-space:nowrap;
+}
+.menu a:hover{color:var(--brand);background:var(--brand-tint)}
+.menu a.on{color:var(--brand);background:var(--brand-tint);font-weight:600}
+.nav__side{display:flex;align-items:center;gap:8px}
+.iconbtn{
+  width:38px;height:38px;display:grid;place-items:center;background:transparent;
+  border:1px solid var(--line);color:var(--ink);cursor:pointer;border-radius:3px;transition:.2s;
+}
+.iconbtn:hover{border-color:var(--brand);color:var(--brand)}
+.burger{display:none}
+@media (max-width:1040px){
+  .menu{
+    position:fixed;inset:66px 0 auto 0;background:var(--surface);border-bottom:1px solid var(--line);
+    flex-direction:column;align-items:stretch;gap:0;padding:8px 14px 18px;
+    transform:translateY(-120%);transition:transform .32s ease;box-shadow:var(--shadow);
+  }
+  .menu.open{transform:translateY(0)}
+  .menu a{padding:14px 10px;border-bottom:1px solid var(--line-soft);font-size:.95rem}
+  .burger{display:grid}
+}
 
-        h1, h2, h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
-        .section-tag { font-weight: 700; color: var(--blue-accent); font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: block; font-family: 'Oswald', sans-serif; }
-        
-        /* 1. HERO / CABEÇALHO */
-        header { padding: 90px 0 50px 0; border-bottom: 1px solid var(--border-color); background-color: var(--bg-white); }
-        .header-title { font-size: 3.8rem; font-weight: 800; color: var(--navy-dark); line-height: 1.1; margin-bottom: 15px; letter-spacing: -1px; }
-        .header-subtitle { font-size: 1.4rem; color: var(--blue-accent); font-weight: 500; margin-bottom: 25px; }
-        
-        .header-bio-list { margin-top: 15px; margin-bottom: 35px; display: flex; flex-direction: column; gap: 12px; max-width: 850px; }
-        .bio-item { color: var(--text-muted); font-size: 1.05rem; display: flex; align-items: center; gap: 12px; line-height: 1.4; }
-        .bio-item i { color: var(--blue-accent); font-size: 1.2rem; width: 25px; text-align: center; }
-        .bio-item strong { color: var(--navy-dark); font-weight: 600; }
+/* ============ HERO ============ */
+.hero{padding:118px 0 0;background:var(--surface);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:start}
+.hero h1{font-size:clamp(2.4rem,6.2vw,4.1rem);color:var(--ink);letter-spacing:-.5px}
+.hero h1 span{display:block}
+.hero__role{
+  font-family:var(--body);font-weight:600;font-size:clamp(1rem,2.4vw,1.2rem);color:var(--brand);
+  margin-top:16px;letter-spacing:.01em;
+}
+.hero__txt{margin-top:18px;color:var(--ink-soft);font-size:1.03rem;max-width:56ch}
+.hero__facts{margin-top:26px;display:flex;flex-direction:column;gap:11px;border-left:2px solid var(--brand);padding-left:16px}
+.fact{display:flex;gap:10px;align-items:flex-start;font-size:.97rem;color:var(--ink-soft)}
+.fact b{color:var(--ink);font-weight:600}
+.fact svg{flex-shrink:0;margin-top:3px;color:var(--brand)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;padding:13px 22px;text-decoration:none;
+  font-weight:600;font-size:.92rem;border-radius:3px;transition:.22s;border:1px solid transparent;cursor:pointer;
+}
+.btn--solid{background:var(--brand);color:#fff}
+.btn--solid:hover{background:var(--brand-deep)}
+.btn--ghost{border-color:var(--line);color:var(--ink);background:transparent}
+.btn--ghost:hover{border-color:var(--brand);color:var(--brand)}
+.btn--light{background:#fff;color:var(--deep)}
+.btn--light:hover{background:var(--brand-tint)}
 
-        .contact-bar { display: flex; gap: 30px; border-top: 1px solid rgba(11, 25, 44, 0.1); padding-top: 20px; flex-wrap: wrap; }
-        .contact-bar a { color: var(--navy-dark); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
-        .contact-bar a:hover { color: var(--blue-accent); }
+/* painel do hero */
+.panelcard{
+  border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);
+  border-radius:var(--radius);overflow:hidden;
+}
+.panelcard__bar{
+  background:var(--deep);padding:11px 15px;display:flex;align-items:center;gap:8px;
+}
+.dot{width:9px;height:9px;border-radius:50%;background:#31507E}
+.panelcard__title{
+  color:#fff;font-family:var(--display);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-left:6px;
+}
+.panelcard__body{padding:18px}
+.kpi{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.kpi>div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 14px}
+.kpi b{display:block;font-family:var(--display);font-size:1.9rem;color:var(--brand);line-height:1}
+.kpi span{display:block;font-size:.76rem;color:var(--ink-soft);margin-top:6px;line-height:1.35}
 
-        /* 2. TABELA DE RESULTADOS E DESAFIOS */
-        .results-table-section { background-color: var(--bg-base); }
-        .results-table-header { text-align: center; margin-bottom: 40px; }
-        .results-table-header h2 { font-size: 2.3rem; color: var(--navy-dark); margin-top: 10px; }
-        
-        .custom-table-wrapper { width: 100%; overflow-x: auto; background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
-        .custom-results-table { width: 100%; border-collapse: collapse; min-width: 750px; }
-        .custom-results-table th { background: var(--navy-dark); color: var(--bg-white); padding: 18px 25px; text-align: left; font-family: 'Oswald', sans-serif; font-size: 1.1rem; letter-spacing: 0.5px; text-transform: uppercase; }
-        .custom-results-table td { padding: 22px 25px; border-bottom: 1px solid #E2E8F0; vertical-align: middle; }
-        .custom-results-table tr:hover td { background-color: #F8FAFC; }
-        .custom-results-table tr:last-child td { border-bottom: none; }
-        .challenge-col { width: 28%; font-weight: 700; color: var(--navy-light); font-size: 1.05rem; }
-        .solution-col { width: 72%; color: var(--text-muted); font-size: 0.98rem; line-height: 1.6; }
+/* faixa de estatísticas */
+.statstrip{border-top:1px solid var(--line);background:var(--paper)}
+.statstrip__in{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:26px 22px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat b{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.4rem);color:var(--ink);display:block;line-height:1}
+.stat span{font-size:.8rem;color:var(--ink-soft);display:block;margin-top:7px;line-height:1.4}
+@media (max-width:900px){
+  .hero{padding-top:96px}
+  .hero__grid{grid-template-columns:1fr;gap:34px}
+  .statstrip__in{grid-template-columns:1fr 1fr}
+  .stat{border-bottom:1px solid var(--line)}
+  .stat:nth-child(2n){border-right:none}
+}
 
-        /* 3. BLOCO DE ALTA VISIBILIDADE - FNS */
-        .ad-block { background: var(--navy-dark); color: var(--bg-white); padding: 50px; text-align: center; margin: 40px 0; border-radius: 8px; box-shadow: 0 20px 40px rgba(11, 25, 44, 0.15); border-bottom: 6px solid var(--blue-accent); }
-        .ad-block h2 { color: var(--bg-white); font-size: 2.3rem; margin-bottom: 15px; }
-        .ad-block p { font-size: 1.1rem; max-width: 900px; margin: 0 auto; color: #E2E8F0; }
+/* ============ GRID HAIRLINE (frentes) ============ */
+.cells{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:34px;background:var(--surface)}
+.cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 24px;transition:background .25s}
+.cell:hover{background:var(--brand-tint)}
+.cell h3{font-size:1.15rem;color:var(--ink);margin:12px 0 8px}
+.cell p{font-size:.92rem;color:var(--ink-soft);line-height:1.6}
+.cell__ico{color:var(--brand)}
+@media (max-width:900px){.cells{grid-template-columns:1fr}}
 
-        /* 4. ACORDEÃO (SPP E SISTEMAS) */
-        .accordion-section { background: var(--bg-white); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-        .accordion-header-main { text-align: center; margin-bottom: 40px; }
-        .accordion-header-main h2 { font-size: 2.3rem; color: var(--navy-dark); }
-        
-        .accordion { border-bottom: 1px solid #E2E8F0; }
-        .accordion-btn { width: 100%; background: none; border: none; padding: 25px 20px; text-align: left; font-size: 1.4rem; font-family: 'Oswald', sans-serif; text-transform: uppercase; color: var(--navy-light); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
-        .accordion-btn:hover { background: var(--bg-base); color: var(--blue-accent); }
-        .accordion-btn i { font-size: 1.2rem; color: var(--blue-accent); transition: transform 0.3s; }
-        .accordion-btn.active i { transform: rotate(180deg); }
-        
-        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.5s ease; background: var(--bg-white); }
-        .accordion-btn.active + .accordion-content { max-height: 3000px; padding: 0 20px 40px 20px; }
+/* ============ FILTRO + CASES ============ */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 24px}
+.chip{
+  font-family:var(--body);font-size:.84rem;font-weight:600;padding:9px 16px;border:1px solid var(--line);
+  background:transparent;color:var(--ink-soft);cursor:pointer;border-radius:50px;transition:.2s;
+}
+.chip:hover{border-color:var(--brand);color:var(--brand)}
+.chip.on{background:var(--deep);border-color:var(--deep);color:#fff}
+.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.case{
+  background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--brand);
+  padding:24px;border-radius:var(--radius);transition:transform .25s,box-shadow .25s,opacity .25s;
+}
+.case:hover{box-shadow:var(--shadow)}
+.case.hide{display:none}
+.case__tag{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.case h3{font-size:1.25rem;margin:9px 0 10px;color:var(--ink)}
+.case p{font-size:.94rem;color:var(--ink-soft)}
+.case__metric{
+  margin-top:14px;padding-top:13px;border-top:1px dashed var(--line);
+  font-family:var(--display);font-size:.95rem;letter-spacing:.06em;color:var(--brand-deep);text-transform:uppercase;
+}
+@media (max-width:840px){.cases{grid-template-columns:1fr}}
 
-        .spp-intro { font-size: 1.05rem; margin-bottom: 20px; color: var(--text-muted); max-width: 900px; }
-        .spp-badge { display: inline-flex; align-items: center; gap: 10px; background: #eff6ff; color: var(--blue-accent); padding: 8px 18px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 25px; border: 1px solid #bfdbfe; }
-        
-        .table-responsive { width: 100%; overflow-x: auto; background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 30px; }
-        table { width: 100%; border-collapse: collapse; min-width: 750px; }
-        th { background: var(--navy-dark); color: var(--bg-white); padding: 16px 20px; text-align: left; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; }
-        td { padding: 18px 20px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
-        tr:hover td { background-color: var(--bg-base); }
-        
-        .mod-name { font-weight: 700; color: var(--navy-dark); font-size: 1.05rem; display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
-        .mod-name i { color: var(--blue-accent); font-size: 1.1rem; width: 25px; text-align: center; }
-        .mod-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+/* ============ GEOSAÚDE (destaque) ============ */
+.geo{background:var(--deep);color:#EAF1FB;padding:84px 0;position:relative;overflow:hidden}
+.geo::after{
+  content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;
+  border:1px solid rgba(111,163,255,.18);border-radius:50%;pointer-events:none;
+}
+.geo__head{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;margin-bottom:38px}
+.geo__logo{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.geo__logo b{font-family:var(--display);font-size:2.6rem;color:#fff;letter-spacing:-1px;line-height:1}
+.geo__logo i{
+  font-style:normal;font-family:var(--display);font-size:1.05rem;letter-spacing:.14em;background:var(--brand);
+  color:#fff;padding:5px 12px;border-radius:3px;
+}
+.geo__app{border:1px solid rgba(146,180,240,.28);background:rgba(255,255,255,.03);border-radius:6px;overflow:hidden}
+.geo__tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid rgba(146,180,240,.28);background:rgba(4,13,26,.5)}
+.tab{
+  background:none;border:none;border-bottom:3px solid transparent;color:#9FBCEA;cursor:pointer;
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:.82rem;
+  padding:16px 20px;transition:.22s;flex:1 1 auto;
+}
+.tab:hover{color:#fff;background:rgba(111,163,255,.08)}
+.tab.on{color:#fff;border-bottom-color:var(--brand)}
+.pane{display:none;padding:26px}
+.pane.on{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pane__top{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;margin-bottom:20px}
+.pane__top h3{color:#fff;font-size:1.35rem}
+.pane__top p{font-size:.86rem;color:#9FBCEA;margin-top:4px}
+.search{
+  display:flex;align-items:center;gap:9px;border:1px solid rgba(146,180,240,.35);border-radius:3px;
+  padding:10px 14px;min-width:260px;flex:1 1 260px;max-width:360px;background:rgba(4,13,26,.45);
+}
+.search input{background:none;border:none;color:#fff;font-family:var(--body);font-size:.9rem;width:100%;outline:none}
+.search input::placeholder{color:#7A93BA}
+.search svg{color:#6FA3FF;flex-shrink:0}
+.gcards{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(146,180,240,.22);border-left:1px solid rgba(146,180,240,.22)}
+.gcards--3{grid-template-columns:repeat(3,1fr)}
+.gcard{
+  border-right:1px solid rgba(146,180,240,.22);border-bottom:1px solid rgba(146,180,240,.22);
+  padding:20px 18px;transition:background .22s;
+}
+.gcard:hover{background:rgba(111,163,255,.09)}
+.gcard.hide{display:none}
+.gcard__k{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#6FA3FF;font-weight:700}
+.gcard__t{font-family:var(--display);font-size:1.02rem;color:#fff;margin:8px 0 6px;text-transform:uppercase;line-height:1.2}
+.gcard__d{font-size:.83rem;color:#9FBCEA;line-height:1.5}
+.gcard__ico{color:#6FA3FF;margin-bottom:10px}
+.empty{padding:26px;color:#9FBCEA;font-size:.9rem;border:1px dashed rgba(146,180,240,.3);text-align:center}
+@media (max-width:980px){.geo__head{grid-template-columns:1fr}.gcards,.gcards--3{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.gcards,.gcards--3{grid-template-columns:1fr}.pane{padding:18px}}
 
-        .impact-table th { background: #f1f5f9; color: var(--navy-dark); font-weight: 700; }
-        .impact-table td { color: var(--text-muted); vertical-align: middle; }
+/* simulador */
+.sim{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
+.sliders{display:flex;flex-direction:column;gap:18px}
+.slider label{display:flex;justify-content:space-between;font-size:.86rem;color:#C3D3EA;margin-bottom:8px;gap:12px}
+.slider label b{color:#fff;font-family:var(--display);font-size:1rem}
+input[type=range]{
+  width:100%;-webkit-appearance:none;appearance:none;height:4px;border-radius:4px;
+  background:rgba(146,180,240,.3);outline:none;cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;
+  background:var(--brand);border:3px solid #fff;cursor:pointer;
+}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--brand);border:3px solid #fff;cursor:pointer}
+.score{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.score__ring{position:relative;width:200px;height:200px}
+.score__val{
+  position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:2.9rem;color:#fff;line-height:1;
+}
+.score__val small{display:block;font-size:.72rem;letter-spacing:.14em;color:#9FBCEA;margin-top:6px;font-family:var(--body);font-weight:600}
+.badge{
+  display:inline-block;padding:7px 16px;border-radius:50px;font-size:.8rem;font-weight:700;
+  background:rgba(111,163,255,.16);color:#8FBAFF;border:1px solid rgba(111,163,255,.35);
+}
+@media (max-width:860px){.sim{grid-template-columns:1fr}}
 
-        .system-row { display: flex; flex-direction: column; margin-bottom: 20px; background: var(--bg-base); padding: 30px; border-radius: 8px; border-left: 4px solid var(--blue-accent); border: 1px solid #e2e8f0; border-left-width: 4px; }
-        .system-content h3 { font-size: 1.4rem; color: var(--navy-dark); margin-bottom: 10px; }
-        .system-content p { color: var(--text-muted); margin-bottom: 15px; line-height: 1.6; font-size: 0.95rem; }
-        .system-link { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-white); background: var(--navy-light); padding: 10px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; transition: 0.3s; align-self: flex-start; font-size: 0.95rem; }
-        .system-link:hover { background: var(--blue-accent); }
+/* mapa */
+.mapbox{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center}
+.maplegend li{list-style:none;display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:#9FBCEA;margin-bottom:12px}
+.maplegend i{width:12px;height:12px;border-radius:2px;margin-top:5px;flex-shrink:0}
+.zone{cursor:pointer;transition:opacity .2s}
+.zone:hover{opacity:.75}
+@media (max-width:860px){.mapbox{grid-template-columns:1fr}}
 
-        /* 5. DESTAQUE PAI D'ÉGUA & SITES */
-        .paidegua-box { 
-            background: linear-gradient(135deg, var(--navy-light), var(--navy-dark)); 
-            border: 1px solid var(--border-color); 
-            border-radius: 12px; 
-            padding: 50px 40px; 
-            margin: 40px 0; 
-            display: flex; flex-direction: column; align-items: center; text-align: center; 
-            position: relative; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
-        }
-        .paidegua-showcase { z-index: 2; margin-bottom: 25px; width: 100%; display: flex; justify-content: center; }
-        .paidegua-showcase img { max-width: 420px; width: 80%; height: auto; border-radius: 10px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); transition: transform 0.5s ease; }
-        .paidegua-box:hover .paidegua-showcase img { transform: scale(1.03) rotate(-1deg); }
-        .paidegua-text-content { z-index: 2; max-width: 700px; }
-        .paidegua-box h2 { color: var(--bg-white); font-size: 2.1rem; margin-bottom: 12px; font-weight: 800; letter-spacing: -1px; }
-        .paidegua-box p { font-size: 1.1rem; margin-bottom: 25px; color: #e2e8f0; line-height: 1.6; }
-        .paidegua-btn { background: var(--blue-accent); color: var(--bg-white); padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 1rem; transition: all 0.3s ease; }
-        .paidegua-btn:hover { background: var(--blue-hover); transform: scale(1.05); }
+/* ============ PIPELINE FNS ============ */
+.pipe{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:34px;counter-reset:step}
+.step{
+  border:1px solid var(--line);border-right:none;padding:24px 22px;background:var(--surface);position:relative;
+}
+.step:last-child{border-right:1px solid var(--line)}
+.step::before{
+  counter-increment:step;content:"0" counter(step);
+  font-family:var(--display);font-size:.8rem;letter-spacing:.14em;color:var(--brand);display:block;margin-bottom:10px;
+}
+.step h4{font-size:1.02rem;color:var(--ink);margin-bottom:7px}
+.step p{font-size:.86rem;color:var(--ink-soft)}
+.step__arrow{position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--brand);background:var(--paper);z-index:2}
+@media (max-width:900px){
+  .pipe{grid-template-columns:1fr}
+  .step{border-right:1px solid var(--line);border-bottom:none}
+  .step:last-child{border-bottom:1px solid var(--line)}
+  .step__arrow{display:none}
+}
 
-        .links-list { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-        .link-row { display: flex; justify-content: space-between; align-items: center; background: var(--bg-white); padding: 22px 25px; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none; transition: 0.3s; }
-        .link-row:hover { border-color: var(--blue-accent); box-shadow: 0 5px 15px rgba(37, 99, 235, 0.05); }
-        .link-info h4 { color: var(--navy-dark); font-size: 1.1rem; margin-bottom: 4px; font-weight: 700; }
-        .link-info p { color: var(--text-muted); font-size: 0.9rem; }
-        .link-url { color: var(--blue-accent); font-family: monospace; font-size: 0.9rem; word-break: break-all; font-weight: 600; }
+/* ============ ACORDEÃO ============ */
+.acc{border-top:1px solid var(--line);margin-top:34px}
+.acc__item{border-bottom:1px solid var(--line)}
+.acc__btn{
+  width:100%;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;
+  align-items:center;gap:16px;padding:24px 6px;text-align:left;color:var(--ink);
+  font-family:var(--display);font-size:clamp(1.02rem,2.6vw,1.3rem);text-transform:uppercase;letter-spacing:.04em;transition:color .2s;
+}
+.acc__btn:hover{color:var(--brand)}
+.acc__btn span{display:flex;align-items:center;gap:13px}
+.acc__btn svg.chev{color:var(--brand);transition:transform .3s}
+.acc__btn[aria-expanded="true"] svg.chev{transform:rotate(180deg)}
+.acc__panel{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc__inner{padding:4px 6px 32px}
 
-        /* FOOTER */
-        footer { background: var(--navy-dark); color: #94a3b8; padding: 45px 0; border-top: 1px solid var(--navy-light); text-align: center; }
+/* tabelas */
+.tbl-wrap{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-bottom:22px}
+table{width:100%;border-collapse:collapse;min-width:620px}
+th{background:var(--deep);color:#fff;text-align:left;padding:14px 18px;font-family:var(--display);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+td{padding:16px 18px;border-bottom:1px solid var(--line-soft);vertical-align:top;font-size:.93rem;color:var(--ink-soft)}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--brand-tint)}
+td strong{color:var(--ink);font-weight:600}
+.tbl--soft th{background:var(--brand-tint);color:var(--brand-deep)}
 
-        /* RESPONSIVIDADE */
-        @media (max-width: 768px) {
-            header { padding: 50px 0; }
-            .header-title { font-size: 2.5rem; }
-            .contact-bar { flex-direction: column; gap: 12px; }
-            .accordion-btn { font-size: 1.1rem; padding: 18px 10px; }
-            .ad-block { padding: 35px 20px; }
-            .ad-block h2 { font-size: 1.8rem; }
-            .paidegua-box { padding: 35px 20px; }
-            .paidegua-showcase img { max-width: 260px; width: 90%; }
-            .link-row { flex-direction: column; align-items: flex-start; gap: 10px; padding: 18px; }
-            .link-url { display: inline-block; background: #eff6ff; padding: 6px 10px; border-radius: 4px; width: 100%; }
-            th { padding: 14px; font-size: 0.85rem; }
-            td { padding: 14px; }
-        }
-    </style>
+.pill{display:inline-flex;align-items:center;gap:9px;background:var(--brand-tint);color:var(--brand-deep);
+  padding:8px 16px;border-radius:50px;font-size:.84rem;font-weight:600;margin-bottom:20px}
+
+/* ============ PROJETOS ============ */
+.feature{
+  display:grid;grid-template-columns:.95fr 1.05fr;gap:0;border:1px solid var(--line);
+  background:var(--surface);border-radius:var(--radius);overflow:hidden;margin-top:34px;
+}
+.feature__art{background:var(--deep-2);padding:34px;display:grid;place-items:center;position:relative;overflow:hidden}
+.feature__txt{padding:38px 34px}
+.feature__txt h3{font-size:clamp(1.4rem,3.4vw,1.9rem);color:var(--ink);margin-bottom:12px}
+.feature__txt p{color:var(--ink-soft);font-size:.97rem;margin-bottom:18px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+.tag{font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-deep);
+  background:var(--brand-tint);padding:5px 11px;border-radius:3px}
+@media (max-width:880px){.feature{grid-template-columns:1fr}.feature__txt{padding:28px 22px}}
+
+.links{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:26px}
+.link{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;text-decoration:none;
+  background:var(--surface);border:1px solid var(--line);padding:20px 22px;border-radius:var(--radius);transition:.25s;
+}
+.link:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:var(--shadow)}
+.link h4{font-family:var(--display);font-size:1.05rem;color:var(--ink);margin-bottom:4px;text-transform:uppercase}
+.link p{font-size:.85rem;color:var(--ink-soft)}
+.link__url{font-size:.78rem;color:var(--brand);font-weight:600;white-space:nowrap}
+.link__go{color:var(--brand);flex-shrink:0}
+@media (max-width:760px){.links{grid-template-columns:1fr}.link{flex-direction:column;align-items:flex-start;gap:9px}}
+
+/* ============ TIMELINE ============ */
+.tl{margin-top:34px;border-left:2px solid var(--line);padding-left:28px;display:flex;flex-direction:column;gap:30px}
+.tl__item{position:relative}
+.tl__item::before{
+  content:"";position:absolute;left:-36px;top:5px;width:14px;height:14px;border-radius:50%;
+  background:var(--paper);border:3px solid var(--brand);
+}
+.tl__when{font-family:var(--display);font-size:.84rem;letter-spacing:.12em;color:var(--brand);text-transform:uppercase}
+.tl__item h3{font-size:1.2rem;margin:6px 0 3px;color:var(--ink)}
+.tl__role{font-size:.9rem;color:var(--ink-soft);font-style:italic;margin-bottom:10px}
+.tl__item ul{margin-left:18px}
+.tl__item li{font-size:.93rem;color:var(--ink-soft);margin-bottom:7px}
+.tl__item li strong{color:var(--ink)}
+
+/* ============ CONTATO ============ */
+.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+.ccard{
+  border:1px solid rgba(146,180,240,.28);padding:26px 22px;border-radius:var(--radius);
+  text-decoration:none;display:block;transition:.25s;background:rgba(255,255,255,.03);
+}
+.ccard:hover{border-color:#6FA3FF;background:rgba(111,163,255,.1)}
+.ccard span{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#6FA3FF;font-weight:700;margin-bottom:8px}
+.ccard b{font-family:var(--display);font-size:1.12rem;color:#fff;font-weight:600;word-break:break-word}
+@media (max-width:760px){.contact{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#8FA6C4;padding:34px 0;border-top:1px solid rgba(146,180,240,.2);font-size:.86rem}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+
+/* utilidades */
+.reveal{opacity:0;transform:translateY(18px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
+.totop{
+  position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;background:var(--brand);
+  color:#fff;border:none;display:grid;place-items:center;cursor:pointer;z-index:100;
+  opacity:0;pointer-events:none;transition:.3s;box-shadow:0 8px 20px rgba(29,95,224,.35);
+}
+.totop.on{opacity:1;pointer-events:auto}
+@media (max-width:980px){.traj-grid{grid-template-columns:1fr!important;gap:48px!important}}
+@media (max-width:640px){
+  .band{padding:58px 0}
+  .geo{padding:58px 0}
+  .wrap{padding:0 16px}
+  .case{padding:20px}
+  .score__ring,.score__ring svg{width:170px;height:170px}
+  .feature__art{padding:24px}
+}
+</style>
 </head>
 <body>
+<a class="skip" href="#main">Ir para o conteúdo</a>
+<div class="progress" id="progress"></div>
 
-    <!-- 1. HERO / CABEÇALHO -->
-    <header>
-        <div class="container">
-            <span class="section-tag">Perfil Profissional</span>
-            <h1 class="header-title">Lisandro Matheus<br>Ramos Ribeiro</h1>
-            <div class="header-subtitle">Desenvolvedor & Inteligência de Dados Aplicada à Saúde</div>
-            
-            <div class="header-bio-list">
-                <div class="bio-item">
-                    <i class="fas fa-building"></i> 
-                    <span><strong>5 anos</strong> de atuação na Secretaria Municipal de Saúde de Belém (SESMA).</span>
-                </div>
-                <div class="bio-item">
-                    <i class="fas fa-laptop-code"></i> 
-                    <span><strong>3 anos</strong> dedicados exclusivamente ao Desenvolvimento e Gestão de Informação.</span>
-                </div>
-                <div class="bio-item">
-                    <i class="fas fa-cogs"></i> 
-                    <span>Especialista na criação de ecossistemas digitais, mapeando desde o <strong>fluxo financeiro, orçamentário e contratual</strong> até o monitoramento territorial da atenção primária.</span>
-                </div>
-            </div>
-            
-            <div class="contact-bar">
-                <a href="https://wa.me/5591999440334" target="_blank"><i class="fab fa-whatsapp"></i> (91) 99944-0334</a>
-                <a href="mailto:lisandroramos881@gmail.com"><i class="far fa-envelope"></i> lisandroramos881@gmail.com</a>
-                <span style="display:flex; align-items:center; color:var(--text-muted); font-weight: 500;">
-                    <i class="fas fa-map-marker-alt" style="margin-right:8px; color: var(--blue-accent);"></i> 27 anos | Belém - PA
-                </span>
-            </div>
+<!-- ================= NAV ================= -->
+<nav class="nav">
+  <div class="nav__in">
+    <a class="brand" href="#topo">
+      <span class="brand__mark">LM</span>
+      <span class="brand__txt">Lisandro Matheus
+        <small>Dados &amp; sistemas em saúde</small>
+      </span>
+    </a>
+    <div class="menu" id="menu">
+      <a href="#cases">Resultados</a>
+      <a href="#geosaude">GeoSaúde</a>
+      <a href="#spp">Sistemas</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#trajetoria">Trajetória</a>
+      <a href="#competencias">Competências</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <div class="nav__side">
+      <button class="iconbtn" id="theme" aria-label="Alternar tema claro e escuro" title="Alternar tema">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="iconbtn burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<!-- ================= HERO ================= -->
+<section class="hero" id="topo">
+  <div class="wrap">
+    <div class="hero__grid">
+      <div>
+        <span class="eyebrow">Perfil profissional</span>
+        <h1><span>Lisandro Matheus</span><span>Ramos Ribeiro</span></h1>
+        <p class="hero__role">Dados, sistemas e inteligência aplicada à saúde pública</p>
+        <p class="hero__txt">Investigo gargalos, estruturo dados, desenho a solução e acompanho a implantação até a adoção. Uno o conhecimento dos sistemas do SUS ao desenvolvimento para sustentar decisões financeiras, assistenciais, territoriais e operacionais.</p>
+
+        <div class="hero__facts">
+          <div class="fact">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1m4 0h1M9 13h1m4 0h1M9 17h1m4 0h1"/></svg>
+            <span><b>5 anos</b> na Secretaria Municipal de Saúde de Belém (SESMA).</span>
+          </div>
+          <div class="fact">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m8 16-4-4 4-4m8 0 4 4-4 4M14 4l-4 16"/></svg>
+            <span><b>3 anos</b> dedicados a desenvolvimento e gestão da informação.</span>
+          </div>
+          <div class="fact">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10 2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg>
+            <span>Ecossistemas digitais que ligam o <b>fluxo financeiro, orçamentário e contratual</b> ao monitoramento territorial da atenção primária.</span>
+          </div>
         </div>
-    </header>
 
-    <!-- 2. DESAFIOS E RESULTADOS (TABELA CUSTOMIZADA) -->
-    <section class="results-table-section">
-        <div class="container">
-            <div class="results-table-header">
-                <span class="section-tag">Casos & Soluções</span>
-                <h2>Desafios Superados e Resultados na Prática</h2>
-                <p style="color: var(--text-muted); max-width: 650px; margin: 10px auto 0 auto; font-size: 0.95rem;">
-                    Resumo analítico das entregas estratégicas na gestão pública e inovação tecnológica.
-                </p>
-            </div>
-
-            <div class="custom-table-wrapper">
-                <table class="custom-results-table">
-                    <thead>
-                        <tr>
-                            <th>Desafio</th>
-                            <th>Solução e Resultado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="challenge-col">Informação Dispersa</td>
-                            <td class="solution-col">Centralização de bases complexas (SIAPS, CNES, DATASUS, FNS) e APIs na plataforma GeoSaúde, unificando a análise e a inteligência de dados em um só lugar.</td>
-                        </tr>
-                        <tr>
-                            <td class="challenge-col">Processos Fragmentados</td>
-                            <td class="solution-col">Implantação de um sistema integrado de gestão (ERP) (módulos financeiro, orçamento, contratos e faturamento), digitalizando fluxos e garantindo alta adoção em mais de 5 setores estratégicos.</td>
-                        </tr>
-                        <tr>
-                            <td class="challenge-col">Territorialização</td>
-                            <td class="solution-col">Atualização de malha territorial defasada há 10 anos. Execução de 60% do projeto em apenas 2 meses, otimizando o planejamento de 300 equipes e 1.600+ ACS].</td>
-                        </tr>
-                        <tr>
-                            <td class="challenge-col">Produção não Apresentada</td>
-                            <td class="solution-col">Diagnóstico e correção estrutural no faturamento de uma UPA (capacidade de mais de R$ 400 mil), regularizando o registro de produção ambulatorial retido por 6 meses.</td>
-                        </tr>
-                        <tr>
-                            <td class="challenge-col">Coleta de Dados</td>
-                            <td class="solution-col">Automação da coleta com desenvolvimento de APIs para o FNS e Transparência, reduzindo o tempo de processamento de fluxos demorados para poucos minutos.</td>
-                        </tr>
-                        <tr>
-                            <td class="challenge-col">Monitoramento da APS</td>
-                            <td class="solution-col">Tradução visual dos dados do SIAPS, cruzando componentes de qualidade, dados demográficos e composição do CNES para simular metas e apontar exatamente onde cada equipe deve atuar.</td>
-                        </tr>
-                        <tr>
-                            <td class="challenge-col">Suporte e Chamados (Portal NAT)</td>
-                            <td class="solution-col">Implantação do Portal NAT: ferramenta online recém-implantada onde as próprias unidades e setores abrem e acompanham chamados e demandas operacionais com total agilidade.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="cta">
+          <a class="btn btn--solid" href="https://wa.me/5591999440334" target="_blank" rel="noopener">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-5.8c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4 5.2 5.2 0 0 0 3.2.7 2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.1-.4-.2z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a class="btn btn--ghost" href="#cases">Ver os resultados</a>
+          <a class="btn btn--ghost" href="mailto:lisandroramos881@gmail.com">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+            E-mail
+          </a>
         </div>
-    </section>
+      </div>
 
-    <!-- 3. BLOCO FNS / API (ALTA VISIBILIDADE) -->
-    <section style="padding: 0 0 50px 0;">
-        <div class="container">
-            <div class="ad-block">
-                <span class="section-tag" style="color: #93C5FD; margin-bottom: 12px;">Engenharia de Dados & Integração</span>
-                <h2>AUTOMAÇÃO FNS EM TEMPO REAL</h2>
-                <p>Desenvolvimento de APIs para extração parametrizada de dados financeiros do Fundo Nacional de Saúde (FNS). A arquitetura realiza o parsing de valores brutos e deduções, garantindo a ingestão automatizada no banco de dados com as fontes orçamentárias oficiais já estruturadas e mapeadas.</p>
-            </div>
+      <div class="panelcard reveal">
+        <div class="panelcard__bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="panelcard__title">Painel de entregas</span>
         </div>
-    </section>
-
-    <!-- 4. SEÇÃO ACORDEÃO (SPP E SOLUÇÕES) -->
-    <section class="accordion-section">
-        <div class="container" style="padding-top: 70px; padding-bottom: 70px;">
-            <div class="accordion-header-main">
-                <span class="section-tag">Gestão Administrativa e Operacional</span>
-                <h2>ECOSSISTEMA SPP E OUTROS SISTEMAS</h2>
-                <p style="color: var(--text-muted); max-width: 650px; margin: 10px auto;">Clique nos módulos abaixo para explorar as plataformas desenvolvidas para garantir estabilidade, eficiência e controle operacional na gestão pública.</p>
+        <div class="panelcard__body" style="padding:0">
+          <div class="kpi">
+            <div><b data-count="7" data-suffix="">0</b><span>sistemas e plataformas em produção</span></div>
+            <div><b data-count="2000" data-suffix="+">0</b><span>credores controlados no SPP</span></div>
+            <div><b data-count="300" data-suffix="">0</b><span>equipes de saúde no planejamento territorial</span></div>
+            <div><b data-count="1600" data-suffix="+">0</b><span>agentes comunitários alcançados</span></div>
+          </div>
+          <div style="padding:20px 18px">
+            <p style="font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:14px">Bases integradas</p>
+            <div class="tags">
+              <span class="tag">SIAPS</span><span class="tag">CNES</span><span class="tag">e-SUS APS</span>
+              <span class="tag">SIA/SIH</span><span class="tag">DATASUS</span><span class="tag">FNS</span>
+              <span class="tag">Portal da Transparência</span>
             </div>
-
-            <!-- ACORDEÃO 1: SPP -->
-            <div class="accordion">
-                <button class="accordion-btn">
-                    <span><i class="fas fa-server" style="margin-right: 15px;"></i> Sistema de Programação de Pagamentos (SPP)</span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="accordion-content">
-                    <div style="margin-top: 25px;">
-                        <p class="spp-intro">Meu principal projeto desenvolvido na gestão de informação da SESMA. O SPP é um sistema de controle financeiro robusto, criado para organizar o fluxo de informações e lidar com notas fiscais de mais de 2.000 credores e prestadores de serviço.</p>
-                        
-                        <div class="spp-badge">
-                            <i class="fas fa-check-circle"></i> Implantado e operando como espinha dorsal da gestão local há 3 anos.
-                        </div>
-
-                        <div class="table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th style="width: 35%;">Módulos do Sistema</th>
-                                        <th>Descrição e Funcionalidade</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><div class="mod-name"><i class="fas fa-file-invoice-dollar"></i> Financeiro / Notas Fiscais</div></td>
-                                        <td><div class="mod-desc">Ajuda o departamento a organizar e processar notas fiscais recebidas. Permite saber com exatidão prazos de vencimento, o que temos a pagar e consultar histórico.</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="mod-name"><i class="fas fa-file-signature"></i> Módulo Contratual</div></td>
-                                        <td><div class="mod-desc">Fim da procura em arquivos físicos. Todos os contratos da SESMA, do início ao fim, estão organizados na plataforma, garantindo o controle total do ciclo de vida contratual.</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="mod-name"><i class="fas fa-hand-holding-usd"></i> Repasses (FMS)</div></td>
-                                        <td><div class="mod-desc">Instalado no Fundo Municipal de Saúde, captura repasses nas esferas federal, estadual e municipal, dando visão estratégica das despesas em relação às receitas.</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="mod-name"><i class="fas fa-hospital-user"></i> Faturamento SIA/SIH</div></td>
-                                        <td><div class="mod-desc">Roda no departamento de regulação. Permite visualizar e gerar relatórios sobre toda a produção aprovada, tanto da rede quanto dos convênios.</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="mod-name"><i class="fas fa-chart-pie"></i> Analytics & Gestão</div></td>
-                                        <td><div class="mod-desc">Transforma dados em dashboards gerenciais de alto impacto. Inclui controle de gastos e gestão de equipes consumindo dados via API do Portal da Transparência.</div></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <h3 style="margin-bottom: 15px; color: var(--navy-dark); font-size: 1.15rem;">Impacto na Gestão:</h3>
-                        <div class="table-responsive" style="margin-bottom: 0;">
-                            <table class="impact-table" style="min-width: 600px;">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 30%;">Área Operacional</th>
-                                        <th>Resultado Prático</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Gestão de Credores</strong></td>
-                                        <td>Automação do acompanhamento de prazos e pagamentos de mais de 2.000 prestadores.</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Ciclo Contratual</strong></td>
-                                        <td>Centralização digital da SESMA, eliminando perda de documentos físicos e erros.</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Auditoria de Pessoal</strong></td>
-                                        <td>Dados consolidados de primeira mão, consumidos instantaneamente da base oficial.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ACORDEÃO 2: PORTAL NAT E LUMI EDUCA -->
-            <div class="accordion">
-                <button class="accordion-btn">
-                    <span><i class="fas fa-headset" style="margin-right: 15px;"></i> Portal NAT & Soluções Pedagógicas</span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="accordion-content">
-                    <div style="margin-top: 25px;">
-                        
-                        <div class="system-row">
-                            <div class="system-content">
-                                <h3>Portal NAT (SESMA)</h3>
-                                <p>Ferramenta online recém-implantada onde as próprias unidades de saúde e setores abrem e acompanham chamados técnicos e demandas operacionais com total agilidade, transparência e controle em tempo real.</p>
-                            </div>
-                        </div>
-
-                        <div class="system-row" style="margin-bottom: 0;">
-                            <div class="system-content">
-                                <h3>Lumi Educa</h3>
-                                <p>Controle pedagógico que vai além das notas. Utiliza algoritmos e <strong>Inteligência Artificial</strong> para analisar a performance do aluno, identificando pontos fortes e áreas de melhoria através de relatórios avançados de acompanhamento escolar.</p>
-                                <a href="https://lumieduca.com.br" target="_blank" class="system-link">
-                                    <i class="fas fa-external-link-alt"></i> Acessar lumieduca.com.br
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
 
-    <!-- 5. PAI D'ÉGUA E SITES INSTITUCIONAIS -->
-    <section style="background-color: var(--bg-base);">
-        <div class="container">
-            
-            <div class="paidegua-box">
-                <div class="paidegua-showcase">
-                    <img src="paidegua.png" alt="Destaque Visual Portal Pai D'égua">
-                </div>
-                <div class="paidegua-text-content">
-                    <h2>Portal Pai D'égua</h2>
-                    <p>Portal de notícias políticas de destaque no Pará. Plataforma desenvolvida para alto tráfego, garantindo carregamento rápido, SEO otimizado e excelente experiência responsiva no celular.</p>
-                    <a href="https://portalpaidegua.blog.br" target="_blank" class="paidegua-btn">Acessar Portal Pai D'égua</a>
-                </div>
+  <div class="statstrip" style="margin-top:56px">
+    <div class="statstrip__in">
+      <div class="stat"><b data-count="5" data-suffix="+">0</b><span>anos de experiência em dados e automação</span></div>
+      <div class="stat"><b data-count="5" data-suffix="">0</b><span>setores estratégicos usando os sistemas</span></div>
+      <div class="stat"><b data-count="60" data-suffix="%">0</b><span>da malha territorial atualizada em 2 meses</span></div>
+      <div class="stat"><b data-count="400" data-prefix="R$ " data-suffix=" mil">0</b><span>de produção regularizada em uma UPA</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FRENTES ================= -->
+<section class="band band--paper">
+  <div class="wrap">
+    <span class="eyebrow">Frentes de atuação</span>
+    <h2 class="h-sec">Como eu entro em um problema</h2>
+    <p class="lead" style="margin-top:12px">Cada frente é uma etapa do mesmo trabalho: entender o fluxo real do setor, transformar em dado confiável e devolver em ferramenta que a equipe usa todo dia.</p>
+
+    <div class="cells">
+      <div class="cell reveal">
+        <span class="cell__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+        <h3>Diagnóstico e estratégia</h3>
+        <p>Mapeamento profundo dos fluxos operacionais, análise de gargalos e priorização do que dá resultado primeiro.</p>
+      </div>
+      <div class="cell reveal">
+        <span class="cell__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
+        <h3>Produtos e sistemas</h3>
+        <p>Ciclo de vida completo das soluções digitais — desenho, implantação e evolução — aderente às regras de negócio de cada setor.</p>
+      </div>
+      <div class="cell reveal">
+        <span class="cell__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+        <h3>Dados e integração</h3>
+        <p>Processamento, integração e cruzamento de fontes complexas, com indicadores e painéis prontos para a alta gestão.</p>
+      </div>
+      <div class="cell reveal">
+        <span class="cell__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+        <h3>Saúde e território</h3>
+        <p>Inteligência analítica aplicada às normativas do SUS: produção assistencial, cobertura e georreferenciamento.</p>
+      </div>
+      <div class="cell reveal">
+        <span class="cell__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/></svg></span>
+        <h3>Relação entre áreas</h3>
+        <p>Tradução de requisitos entre a TI e as áreas fins, alinhamento de expectativas e cultura orientada a dados.</p>
+      </div>
+      <div class="cell reveal" style="background:var(--deep)">
+        <h3 style="color:#fff;margin-top:0">Consultivo, não sob demanda</h3>
+        <p style="color:#9FBCEA">A entrega não termina no deploy: treino usuários, acompanho a adoção e evoluo o sistema junto com o setor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CASES ================= -->
+<section class="band band--surface" id="cases">
+  <div class="wrap">
+    <span class="eyebrow">Casos e soluções</span>
+    <h2 class="h-sec">Desafios superados e resultados na prática</h2>
+    <p class="lead" style="margin-top:12px">Sete situações reais da gestão pública municipal — o problema como ele chegou e o que ficou funcionando depois. Filtre pelo tipo de entrega.</p>
+
+    <div class="chips" role="group" aria-label="Filtrar casos por tipo">
+      <button class="chip on" data-filter="all">Todos</button>
+      <button class="chip" data-filter="dados">Dados e integração</button>
+      <button class="chip" data-filter="sistemas">Sistemas</button>
+      <button class="chip" data-filter="territorio">Território</button>
+      <button class="chip" data-filter="financeiro">Financeiro</button>
+    </div>
+
+    <div class="cases" id="cases-grid">
+      <article class="case reveal" data-cat="dados">
+        <span class="case__tag">Informação dispersa</span>
+        <h3>Uma base só para decidir</h3>
+        <p>Centralização de bases complexas (SIAPS, CNES, DATASUS, FNS) e APIs na plataforma GeoSaúde, unificando análise e inteligência de dados em um único ambiente.</p>
+        <div class="case__metric">6 fontes oficiais integradas</div>
+      </article>
+
+      <article class="case reveal" data-cat="sistemas financeiro">
+        <span class="case__tag">Processos fragmentados</span>
+        <h3>ERP público implantado</h3>
+        <p>Sistema integrado de gestão com módulos financeiro, orçamento, contratos e faturamento, digitalizando fluxos que viviam em papel e planilha.</p>
+        <div class="case__metric">Adoção em mais de 5 setores</div>
+      </article>
+
+      <article class="case reveal" data-cat="territorio">
+        <span class="case__tag">Territorialização</span>
+        <h3>Malha territorial atualizada</h3>
+        <p>Recomposição de uma malha defasada há 10 anos, com execução de 60% do projeto em 2 meses e planejamento reorganizado por área de cobertura.</p>
+        <div class="case__metric">300 equipes · 1.600+ ACS</div>
+      </article>
+
+      <article class="case reveal" data-cat="financeiro">
+        <span class="case__tag">Produção não apresentada</span>
+        <h3>Faturamento de UPA regularizado</h3>
+        <p>Diagnóstico e correção estrutural no faturamento de uma UPA com capacidade acima de R$ 400 mil, liberando o registro de produção ambulatorial retido por 6 meses.</p>
+        <div class="case__metric">6 meses de produção recuperados</div>
+      </article>
+
+      <article class="case reveal" data-cat="dados financeiro">
+        <span class="case__tag">Coleta de dados</span>
+        <h3>Extração automatizada</h3>
+        <p>APIs próprias para o Fundo Nacional de Saúde e o Portal da Transparência, substituindo a coleta manual por ingestão direta no banco.</p>
+        <div class="case__metric">De horas para minutos</div>
+      </article>
+
+      <article class="case reveal" data-cat="dados territorio">
+        <span class="case__tag">Monitoramento da APS</span>
+        <h3>SIAPS traduzido em decisão</h3>
+        <p>Cruzamento dos componentes de qualidade com dados demográficos e composição do CNES para simular metas e apontar onde cada equipe precisa atuar.</p>
+        <div class="case__metric">Meta simulada por equipe</div>
+      </article>
+
+      <article class="case reveal" data-cat="sistemas">
+        <span class="case__tag">Suporte e chamados</span>
+        <h3>Portal NAT</h3>
+        <p>Canal único onde unidades e setores abrem e acompanham chamados técnicos e demandas operacionais, com histórico e responsável definidos.</p>
+        <div class="case__metric">Fila de atendimento rastreável</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GEOSAÚDE ================= -->
+<section class="geo" id="geosaude">
+  <div class="wrap">
+    <div class="geo__head">
+      <div>
+        <span class="eyebrow">Projeto em destaque</span>
+        <div class="geo__logo"><b>GEO</b><i>SAÚDE</i></div>
+        <h2 class="h-sec" style="color:#fff">Informação estratégica precisa ser encontrada e entendida</h2>
+      </div>
+      <div>
+        <p class="lead">O GeoSaúde transforma dados dispersos em leituras visuais, objetivas e acessíveis, apoiadas em fontes oficiais e construídas junto com os setores e departamentos da secretaria.</p>
+        <div class="tags" style="margin-top:18px">
+          <span class="tag" style="background:rgba(111,163,255,.14);color:#8FBAFF">Leaflet</span>
+          <span class="tag" style="background:rgba(111,163,255,.14);color:#8FBAFF">OpenStreetMap</span>
+          <span class="tag" style="background:rgba(111,163,255,.14);color:#8FBAFF">PHP · Node.js</span>
+          <span class="tag" style="background:rgba(111,163,255,.14);color:#8FBAFF">MySQL</span>
+          <span class="tag" style="background:rgba(111,163,255,.14);color:#8FBAFF">APIs oficiais</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="geo__app">
+      <div class="geo__tabs" role="tablist">
+        <button class="tab on" role="tab" aria-selected="true" data-pane="p1">Unidades de saúde</button>
+        <button class="tab" role="tab" aria-selected="false" data-pane="p2">Dados georreferenciados</button>
+        <button class="tab" role="tab" aria-selected="false" data-pane="p3">Simulador de metas</button>
+        <button class="tab" role="tab" aria-selected="false" data-pane="p4">Como funciona</button>
+      </div>
+
+      <!-- PANE 1 -->
+      <div class="pane on" id="p1" role="tabpanel">
+        <div class="pane__top">
+          <div>
+            <h3>Conheça o perfil de cada unidade</h3>
+            <p>Consulte informações técnicas por unidade, bairro ou número CNES.</p>
+          </div>
+          <label class="search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input type="search" id="geo-search" placeholder="Pesquisar painel, unidade ou base" aria-label="Pesquisar painéis do GeoSaúde">
+          </label>
+        </div>
+
+        <div class="gcards gcards--3" id="geo-list">
+          <div class="gcard" data-k="atenção primária qualidade siaps">
+            <span class="gcard__ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12a9 9 0 1 1-9-9v9z"/></svg></span>
+            <span class="gcard__k">Atenção primária à saúde</span>
+            <div class="gcard__t">Componentes de qualidade</div>
+            <p class="gcard__d">Indicadores do SIAPS por equipe, com evolução e distância para a meta.</p>
+          </div>
+          <div class="gcard" data-k="imunização vacina cobertura">
+            <span class="gcard__ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m12 2 4 4-8 8-4-4zM3 21l3-3M14 6l4 4-8 8H6v-4z"/></svg></span>
+            <span class="gcard__k">Imunização</span>
+            <div class="gcard__t">Cobertura vacinal</div>
+            <p class="gcard__d">Doses aplicadas e cobertura por imunobiológico, unidade e território.</p>
+          </div>
+          <div class="gcard" data-k="equipes aps força de trabalho cnes">
+            <span class="gcard__ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 11.5a3 3 0 1 0-1.8-5.4M18 20a6 6 0 0 0-2.4-4.8"/></svg></span>
+            <span class="gcard__k">Força de trabalho APS</span>
+            <div class="gcard__t">Equipes APS</div>
+            <p class="gcard__d">Composição, carga horária e vínculo profissional conforme o CNES.</p>
+          </div>
+          <div class="gcard" data-k="serviços de saúde rede unidades">
+            <span class="gcard__ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.8 8.6a5 5 0 0 0-8.8-3 5 5 0 0 0-8.8 3c0 5 8.8 11 8.8 11s8.8-6 8.8-11z"/></svg></span>
+            <span class="gcard__k">Rede assistencial</span>
+            <div class="gcard__t">Serviços de saúde</div>
+            <p class="gcard__d">Tipos de estabelecimento, serviços habilitados e abrangência.</p>
+          </div>
+          <div class="gcard" data-k="quadro funcional servidores rh">
+            <span class="gcard__ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2.3"/><path d="M5.5 17a4 4 0 0 1 7 0M15 9h4M15 13h4"/></svg></span>
+            <span class="gcard__k">Gestão de pessoas</span>
+            <div class="gcard__t">Quadro funcional</div>
+            <p class="gcard__d">Lotação por unidade cruzada com a base oficial de pessoal.</p>
+          </div>
+          <div class="gcard" data-k="samu urgência bases">
+            <span class="gcard__ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 16V8h11v8M14 11h4l3 3v2h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><path d="M8 10v3M6.5 11.5h3"/></svg></span>
+            <span class="gcard__k">Urgência e emergência</span>
+            <div class="gcard__t">Bases SAMU</div>
+            <p class="gcard__d">Localização das bases e raio de atendimento sobre o mapa da cidade.</p>
+          </div>
+        </div>
+        <div class="empty" id="geo-empty" style="display:none">Nenhum painel corresponde a essa busca. Tente “vacinal”, “equipes” ou “território”.</div>
+      </div>
+
+      <!-- PANE 2 -->
+      <div class="pane" id="p2" role="tabpanel">
+        <div class="pane__top">
+          <div>
+            <h3>Dados georreferenciados</h3>
+            <p>Representação da malha territorial: toque em um distrito para ver a leitura que o painel entrega.</p>
+          </div>
+        </div>
+
+        <div class="mapbox">
+          <svg viewBox="0 0 520 380" role="img" aria-label="Mapa esquemático de distritos com nível de cobertura" style="width:100%;height:auto;border:1px solid rgba(146,180,240,.22);border-radius:4px;background:rgba(4,13,26,.35)">
+            <g id="zones" stroke="#0A1626" stroke-width="2">
+              <polygon class="zone" data-z="DABEN" points="30,40 180,30 200,120 60,140" fill="#1D5FE0"/>
+              <polygon class="zone" data-z="DAGUA" points="180,30 340,45 330,130 200,120" fill="#3E7BEC"/>
+              <polygon class="zone" data-z="DAICO" points="340,45 490,60 470,160 330,130" fill="#6FA3FF"/>
+              <polygon class="zone" data-z="DAENT" points="60,140 200,120 215,240 80,250" fill="#8FBAFF"/>
+              <polygon class="zone" data-z="DABEL" points="200,120 330,130 340,235 215,240" fill="#2E6BE6"/>
+              <polygon class="zone" data-z="DASAC" points="330,130 470,160 460,250 340,235" fill="#1D5FE0"/>
+              <polygon class="zone" data-z="DAOUT" points="80,250 215,240 230,345 100,350" fill="#4F86EE"/>
+              <polygon class="zone" data-z="DAMOS" points="215,240 340,235 350,340 230,345" fill="#B7D0FF"/>
+            </g>
+            <g fill="#04101F" font-family="Inter,sans-serif" font-size="11" font-weight="600" pointer-events="none">
+              <text x="82" y="90">DABEN</text><text x="240" y="92">DAGUA</text><text x="382" y="105">DAICO</text>
+              <text x="108" y="195">DAENT</text><text x="248" y="192">DABEL</text><text x="378" y="200">DASAC</text>
+              <text x="128" y="300">DAOUT</text><text x="258" y="295">DAMOS</text>
+            </g>
+          </svg>
+
+          <div>
+            <div style="border:1px solid rgba(146,180,240,.28);padding:22px;border-radius:4px;background:rgba(4,13,26,.4);margin-bottom:20px">
+              <span class="gcard__k" id="z-label">Distrito selecionado</span>
+              <div class="gcard__t" id="z-name" style="font-size:1.4rem;margin-top:6px">Selecione um distrito</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">
+                <div><b style="font-family:var(--display);font-size:1.7rem;color:#fff;display:block" id="z-eq">—</b><span style="font-size:.76rem;color:#9FBCEA">equipes de APS</span></div>
+                <div><b style="font-family:var(--display);font-size:1.7rem;color:#6FA3FF;display:block" id="z-cob">—</b><span style="font-size:.76rem;color:#9FBCEA">cobertura estimada</span></div>
+                <div><b style="font-family:var(--display);font-size:1.7rem;color:#fff;display:block" id="z-acs">—</b><span style="font-size:.76rem;color:#9FBCEA">agentes comunitários</span></div>
+                <div><b style="font-family:var(--display);font-size:1.7rem;color:#fff;display:block" id="z-un">—</b><span style="font-size:.76rem;color:#9FBCEA">unidades cadastradas</span></div>
+              </div>
+            </div>
+            <ul class="maplegend">
+              <li><i style="background:#1D5FE0"></i> Áreas de cobertura desenhadas sobre a malha de setores censitários.</li>
+              <li><i style="background:#6FA3FF"></i> Mapa dos indicadores, locação de imóveis e bases SAMU sobrepostos.</li>
+              <li><i style="background:#B7D0FF"></i> Lista de unidades e quadro funcional ligados a cada polígono.</li>
+            </ul>
+            <p style="font-size:.78rem;color:#7A93BA">Valores ilustrativos para demonstração pública. Na plataforma, cada polígono consome a base oficial atualizada.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANE 3 -->
+      <div class="pane" id="p3" role="tabpanel">
+        <div class="pane__top">
+          <div>
+            <h3>Simulador de metas da APS</h3>
+            <p>Ajuste os componentes de qualidade e veja o desempenho da equipe recalculado na hora — a mesma lógica aplicada no painel do SIAPS.</p>
+          </div>
+        </div>
+
+        <div class="sim">
+          <div class="sliders">
+            <div class="slider">
+              <label for="s1">Cadastro e vínculo da população <b><span data-out="s1">72</span>%</b></label>
+              <input type="range" id="s1" min="0" max="100" value="72" data-w="0.25">
+            </div>
+            <div class="slider">
+              <label for="s2">Pré-natal e saúde da mulher <b><span data-out="s2">64</span>%</b></label>
+              <input type="range" id="s2" min="0" max="100" value="64" data-w="0.25">
+            </div>
+            <div class="slider">
+              <label for="s3">Cobertura vacinal infantil <b><span data-out="s3">81</span>%</b></label>
+              <input type="range" id="s3" min="0" max="100" value="81" data-w="0.25">
+            </div>
+            <div class="slider">
+              <label for="s4">Acompanhamento de crônicos <b><span data-out="s4">58</span>%</b></label>
+              <input type="range" id="s4" min="0" max="100" value="58" data-w="0.25">
+            </div>
+            <p style="font-size:.82rem;color:#9FBCEA;border-left:2px solid var(--brand);padding-left:12px">
+              Abaixo de 60 a equipe entra em plano de ação; de 60 a 79 recebe acompanhamento; a partir de 80 mantém o incentivo integral.
+            </p>
+          </div>
+
+          <div class="score">
+            <div class="score__ring">
+              <svg viewBox="0 0 120 120" width="200" height="200">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(146,180,240,.22)" stroke-width="10"/>
+                <circle id="ring" cx="60" cy="60" r="52" fill="none" stroke="#6FA3FF" stroke-width="10" stroke-linecap="round"
+                        stroke-dasharray="326.7" stroke-dashoffset="90" transform="rotate(-90 60 60)" style="transition:stroke-dashoffset .4s ease,stroke .4s ease"/>
+              </svg>
+              <div class="score__val"><span><span id="score">69</span><small>Desempenho da equipe</small></span></div>
+            </div>
+            <span class="badge" id="score-badge">Acompanhamento</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANE 4 -->
+      <div class="pane" id="p4" role="tabpanel">
+        <div class="pane__top">
+          <div>
+            <h3>Da fonte oficial até a decisão</h3>
+            <p>O caminho que todo indicador percorre dentro da plataforma.</p>
+          </div>
+        </div>
+        <div class="gcards">
+          <div class="gcard">
+            <span class="gcard__k">Encontrar</span>
+            <div class="gcard__t">Tudo em um ambiente</div>
+            <p class="gcard__d">Informações estratégicas reunidas em um só lugar, sem caçar planilha em pasta de rede.</p>
+          </div>
+          <div class="gcard">
+            <span class="gcard__k">Visualizar</span>
+            <div class="gcard__t">Mapa no lugar da planilha</div>
+            <p class="gcard__d">Mapas, indicadores e painéis substituem longas tabelas de conferência manual.</p>
+          </div>
+          <div class="gcard">
+            <span class="gcard__k">Confiar</span>
+            <div class="gcard__t">Fonte oficial rastreável</div>
+            <p class="gcard__d">Cada análise parte de sistemas e bases oficiais, com origem e data visíveis.</p>
+          </div>
+          <div class="gcard">
+            <span class="gcard__k">Construir</span>
+            <div class="gcard__t">Feito com quem usa</div>
+            <p class="gcard__d">Trabalho integrado entre setores e departamentos, ajustado a cada rodada de uso.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FNS / PIPELINE ================= -->
+<section class="band band--paper">
+  <div class="wrap">
+    <span class="eyebrow">Engenharia de dados e integração</span>
+    <h2 class="h-sec">Automação do Fundo Nacional de Saúde</h2>
+    <p class="lead" style="margin-top:12px">APIs próprias para extração parametrizada dos dados financeiros do FNS. A arquitetura faz o parsing de valores brutos e deduções e entrega no banco as fontes orçamentárias oficiais já estruturadas e mapeadas.</p>
+
+    <div class="pipe">
+      <div class="step reveal">
+        <h4>Consulta parametrizada</h4>
+        <p>Competência, bloco e fonte definidos por parâmetro, sem navegação manual no portal.</p>
+        <span class="step__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </div>
+      <div class="step reveal">
+        <h4>Parsing de valores</h4>
+        <p>Separação entre valor bruto, deduções e líquido, com tratamento de formato e inconsistência.</p>
+        <span class="step__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </div>
+      <div class="step reveal">
+        <h4>Mapeamento orçamentário</h4>
+        <p>Cada repasse cai na fonte orçamentária correspondente, pronto para conciliação.</p>
+        <span class="step__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </div>
+      <div class="step reveal">
+        <h4>Ingestão e painel</h4>
+        <p>Carga automática no banco e leitura imediata de receita x despesa pela gestão.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SISTEMAS / SPP ================= -->
+<section class="band band--surface" id="spp">
+  <div class="wrap">
+    <span class="eyebrow">Gestão administrativa e operacional</span>
+    <h2 class="h-sec">Ecossistema SPP e demais sistemas</h2>
+    <p class="lead" style="margin-top:12px">Abra cada bloco para ver as plataformas que sustentam estabilidade, eficiência e controle na rotina da secretaria.</p>
+
+    <div class="acc">
+      <div class="acc__item">
+        <button class="acc__btn" aria-expanded="false">
+          <span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>
+            Sistema de Programação de Pagamentos (SPP)
+          </span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="acc__panel">
+          <div class="acc__inner">
+            <p class="lead" style="margin-bottom:18px">Principal projeto desenvolvido na gestão da informação da SESMA. Sistema de controle financeiro robusto, criado para organizar o fluxo de informação e lidar com notas fiscais de mais de 2.000 credores e prestadores de serviço.</p>
+            <span class="pill">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4 10-10"/></svg>
+              Em operação como espinha dorsal da gestão local há 3 anos
+            </span>
+
+            <div class="tbl-wrap">
+              <table>
+                <thead><tr><th style="width:32%">Módulo</th><th>O que resolve</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Financeiro / Notas fiscais</strong></td><td>Organiza e processa as notas recebidas: prazos de vencimento, o que há a pagar e histórico completo de consulta.</td></tr>
+                  <tr><td><strong>Contratual</strong></td><td>Todo o ciclo de vida dos contratos da SESMA na plataforma, do início ao encerramento, sem procurar em arquivo físico.</td></tr>
+                  <tr><td><strong>Repasses (FMS)</strong></td><td>Instalado no Fundo Municipal de Saúde, captura repasses federais, estaduais e municipais e mostra a despesa em relação à receita.</td></tr>
+                  <tr><td><strong>Faturamento SIA/SIH</strong></td><td>Roda na regulação: visualização e relatórios de toda a produção aprovada, da rede própria e dos convênios.</td></tr>
+                  <tr><td><strong>Analytics e gestão</strong></td><td>Painéis gerenciais com controle de gastos e gestão de equipes, consumindo a API do Portal da Transparência.</td></tr>
+                </tbody>
+              </table>
             </div>
 
-            <h2 class="section-title" style="margin-top: 70px; color: var(--navy-dark); font-size: 1.8rem;"><i class="fas fa-globe" style="color: var(--blue-accent); margin-right: 12px;"></i> Projetos Web e Institucionais</h2>
-            <p style="margin-bottom: 20px; color: var(--text-muted); font-size: 0.95rem;">Sistemas, sites e plataformas desenvolvidos de forma independente para institutos e consultorias.</p>
-
-            <div class="links-list">
-                <a href="https://sentineladaamazonia.org" target="_blank" class="link-row">
-                    <div class="link-info">
-                        <h4>Sentinela da Amazônia</h4>
-                        <p>Plataforma para o instituto focado em demandas ambientais e regionais.</p>
-                    </div>
-                    <div class="link-url">sentineladaamazonia.org</div>
-                </a>
-
-                <a href="https://shinkaiamazon.com.br" target="_blank" class="link-row">
-                    <div class="link-info">
-                        <h4>Shinkai Amazon</h4>
-                        <p>Site institucional completo para o instituto.</p>
-                    </div>
-                    <div class="link-url">shinkaiamazon.com.br</div>
-                </a>
-
-                <a href="https://shinkaiboard.com.br" target="_blank" class="link-row">
-                    <div class="link-info">
-                        <h4>Shinkai Board</h4>
-                        <p>Plataforma dedicada para consultoria empresarial.</p>
-                    </div>
-                    <div class="link-url">shinkaiboard.com.br</div>
-                </a>
-
-                <a href="https://institutojairneves.com.br" target="_blank" class="link-row">
-                    <div class="link-info">
-                        <h4>Instituto Jair Neves</h4>
-                        <p>Site institucional visando alcance social e informativo.</p>
-                    </div>
-                    <div class="link-url">institutojairneves.com.br</div>
-                </a>
+            <h3 style="font-size:1.05rem;margin-bottom:12px;color:var(--ink)">Impacto na gestão</h3>
+            <div class="tbl-wrap" style="margin-bottom:0">
+              <table class="tbl--soft">
+                <thead><tr><th style="width:32%">Área operacional</th><th>Resultado prático</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Gestão de credores</strong></td><td>Acompanhamento automático de prazos e pagamentos de mais de 2.000 prestadores.</td></tr>
+                  <tr><td><strong>Ciclo contratual</strong></td><td>Centralização digital que eliminou perda de documento físico e retrabalho de conferência.</td></tr>
+                  <tr><td><strong>Auditoria de pessoal</strong></td><td>Dados consolidados de primeira mão, consumidos direto da base oficial.</td></tr>
+                </tbody>
+              </table>
             </div>
-
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <p style="font-size: 1.1rem; color: var(--bg-white); font-weight: 700;">Lisandro Matheus Ramos Ribeiro</p>
-            <p style="margin-top: 5px; font-size: 0.9rem;">Desenvolvedor & Analista de Inteligência</p>
-            <p style="margin-top: 15px; font-size: 0.9rem;">Contato: <a href="https://wa.me/5591999440334" style="color:var(--border-color); text-decoration:none;">(91) 99944-0334</a></p>
-            <p style="margin-top: 25px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026. Todos os direitos reservados.</p>
+      <div class="acc__item">
+        <button class="acc__btn" aria-expanded="false">
+          <span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 0 1 16 0M4 12v4a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2zm16 0v4a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2z"/><path d="M17 18v1a2 2 0 0 1-2 2h-3"/></svg>
+            Portal NAT — chamados e demandas
+          </span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="acc__panel">
+          <div class="acc__inner">
+            <p class="lead">Ferramenta implantada para que as próprias unidades de saúde e setores abram e acompanhem chamados técnicos e demandas operacionais. Cada solicitação tem responsável, status e histórico, o que acabou com o pedido informal por mensagem solta e deu previsibilidade à fila de atendimento.</p>
+            <div class="tags" style="margin-top:18px">
+              <span class="tag">Abertura pela própria unidade</span>
+              <span class="tag">Acompanhamento em tempo real</span>
+              <span class="tag">Histórico por setor</span>
+              <span class="tag">Indicadores de atendimento</span>
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
 
-    <!-- SCRIPT DO ACORDEÃO -->
-    <script>
-        const accordions = document.querySelectorAll(".accordion-btn");
-        
-        accordions.forEach(acc => {
-            acc.addEventListener("click", function() {
-                accordions.forEach(other => {
-                    if (other !== this && other.classList.contains("active")) {
-                        other.classList.remove("active");
-                    }
-                });
-                this.classList.toggle("active");
-            });
-        });
-    </script>
+      <div class="acc__item">
+        <button class="acc__btn" aria-expanded="false">
+          <span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/></svg>
+            Lumi Educa — acompanhamento escolar com IA
+          </span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="acc__panel">
+          <div class="acc__inner">
+            <p class="lead">Controle pedagógico que vai além da nota. Algoritmos e inteligência artificial analisam a performance do aluno, apontam pontos fortes e áreas de melhoria e geram relatórios de acompanhamento para professores e responsáveis.</p>
+            <a class="btn btn--solid" style="margin-top:18px" href="https://lumieduca.com.br" target="_blank" rel="noopener">
+              Abrir lumieduca.com.br
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4h6v6M20 4 10 14M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJETOS ================= -->
+<section class="band band--paper" id="projetos">
+  <div class="wrap">
+    <span class="eyebrow">Projetos web e institucionais</span>
+    <h2 class="h-sec">Plataformas fora da secretaria</h2>
+    <p class="lead" style="margin-top:12px">Sites, portais e sistemas desenvolvidos de forma independente para institutos, consultorias e comunicação.</p>
+
+    <div class="feature reveal">
+      <div class="feature__art">
+        <svg viewBox="0 0 320 230" width="100%" style="max-width:340px" role="img" aria-label="Representação da interface do Portal Pai D'égua">
+          <rect x="4" y="4" width="312" height="222" rx="8" fill="#0A1626" stroke="#2E6BE6" stroke-width="1.5"/>
+          <rect x="4" y="4" width="312" height="26" rx="8" fill="#102A4C"/>
+          <circle cx="20" cy="17" r="3.5" fill="#6FA3FF"/><circle cx="32" cy="17" r="3.5" fill="#3E7BEC"/><circle cx="44" cy="17" r="3.5" fill="#1D5FE0"/>
+          <rect x="60" y="12" width="120" height="10" rx="5" fill="#16305A"/>
+          <rect x="18" y="44" width="180" height="16" rx="3" fill="#6FA3FF"/>
+          <rect x="18" y="68" width="120" height="10" rx="3" fill="#2E6BE6"/>
+          <rect x="18" y="92" width="284" height="60" rx="4" fill="#13294B"/>
+          <rect x="28" y="104" width="90" height="36" rx="3" fill="#1D5FE0" opacity=".8"/>
+          <rect x="128" y="104" width="160" height="8" rx="4" fill="#20406F"/>
+          <rect x="128" y="120" width="130" height="8" rx="4" fill="#20406F"/>
+          <rect x="128" y="136" width="80" height="6" rx="3" fill="#2E6BE6"/>
+          <rect x="18" y="164" width="88" height="48" rx="4" fill="#13294B"/>
+          <rect x="116" y="164" width="88" height="48" rx="4" fill="#13294B"/>
+          <rect x="214" y="164" width="88" height="48" rx="4" fill="#13294B"/>
+          <rect x="26" y="196" width="60" height="6" rx="3" fill="#2E6BE6"/>
+          <rect x="124" y="196" width="60" height="6" rx="3" fill="#2E6BE6"/>
+          <rect x="222" y="196" width="60" height="6" rx="3" fill="#2E6BE6"/>
+        </svg>
+      </div>
+      <div class="feature__txt">
+        <span class="eyebrow">Portal de notícias</span>
+        <h3>Portal Pai D'égua</h3>
+        <p>Portal de notícias políticas de destaque no Pará. Plataforma preparada para alto tráfego, com carregamento rápido, SEO trabalhado e leitura confortável no celular, onde está a maior parte do público.</p>
+        <div class="tags">
+          <span class="tag">Alto tráfego</span><span class="tag">SEO</span><span class="tag">Mobile first</span><span class="tag">Publicação editorial</span>
+        </div>
+        <a class="btn btn--solid" href="https://portalpaidegua.blog.br" target="_blank" rel="noopener">
+          Abrir o portal
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4h6v6M20 4 10 14M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="links">
+      <a class="link reveal" href="https://sentineladaamazonia.org" target="_blank" rel="noopener">
+        <div>
+          <h4>Sentinela da Amazônia</h4>
+          <p>Plataforma do instituto voltada a demandas ambientais e regionais.</p>
+          <span class="link__url">sentineladaamazonia.org</span>
+        </div>
+        <span class="link__go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </a>
+      <a class="link reveal" href="https://shinkaiamazon.com.br" target="_blank" rel="noopener">
+        <div>
+          <h4>Shinkai Amazon</h4>
+          <p>Site institucional completo para o instituto.</p>
+          <span class="link__url">shinkaiamazon.com.br</span>
+        </div>
+        <span class="link__go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </a>
+      <a class="link reveal" href="https://shinkaiboard.com.br" target="_blank" rel="noopener">
+        <div>
+          <h4>Shinkai Board</h4>
+          <p>Plataforma dedicada à consultoria empresarial.</p>
+          <span class="link__url">shinkaiboard.com.br</span>
+        </div>
+        <span class="link__go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </a>
+      <a class="link reveal" href="https://institutojairneves.com.br" target="_blank" rel="noopener">
+        <div>
+          <h4>Instituto Jair Neves</h4>
+          <p>Site institucional com foco em alcance social e informativo.</p>
+          <span class="link__url">institutojairneves.com.br</span>
+        </div>
+        <span class="link__go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRAJETÓRIA ================= -->
+<section class="band band--surface" id="trajetoria">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px" class="traj-grid">
+      <div>
+        <span class="eyebrow">Experiência profissional</span>
+        <h2 class="h-sec">Trajetória</h2>
+        <div class="tl">
+          <div class="tl__item reveal">
+            <span class="tl__when">fev/2026 — out/2026</span>
+            <h3>SESMA — Secretaria Municipal de Saúde de Belém</h3>
+            <p class="tl__role">Assessor III · Coordenação de Desenvolvimento</p>
+            <ul>
+              <li><strong>Diagnóstico consultivo:</strong> investigação de gargalos e tradução das necessidades dos setores em requisitos, prioridades e soluções viáveis.</li>
+              <li><strong>Condução de projetos:</strong> desenho, desenvolvimento, testes, implantação, capacitação de usuários, suporte e evolução contínua.</li>
+              <li><strong>Governança da informação:</strong> integração e validação de bases assistenciais, territoriais, financeiras e administrativas, com rastreabilidade.</li>
+              <li><strong>Adoção e relacionamento:</strong> articulação com referências de negócio para garantir aderência e continuidade das entregas.</li>
+            </ul>
+          </div>
+          <div class="tl__item reveal">
+            <span class="tl__when">jul/2021 — fev/2026</span>
+            <h3>SESMA — Secretaria Municipal de Saúde de Belém</h3>
+            <p class="tl__role">Assistente administrativo</p>
+            <ul>
+              <li>Base de conhecimento do funcionamento interno da secretaria, dos fluxos financeiros e dos sistemas do SUS que depois viraram produto.</li>
+            </ul>
+          </div>
+          <div class="tl__item reveal">
+            <span class="tl__when">2019 — 2020</span>
+            <h3>Bravo Segurança</h3>
+            <p class="tl__role">Consultor de vendas e apoio administrativo</p>
+            <ul>
+              <li>Atendimento comercial, organização administrativa, acompanhamento de metas e controle de prazos em empresa de menor porte.</li>
+            </ul>
+          </div>
+          <div class="tl__item reveal">
+            <span class="tl__when">2016 — 2018</span>
+            <h3>ArqDigital</h3>
+            <p class="tl__role">Aprendiz · apoio em TI e financeiro</p>
+            <ul>
+              <li>Primeira experiência corporativa em ambiente multinacional, com passagem por TI e financeiro.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="competencias">
+        <span class="eyebrow">Competências técnicas</span>
+        <h2 class="h-sec">O que eu uso no dia a dia</h2>
+        <div class="tbl-wrap" style="margin-top:26px">
+          <table style="min-width:420px">
+            <thead><tr><th style="width:38%">Área</th><th>Competências</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Dados, BI e governança</strong></td><td>MySQL, Power BI, ETL, indicadores, qualidade, validação, tratamento, análise e visualização de dados.</td></tr>
+              <tr><td><strong>Desenvolvimento e integração</strong></td><td>PHP, JavaScript, Node.js, Python, automação web, Git, FTP/SFTP e integração entre fontes.</td></tr>
+              <tr><td><strong>Geointeligência</strong></td><td>Georreferenciamento, territorialização, Leaflet, OpenStreetMap e análise de cobertura.</td></tr>
+              <tr><td><strong>Informação em saúde</strong></td><td>SIAPS, CNES, e-SUS APS, SIA/SIH, DATASUS, FNS, produção, faturamento e indicadores da APS.</td></tr>
+              <tr><td><strong>Processos</strong></td><td>Requisitos, mapeamento, priorização, implantação e treinamento em finanças, orçamento, contratos e faturamento.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="font-size:1.1rem;margin:30px 0 14px;color:var(--ink)">Formação complementar</h3>
+        <ul style="margin-left:18px;color:var(--ink-soft);font-size:.93rem;display:flex;flex-direction:column;gap:9px">
+          <li>Conferência presencial sobre IA generativa e aplicações corporativas — São Paulo/SP, 3 dias.</li>
+          <li>Governança de Dados — 30h.</li>
+          <li>Fiscalização e Controle da Administração Pública Municipal — 10h.</li>
+          <li>Administration of Government Cloud Services — 30h.</li>
+          <li>Informação de Documentos e Mineração de Conhecimentos — 4h.</li>
+          <li>Ensino médio completo · 27 anos · Belém - PA.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTATO ================= -->
+<section class="band band--deep" id="contato">
+  <div class="wrap">
+    <span class="eyebrow">Contato</span>
+    <h2 class="h-sec">Vamos falar sobre o seu gargalo de informação</h2>
+    <p class="lead" style="margin-top:12px">Se existe um processo travado, um dado que ninguém confia ou um sistema que ninguém usa, é exatamente aí que eu começo.</p>
+
+    <div class="contact">
+      <a class="ccard" href="https://wa.me/5591999440334" target="_blank" rel="noopener">
+        <span>WhatsApp</span><b>(91) 99944-0334</b>
+      </a>
+      <a class="ccard" href="mailto:lisandroramos881@gmail.com">
+        <span>E-mail</span><b>lisandroramos881@gmail.com</b>
+      </a>
+      <a class="ccard" href="https://lisandro-developer.vercel.app" target="_blank" rel="noopener">
+        <span>Portfólio anterior</span><b>lisandro-developer.vercel.app</b>
+      </a>
+    </div>
+
+    <div style="margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+      <a class="btn btn--light" href="https://wa.me/5591999440334" target="_blank" rel="noopener">Chamar agora no WhatsApp</a>
+      <span style="color:#9FBCEA;font-size:.9rem">Belém - PA · Tv. José Pio, 1051 — Umarizal · disponível para projetos e atuação consultiva.</span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <strong style="color:#fff;font-family:var(--display);font-size:1.05rem;letter-spacing:.04em">LISANDRO MATHEUS RAMOS RIBEIRO</strong>
+      <div>Dados, sistemas e inteligência aplicada à saúde · Belém - PA</div>
+    </div>
+    <div>&copy; <span id="year">2026</span> · Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Voltar ao topo">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5m-7 7 7-7 7 7"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- ano ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- tema ---------- */
+  var root = document.documentElement, themeBtn = document.getElementById('theme');
+  var stored = null;
+  try { stored = localStorage.getItem('lm-theme'); } catch(e){}
+  if (stored === 'dark' || stored === 'light') root.setAttribute('data-theme', stored);
+  themeBtn.addEventListener('click', function(){
+    var now = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', now);
+    try { localStorage.setItem('lm-theme', now); } catch(e){}
+  });
+
+  /* ---------- menu mobile ---------- */
+  var burger = document.getElementById('burger'), menu = document.getElementById('menu');
+  burger.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.addEventListener('click', function(e){
+    if (e.target.tagName === 'A'){ menu.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  });
+
+  /* ---------- barra de progresso + botão topo ---------- */
+  var bar = document.getElementById('progress'), top = document.getElementById('totop');
+  function onScroll(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    var p = h > 0 ? (window.scrollY / h) * 100 : 0;
+    bar.style.width = p + '%';
+    top.classList.toggle('on', window.scrollY > 600);
+    spy();
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  top.addEventListener('click', function(){ window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); });
+
+  /* ---------- link ativo ---------- */
+  var links = Array.prototype.slice.call(menu.querySelectorAll('a'));
+  var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function spy(){
+    var y = 140, idx = -1;
+    targets.forEach(function(t,i){ if (t && t.getBoundingClientRect().top <= y) idx = i; });
+    links.forEach(function(a,i){ a.classList.toggle('on', i === idx); });
+  }
+
+  /* ---------- reveal ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -40px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---------- contadores ---------- */
+  function runCount(el){
+    var end = parseFloat(el.getAttribute('data-count')) || 0;
+    var pre = el.getAttribute('data-prefix') || '';
+    var suf = el.getAttribute('data-suffix') || '';
+    if (reduce){ el.textContent = pre + end.toLocaleString('pt-BR') + suf; return; }
+    var start = null, dur = 1200;
+    function tick(ts){
+      if (!start) start = ts;
+      var pr = Math.min((ts - start) / dur, 1);
+      var val = Math.floor(end * (1 - Math.pow(1 - pr, 3)));
+      el.textContent = pre + val.toLocaleString('pt-BR') + suf;
+      if (pr < 1) requestAnimationFrame(tick);
+      else el.textContent = pre + end.toLocaleString('pt-BR') + suf;
+    }
+    requestAnimationFrame(tick);
+  }
+  var counters = document.querySelectorAll('[data-count]');
+  if (!('IntersectionObserver' in window)) {
+    counters.forEach(runCount);
+  } else {
+    var co = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ runCount(en.target); co.unobserve(en.target); }
+      });
+    }, {threshold:.5});
+    counters.forEach(function(el){ co.observe(el); });
+  }
+
+  /* ---------- filtro de cases ---------- */
+  var chips = document.querySelectorAll('.chip');
+  var cases = document.querySelectorAll('#cases-grid .case');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('on'); });
+      chip.classList.add('on');
+      var f = chip.getAttribute('data-filter');
+      cases.forEach(function(card){
+        var cat = card.getAttribute('data-cat') || '';
+        card.classList.toggle('hide', f !== 'all' && cat.indexOf(f) === -1);
+      });
+    });
+  });
+
+  /* ---------- abas GeoSaúde ---------- */
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('on'); t.setAttribute('aria-selected','false'); });
+      document.querySelectorAll('.pane').forEach(function(p){ p.classList.remove('on'); });
+      tab.classList.add('on');
+      tab.setAttribute('aria-selected','true');
+      var pane = document.getElementById(tab.getAttribute('data-pane'));
+      if (pane) pane.classList.add('on');
+    });
+  });
+
+  /* ---------- busca nos painéis ---------- */
+  var search = document.getElementById('geo-search');
+  var gcards = document.querySelectorAll('#geo-list .gcard');
+  var emptyBox = document.getElementById('geo-empty');
+  if (search){
+    search.addEventListener('input', function(){
+      var q = search.value.toLowerCase().trim();
+      var visible = 0;
+      gcards.forEach(function(c){
+        var txt = (c.textContent + ' ' + (c.getAttribute('data-k')||'')).toLowerCase();
+        var hit = q === '' || txt.indexOf(q) !== -1;
+        c.classList.toggle('hide', !hit);
+        if (hit) visible++;
+      });
+      emptyBox.style.display = visible ? 'none' : 'block';
+    });
+  }
+
+  /* ---------- mapa de distritos ---------- */
+  var zdata = {
+    DABEN: {nome:'Distrito de Benguí',       eq:38, cob:'78%', acs:212, un:19},
+    DAGUA: {nome:'Distrito de Guamá',        eq:52, cob:'71%', acs:288, un:24},
+    DAICO: {nome:'Distrito de Icoaraci',     eq:41, cob:'69%', acs:231, un:18},
+    DAENT: {nome:'Distrito de Entroncamento',eq:44, cob:'74%', acs:246, un:20},
+    DABEL: {nome:'Distrito de Belém',        eq:49, cob:'82%', acs:265, un:26},
+    DASAC: {nome:'Distrito de Sacramenta',   eq:35, cob:'66%', acs:198, un:16},
+    DAOUT: {nome:'Distrito de Outeiro',      eq:22, cob:'85%', acs:121, un:9},
+    DAMOS: {nome:'Distrito de Mosqueiro',    eq:19, cob:'88%', acs:104, un:8}
+  };
+  document.querySelectorAll('.zone').forEach(function(z){
+    z.addEventListener('click', function(){
+      var d = zdata[z.getAttribute('data-z')];
+      if (!d) return;
+      document.querySelectorAll('.zone').forEach(function(o){ o.setAttribute('stroke','#0A1626'); o.setAttribute('stroke-width','2'); });
+      z.setAttribute('stroke','#FFFFFF'); z.setAttribute('stroke-width','3');
+      document.getElementById('z-label').textContent = 'Leitura do território';
+      document.getElementById('z-name').textContent = d.nome;
+      document.getElementById('z-eq').textContent = d.eq;
+      document.getElementById('z-cob').textContent = d.cob;
+      document.getElementById('z-acs').textContent = d.acs;
+      document.getElementById('z-un').textContent = d.un;
+    });
+  });
+
+  /* ---------- simulador de metas ---------- */
+  var sliders = document.querySelectorAll('.sliders input[type=range]');
+  var ring = document.getElementById('ring');
+  var scoreEl = document.getElementById('score');
+  var badge = document.getElementById('score-badge');
+  var CIRC = 2 * Math.PI * 52;
+  function calc(){
+    var total = 0;
+    sliders.forEach(function(s){
+      var w = parseFloat(s.getAttribute('data-w')) || 0;
+      total += (parseFloat(s.value) || 0) * w;
+      var out = document.querySelector('[data-out="' + s.id + '"]');
+      if (out) out.textContent = s.value;
+    });
+    var v = Math.round(total);
+    scoreEl.textContent = v;
+    ring.setAttribute('stroke-dashoffset', String(CIRC - (CIRC * v / 100)));
+    var color = v >= 80 ? '#8FBAFF' : (v >= 60 ? '#6FA3FF' : '#3E7BEC');
+    ring.setAttribute('stroke', color);
+    badge.textContent = v >= 80 ? 'Incentivo integral' : (v >= 60 ? 'Acompanhamento' : 'Plano de ação');
+  }
+  ring.setAttribute('stroke-dasharray', String(CIRC));
+  sliders.forEach(function(s){ s.addEventListener('input', calc); });
+  calc();
+
+  /* ---------- acordeão ---------- */
+  document.querySelectorAll('.acc__btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var panel = btn.nextElementSibling;
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.acc__btn').forEach(function(o){
+        o.setAttribute('aria-expanded','false');
+        o.nextElementSibling.style.maxHeight = null;
+      });
+      if (!isOpen){
+        btn.setAttribute('aria-expanded','true');
+        panel.style.maxHeight = panel.scrollHeight + 80 + 'px';
+      }
+    });
+  });
+  window.addEventListener('resize', function(){
+    document.querySelectorAll('.acc__btn[aria-expanded="true"]').forEach(function(b){
+      b.nextElementSibling.style.maxHeight = b.nextElementSibling.scrollHeight + 80 + 'px';
+    });
+  });
+
+  onScroll();
+})();
+</script>
 </body>
 </html>
