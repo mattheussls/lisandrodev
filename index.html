@@ -162,180 +162,134 @@
             </div>
         </div>
     </header>
- <!-- SEÇÃO: RESULTADOS E IMPACTOS -->
-    <section class="results-section">
+
+
+<!-- SEÇÃO: DESAFIOS E RESULTADOS (FORMATO DE TABELA CUSTOMIZADA) -->
+    <section class="results-table-section">
         <style>
-            .results-section {
+            .results-table-section {
                 padding: 70px 0;
                 background-color: var(--bg-base);
             }
-            .results-header {
+            .results-table-header {
                 text-align: center;
-                margin-bottom: 50px;
+                margin-bottom: 40px;
             }
-            .results-header h2 {
+            .results-table-header h2 {
                 font-size: 2.3rem;
                 color: var(--navy-dark);
                 font-family: 'Oswald', sans-serif;
                 text-transform: uppercase;
                 margin-top: 10px;
             }
-            .results-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: 25px;
-            }
-            .result-card {
+            
+            /* Tabela Customizada */
+            .custom-table-wrapper {
+                width: 100%;
+                overflow-x: auto;
                 background: var(--bg-white);
                 border: 1px solid var(--border-color);
-                border-radius: 10px;
-                padding: 35px 30px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-                transition: transform 0.3s ease, border-color 0.3s ease;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.03);
             }
-            .result-card:hover {
-                transform: translateY(-5px);
-                border-color: var(--blue-accent);
+            .custom-results-table {
+                width: 100%;
+                border-collapse: collapse;
+                min-width: 750px;
             }
-            .result-icon {
-                font-size: 2rem;
-                color: var(--blue-accent);
-                margin-bottom: 20px;
-            }
-            .result-metric {
-                font-size: 2.2rem;
-                font-weight: 800;
-                color: var(--navy-dark);
+            .custom-results-table th {
+                background: var(--navy-dark);
+                color: var(--bg-white);
+                padding: 18px 25px;
+                text-align: left;
                 font-family: 'Oswald', sans-serif;
-                margin-bottom: 10px;
-                line-height: 1.1;
+                font-size: 1.1rem;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
             }
-            .result-title {
-                font-size: 1.15rem;
+            .custom-results-table td {
+                padding: 22px 25px;
+                border-bottom: 1px solid #E2E8F0;
+                vertical-align: middle;
+            }
+            .custom-results-table tr:hover td {
+                background-color: #F8FAFC;
+            }
+            .custom-results-table tr:last-child td {
+                border-bottom: none;
+            }
+            .challenge-col {
+                width: 28%;
                 font-weight: 700;
                 color: var(--navy-light);
-                margin-bottom: 12px;
                 font-family: 'Inter', sans-serif;
+                font-size: 1.05rem;
             }
-            .result-desc {
-                font-size: 0.95rem;
+            .solution-col {
+                width: 72%;
                 color: var(--text-muted);
+                font-size: 0.98rem;
                 line-height: 1.6;
-            }
-            .result-tag {
-                display: inline-block;
-                background: #eff6ff;
-                color: var(--blue-accent);
-                padding: 4px 10px;
-                border-radius: 4px;
-                font-size: 0.8rem;
-                font-weight: 600;
-                margin-top: 20px;
-                align-self: flex-start;
             }
 
             @media (max-width: 768px) {
-                .results-section { padding: 40px 0; }
-                .results-header h2 { font-size: 1.8rem; }
-                .result-card { padding: 25px 20px; }
+                .results-table-section { padding: 40px 0; }
+                .results-table-header h2 { font-size: 1.8rem; }
+                .custom-results-table th, .custom-results-table td { padding: 15px 18px; }
             }
         </style>
 
         <div class="container">
-            <div class="results-header">
-                <span class="section-tag">Métricas & Conquistas</span>
-                <h2>Resultados e Impacto Positivo na Gestão</h2>
+            <div class="results-table-header">
+                <span class="section-tag">Casos & Soluções</span>
+                <h2>Desafios Superados e Resultados na Prática</h2>
                 <p style="color: var(--text-muted); max-width: 650px; margin: 10px auto 0 auto; font-size: 0.95rem;">
-                    Evidências práticas da transformação digital e eficiência operacional entregues na saúde pública.
+                    Resumo analítico das entregas estratégicas na gestão pública e inovação tecnológica.
                 </p>
             </div>
 
-            <div class="results-grid">
-                
-                <!-- CARD 1: FNS / APIS -->
-                <div class="result-card">
-                    <div>
-                        <div class="result-icon"><i class="fas fa-bolt"></i></div>
-                        <div class="result-metric">Minutos</div>
-                        <div class="result-title">Automação de Repasses do FNS</div>
-                        <p class="result-desc">
-                            Redução drástica no tempo de processamento de fluxos financeiros complexos através de APIs parametrizadas, garantindo sincronização em tempo real e fontes orçamentárias mapeadas[cite: 10].
-                        </p>
-                    </div>
-                    <span class="result-tag">Engenharia de Dados</span>
-                </div>
-
-                <!-- CARD 2: GEOSAÚDE / APS -->
-                <div class="result-card">
-                    <div>
-                        <div class="result-icon"><i class="fas fa-chart-line"></i></div>
-                        <div class="result-metric">100% Visual</div>
-                        <div class="result-title">Monitoramento de Qualidade APS</div>
-                        <p class="result-desc">
-                            Tradução imediata dos indicadores do SIAPS em painéis acionáveis. Simulações inteligentes cruzando demografia e produção para guiar equipes exatamente em quantas pessoas alcançar[cite: 1, 4].
-                        </p>
-                    </div>
-                    <span class="result-tag">Geosaúde & Indicadores</span>
-                </div>
-
-                <!-- CARD 3: SPP / CREDORES -->
-                <div class="result-card">
-                    <div>
-                        <div class="result-icon"><i class="fas fa-users"></i></div>
-                        <div class="result-metric">2.000+</div>
-                        <div class="result-title">Gestão de Credores e Notas Fiscais</div>
-                        <p class="result-desc">
-                            Acompanhamento automatizado de prazos, vencimentos e pagamentos, estabilizando a espinha dorsal financeira e eliminando processos fragmentados em mais de 5 setores[cite: 10].
-                        </p>
-                    </div>
-                    <span class="result-tag">Ecossistema SPP</span>
-                </div>
-
-                <!-- CARD 4: TERRITORIALIZAÇÃO -->
-                <div class="result-card">
-                    <div>
-                        <div class="result-icon"><i class="fas fa-map-marked-alt"></i></div>
-                        <div class="result-metric">60% em 2 Meses</div>
-                        <div class="result-title">Atualização de Malha Territorial</div>
-                        <p class="result-desc">
-                            Execução ágil de reestruturação geográfica, otimizando o planejamento direto de dezenas de equipes de saúde e milhares de Agentes Comunitários (ACS)[cite: 10].
-                        </p>
-                    </div>
-                    <span class="result-tag">Geointeligência</span>
-                </div>
-
-                <!-- CARD 5: UPA / FATURAMENTO -->
-                <div class="result-card">
-                    <div>
-                        <div class="result-icon"><i class="fas fa-hand-holding-medical"></i></div>
-                        <div class="result-metric">R$ 400 mil+</div>
-                        <div class="result-title">Regularização de Produção na UPA</div>
-                        <p class="result-desc">
-                            Diagnóstico e correção estrutural no faturamento que estava retido há meses, recuperando a receita e a conformidade do registro ambulatorial[cite: 10].
-                        </p>
-                    </div>
-                    <span class="result-tag">Faturamento SIA/SIH</span>
-                </div>
-
-                <!-- CARD 6: SUPORTE / SYSNATI -->
-                <div class="result-card">
-                    <div>
-                        <div class="result-icon"><i class="fas fa-network-wired"></i></div>
-                        <div class="result-metric">Controle Total</div>
-                        <div class="result-title">Logística e Suporte Técnico (SysNati)</div>
-                        <p class="result-desc">
-                            Monitoramento integrado de chamados, status de impressoras, toners e rotas logísticas baseadas em mapas interativos para as unidades de saúde da rede.
-                        </p>
-                    </div>
-                    <span class="result-tag">Infraestrutura & TI</span>
-                </div>
-
+            <div class="custom-table-wrapper">
+                <table class="custom-results-table">
+                    <thead>
+                        <tr>
+                            <th>Desafio</th>
+                            <th>Solução e Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="challenge-col">Informação Dispersa</td>
+                            <td class="solution-col">Centralização de bases complexas (SIAPS, CNES, DATASUS, FNS) e APIs na plataforma GeoSaúde, unificando a análise e a inteligência de dados em um só lugar[cite: 10].</td>
+                        </tr>
+                        <tr>
+                            <td class="challenge-col">Processos Fragmentados</td>
+                            <td class="solution-col">Implantação de um sistema integrado de gestão (ERP) (módulos financeiro, orçamento, contratos e faturamento), digitalizando fluxos e garantindo alta adoção em mais de 5 setores estratégicos[cite: 10].</td>
+                        </tr>
+                        <tr>
+                            <td class="challenge-col">Territorialização</td>
+                            <td class="solution-col">Atualização de malha territorial defasada há 10 anos. Execução de 60% do projeto em apenas 2 meses, otimizando o planejamento de 300 equipes e 1.600+ ACS[cite: 10].</td>
+                        </tr>
+                        <tr>
+                            <td class="challenge-col">Produção não Apresentada</td>
+                            <td class="solution-col">Diagnóstico e correção estrutural no faturamento de uma UPA (capacidade de mais de R$ 400 mil), regularizando o registro de produção ambulatorial retido por 6 meses[cite: 10].</td>
+                        </tr>
+                        <tr>
+                            <td class="challenge-col">Coleta de Dados</td>
+                            <td class="solution-col">Automação da coleta com desenvolvimento de APIs para o FNS e Transparência, reduzindo o tempo de processamento de fluxos demorados para poucos minutos[cite: 10].</td>
+                        </tr>
+                        <tr>
+                            <td class="challenge-col">Monitoramento da APS</td>
+                            <td class="solution-col">Tradução visual dos dados do SIAPS, cruzando componentes de qualidade e dados demográficos para simular metas e apontar exatamente onde cada equipe deve atuar.</td>
+                        </tr>
+                        <tr>
+                            <td class="challenge-col">Suporte e Chamados (Portal NAT)</td>
+                            <td class="solution-col">Implantação do Portal NAT: ferramenta online recém-implantada onde as próprias unidades e setores abrem e acompanham chamados e demandas operacionais com total agilidade.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
-
+    
 </body>
 </html>
