@@ -152,92 +152,25 @@ h1,h2,h3,h4{font-family:var(--display);text-transform:uppercase;line-height:1.08
 .dom ul{margin-left:16px}
 .dom li{font-size:.86rem;color:var(--ink-soft);margin-bottom:5px}
 
-/* APP GEOSAÚDE */
+/* GEOSAÚDE */
 .geo{background:var(--deep);color:#EAF1FB;padding:78px 0}
 .geo__logo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .geo__logo b{font-family:var(--display);font-size:2.2rem;color:#fff;line-height:1}
 .geo__logo i{font-style:normal;font-family:var(--display);font-size:.95rem;letter-spacing:.14em;background:var(--brand);color:#fff;padding:4px 11px;border-radius:3px}
-.app{border:1px solid rgba(146,180,240,.28);background:rgba(255,255,255,.03);border-radius:6px;overflow:hidden;margin-top:30px}
-.tabs{display:flex;overflow-x:auto;border-bottom:1px solid rgba(146,180,240,.28);background:rgba(4,13,26,.5);scrollbar-width:none}
-.tabs::-webkit-scrollbar{display:none}
-.tab{background:none;border:none;border-bottom:3px solid transparent;color:#9FBCEA;cursor:pointer;font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;padding:15px 18px;white-space:nowrap;flex:1 0 auto}
-.tab.on{color:#fff;border-bottom-color:var(--brand)}
-.pane{display:none;padding:22px}
-.pane.on{display:block;animation:fade .3s ease}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.pane__top{margin-bottom:18px}
-.pane__top h3{color:#fff;font-size:1.25rem}
-.pane__top p{font-size:.85rem;color:#9FBCEA;margin-top:5px;max-width:70ch}
-.note{font-size:.76rem;color:#7A93BA;margin-top:16px;border-left:2px solid var(--brand);padding-left:11px}
 
-/* linhas de indicador */
-.thead,.irow{display:grid;grid-template-columns:1.7fr .85fr 1fr .8fr 1fr;gap:10px;align-items:center}
-.thead{padding:10px 14px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#7FA8F5;font-weight:700;border-bottom:1px solid rgba(146,180,240,.28)}
-.irow{padding:14px;border-bottom:1px solid rgba(146,180,240,.16)}
-.irow:last-child{border-bottom:none}
-.irow__name{font-weight:600;color:#fff;font-size:.95rem}
-.irow__name small{display:block;color:#7A93BA;font-size:.72rem;font-weight:400;margin-top:2px}
-.irow__val{font-family:var(--display);font-size:1.25rem;color:#fff;line-height:1}
-.irow__val small{display:block;font-family:var(--body);font-size:.68rem;color:#7A93BA;font-weight:400;margin-top:3px}
-.bdg{display:inline-block;padding:5px 12px;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:1px solid}
-.bdg--reg{color:#E9A94A;border-color:#8A6524;background:rgba(233,169,74,.1)}
-.bdg--suf{color:#F0C070;border-color:#8A7534;background:rgba(240,192,112,.1)}
-.bdg--bom{color:#6FA3FF;border-color:#2E6BE6;background:rgba(111,163,255,.12)}
-.bdg--otm{color:#fff;border-color:#1D5FE0;background:#1D5FE0}
-.prob{font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:3px;display:inline-block}
-.prob--prio{color:#F08B82;background:rgba(240,139,130,.12)}
-.prob--ac{color:#E9A94A;background:rgba(233,169,74,.12)}
-.prob--ok{color:#8FBAFF;background:rgba(143,186,255,.14)}
-.irange{width:100%;margin-top:8px}
-input[type=range]{-webkit-appearance:none;appearance:none;height:4px;border-radius:4px;background:rgba(146,180,240,.3);outline:none;cursor:pointer;width:100%}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--brand);border:3px solid #fff;cursor:pointer}
-input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:50%;background:var(--brand);border:3px solid #fff;cursor:pointer}
-.resume{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;border:1px solid rgba(146,180,240,.28);border-radius:4px;padding:18px;background:rgba(4,13,26,.4)}
-.resume b{display:block;font-family:var(--display);font-size:2rem;color:#fff;line-height:1}
-.resume span{font-size:.74rem;color:#9FBCEA;display:block;margin-top:5px}
-@media (max-width:860px){
-  .thead{display:none}
-  .irow{grid-template-columns:1fr 1fr;gap:10px;padding:16px 14px;border:1px solid rgba(146,180,240,.2);border-radius:4px;margin-bottom:10px}
-  .irow>*:first-child{grid-column:1 / -1}
-  .irow .full{grid-column:1 / -1}
-  .resume{grid-template-columns:1fr;text-align:left}
-  .pane{padding:16px}
-}
-
-/* matriz boas práticas */
-.bphead,.bprow{display:grid;grid-template-columns:1.8fr 1.25fr .8fr .9fr;gap:12px;align-items:center}
-.bphead{padding:10px 14px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#7FA8F5;font-weight:700;border-bottom:1px solid rgba(146,180,240,.28)}
-.bprow{padding:14px;border-bottom:1px solid rgba(146,180,240,.16)}
-.bprow:last-child{border-bottom:none}
-.bp__name{color:#fff;font-weight:600;font-size:.93rem}
-.bp__name small{display:block;color:#7A93BA;font-size:.71rem;font-weight:400;margin-top:2px}
-.bp__num{font-family:var(--display);font-size:1.05rem;color:#fff}
-.bp__num small{display:block;font-family:var(--body);font-size:.7rem;color:#7A93BA;font-weight:400;margin-top:2px}
-.bp__pts{font-family:var(--display);font-size:1.15rem;color:#6FA3FF}
-.gaps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
-.gap{border:1px solid rgba(146,180,240,.28);background:rgba(4,13,26,.4);padding:16px;border-radius:4px;text-align:center}
-.gap span{display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#7FA8F5;font-weight:700}
-.gap b{display:block;font-family:var(--display);font-size:1.7rem;color:#fff;margin:6px 0 2px}
-.gap small{font-size:.7rem;color:#7A93BA}
-.gap.done b{color:#8FBAFF}
-@media (max-width:860px){
-  .bphead{display:none}
-  .bprow{grid-template-columns:1fr 1fr;border:1px solid rgba(146,180,240,.2);border-radius:4px;margin-bottom:10px}
-  .bprow>*:first-child{grid-column:1 / -1}
-  .bprow .full{grid-column:1 / -1}
-  .gaps{grid-template-columns:1fr}
-}
-
-/* mapa */
-.mapbox{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center}
-.zone{cursor:pointer}
-.zone:hover{opacity:.78}
-.mininfo{border:1px solid rgba(146,180,240,.28);background:rgba(4,13,26,.4);padding:20px;border-radius:4px}
-.mininfo b{font-family:var(--display);font-size:1.5rem;color:#fff;display:block}
-.minigrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-.minigrid b{font-size:1.5rem}
-.minigrid span{font-size:.72rem;color:#9FBCEA}
-@media (max-width:860px){.mapbox{grid-template-columns:1fr}}
+/* APS */
+.apsgrid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(146,180,240,.25);border-left:1px solid rgba(146,180,240,.25);margin-top:34px}
+.apscell{border-right:1px solid rgba(146,180,240,.25);border-bottom:1px solid rgba(146,180,240,.25);padding:24px 20px}
+.apscell span{font-family:var(--display);font-size:.8rem;letter-spacing:.16em;color:#6FA3FF}
+.apscell h3{color:#fff;font-size:1.05rem;margin:10px 0 8px}
+.apscell p{font-size:.87rem;color:#9FBCEA}
+.apsnums{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+.apsnums>div{border:1px solid rgba(146,180,240,.25);border-radius:4px;padding:20px;background:rgba(4,13,26,.35)}
+.apsnums b{display:block;font-family:var(--display);font-size:2.2rem;color:#fff;line-height:1}
+.apsnums span{display:block;font-size:.76rem;color:#9FBCEA;margin-top:6px}
+.note{font-size:.78rem;color:#7A93BA;margin-top:20px;border-left:2px solid var(--brand);padding-left:12px;max-width:72ch}
+@media (max-width:860px){.apsgrid{grid-template-columns:1fr}.apsnums{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.apsnums{grid-template-columns:1fr}}
 
 /* ACORDEÃO */
 .acc{border-top:1px solid var(--line);margin-top:26px}
@@ -299,7 +232,7 @@ footer{background:var(--deep);color:#8FA6C4;padding:30px 0;border-top:1px solid 
     <div class="menu" id="menu">
       <a href="#resultados">Resultados</a>
       <a href="#dominios">Domínios</a>
-      <a href="#siaps">Regras da APS</a>
+      <a href="#siaps">Atenção primária</a>
       <a href="#sistemas">Sistemas</a>
       <a href="#contato">Contato</a>
     </div>
@@ -322,10 +255,10 @@ footer{background:var(--deep);color:#8FA6C4;padding:30px 0;border-top:1px solid 
       <div>
         <span class="eyebrow">Gestão da informação em saúde pública</span>
         <h1><span>Lisandro Matheus</span><span>Ramos Ribeiro</span></h1>
-   
+        <p class="hero__role">Da regra do Ministério da Saúde até a decisão da equipe</p>
         <p class="hero__txt">Trabalho de forma consultiva: entendo a norma, encontro onde o dado se perde no fluxo do setor e devolvo a informação no formato em que ela vira decisão — indicador, meta, contrato, repasse ou território.</p>
         <div class="cta">
-          <a class="btn btn--solid" href="#siaps">Ver a regra funcionando</a>
+          <a class="btn btn--solid" href="#resultados">Ver os resultados</a>
           <a class="btn btn--ghost" href="https://wa.me/5591999440334" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
@@ -373,7 +306,7 @@ footer{background:var(--deep);color:#8FA6C4;padding:30px 0;border-top:1px solid 
         <span class="card__tag">Monitoramento da APS</span>
         <h3>Indicador virou plano de ação</h3>
         <p>Leitura do SIAPS por equipe, cruzada com demografia e composição do CNES, mostrando a faixa atual, a distância para a próxima e quais procedimentos fecham a diferença.</p>
-        <div class="card__metric">21 indicadores · 300 equipes</div>
+        <div class="card__metric">7 indicadores · 11 equipes por painel</div>
       </article>
       <article class="card reveal" data-cat="fin ope">
         <span class="card__tag">Processos fragmentados</span>
@@ -473,120 +406,45 @@ footer{background:var(--deep);color:#8FA6C4;padding:30px 0;border-top:1px solid 
   </div>
 </section>
 
-<!-- SIAPS -->
+<!-- APS -->
 <section class="geo" id="siaps">
   <div class="wrap">
-    <span class="eyebrow">Regra de negócio aplicada</span>
+    <span class="eyebrow">Atenção primária</span>
     <div class="geo__logo"><b>GEO</b><i>SAÚDE</i></div>
-    <h2 class="h-sec" style="color:#fff">A norma do Ministério traduzida em decisão de equipe</h2>
-    <p class="lead">O painel não mostra só o número: mostra em que faixa a equipe está, quanto falta para a próxima e quais procedimentos fecham essa diferença. Mexa nos controles abaixo para ver a regra funcionando.</p>
+    <h2 class="h-sec" style="color:#fff">O indicador só serve quando a equipe sabe o que fazer com ele</h2>
+    <p class="lead">O município acompanha 15 indicadores de qualidade da atenção primária em cerca de 300 equipes. O trabalho foi traduzir a regra do Ministério da Saúde para a linguagem de quem está na unidade: em que faixa a equipe está hoje, quanto falta para a próxima e quais procedimentos fecham essa diferença dentro do quadrimestre.</p>
 
-    <div class="app">
-      <div class="tabs" role="tablist">
-        <button class="tab on" role="tab" aria-selected="true" data-pane="p1">Indicadores eSF / eAP</button>
-        <button class="tab" role="tab" aria-selected="false" data-pane="p2">Boas práticas do SIAPS</button>
-        <button class="tab" role="tab" aria-selected="false" data-pane="p3">Território e imunização</button>
+    <div class="apsgrid">
+      <div class="apscell">
+        <span>01</span>
+        <h3>Faixa e distância</h3>
+        <p>Cada indicador tem faixas próprias de classificação. O painel mostra a situação atual e o quanto falta para subir, em vez do número solto.</p>
       </div>
-
-      <!-- PANE 1 -->
-      <div class="pane on" id="p1" role="tabpanel">
-        <div class="pane__top">
-          <h3>Componentes de qualidade por equipe</h3>
-          <p>Cada indicador tem faixas próprias: Regular vale 25 pontos, Suficiente 50, Bom 75 e Ótimo 100. O índice final é a média dos pontos e define se a equipe entra em plano de ação, acompanhamento ou mantém o incentivo.</p>
-        </div>
-
-        <div class="thead">
-          <span>Indicador</span><span>Resultado</span><span>Situação</span><span>Índice</span><span>Problema</span>
-        </div>
-
-        <div id="ind-list">
-          <div class="irow" data-nome="Desenvolvimento Infantil" data-base="11.9" data-reg="10" data-suf="30" data-bom="50" data-otm="70"></div>
-          <div class="irow" data-nome="Gestação e Puerpério" data-base="17.5" data-reg="15" data-suf="30" data-bom="45" data-otm="60"></div>
-          <div class="irow" data-nome="Prevenção de Câncer" data-base="29.8" data-reg="15" data-suf="25" data-bom="40" data-otm="55"></div>
-          <div class="irow" data-nome="Pessoa com Diabetes" data-base="47.6" data-reg="20" data-suf="40" data-bom="60" data-otm="75"></div>
-          <div class="irow" data-nome="Pessoa Idosa" data-base="40.5" data-reg="20" data-suf="35" data-bom="55" data-otm="70"></div>
-          <div class="irow" data-nome="Pessoa com Hipertensão" data-base="56.9" data-reg="25" data-suf="40" data-bom="55" data-otm="70"></div>
-          <div class="irow" data-nome="Mais Acesso APS" data-base="57.9" data-reg="20" data-suf="35" data-bom="45" data-otm="55"></div>
-        </div>
-
-        <div class="resume">
-          <div><b id="idx-final">—</b><span>índice final da equipe (0 a 100 pontos)</span></div>
-          <div><b id="idx-faixa">—</b><span>classificação resultante</span></div>
-          <div><b id="idx-prio">—</b><span>indicadores prioritários para agir agora</span></div>
-        </div>
-
-        <p class="note">Simulação de apoio à decisão. A classificação oficial continua sendo a recebida do SIAPS por equipe e competência — o painel antecipa o resultado para a equipe agir dentro do quadrimestre.</p>
+      <div class="apscell">
+        <span>02</span>
+        <h3>Contribuição por procedimento</h3>
+        <p>A leitura desce até a boa prática: quanto cada registro pesa no resultado e quantos ainda faltam para alcançar a meta.</p>
       </div>
-
-      <!-- PANE 2 -->
-      <div class="pane" id="p2" role="tabpanel">
-        <div class="pane__top">
-          <h3>Matriz de boas práticas</h3>
-          <p>As linhas usam os mesmos procedimentos da matriz. A contribuição é realizado ÷ referência × peso oficial. Altere o realizado e veja quantos registros combinados ainda faltam para cada faixa.</p>
-        </div>
-
-        <div class="bphead">
-          <span>Boa prática</span><span>Realizado / referência</span><span>Contribuição</span><span>Percentual</span>
-        </div>
-
-        <div id="bp-list">
-          <div class="bprow" data-nome="1ª consulta até o 30º dia" data-sub="Primeira Consulta 30D" data-real="90" data-ref="343" data-peso="20"></div>
-          <div class="bprow" data-nome="9 consultas até 2 anos" data-sub="Consultas 9 Até 2A" data-real="11" data-ref="343" data-peso="20"></div>
-          <div class="bprow" data-nome="9 registros de peso e altura" data-sub="Peso Altura 9 Até 2A" data-real="3" data-ref="343" data-peso="20"></div>
-          <div class="bprow" data-nome="2 visitas domiciliares ACS/TACS" data-sub="Visitas ACS 2 Até 6M" data-real="57" data-ref="343" data-peso="20"></div>
-          <div class="bprow" data-nome="Esquema vacinal recomendado" data-sub="Vacinas Recomendadas" data-real="64" data-ref="343" data-peso="20"></div>
-        </div>
-
-        <div class="resume" style="grid-template-columns:repeat(2,1fr)">
-          <div><b id="bp-total">—</b><span>pontos acumulados na matriz (máximo 100)</span></div>
-          <div><b id="bp-faixa">—</b><span>faixa atual do componente</span></div>
-        </div>
-
-        <div class="gaps" id="bp-gaps"></div>
-
-        <p class="note">Total de crianças de referência: 343. Cada boa prática pesa 20 pontos. Faixas: Suficiente a partir de 25 pontos, Bom a partir de 50 e Ótimo a partir de 75 — as mesmas do cálculo oficial.</p>
+      <div class="apscell">
+        <span>03</span>
+        <h3>Plano de ação</h3>
+        <p>O que era relatório de conferência virou lista de prioridade por equipe, apontando onde a busca ativa rende mais.</p>
       </div>
-
-      <!-- PANE 3 -->
-      <div class="pane" id="p3" role="tabpanel">
-        <div class="pane__top">
-          <h3>Rede, cobertura e território</h3>
-          <p>Toque em um distrito para ver a leitura que o painel entrega sobre equipes, cobertura vacinal e rede assistencial.</p>
-        </div>
-
-        <div class="mapbox">
-          <svg viewBox="0 0 520 380" role="img" aria-label="Mapa esquemático dos distritos" style="width:100%;height:auto;border:1px solid rgba(146,180,240,.22);border-radius:4px;background:rgba(4,13,26,.35)">
-            <g stroke="#0A1626" stroke-width="2">
-              <polygon class="zone" data-z="DABEN" points="30,40 180,30 200,120 60,140" fill="#1D5FE0"/>
-              <polygon class="zone" data-z="DAGUA" points="180,30 340,45 330,130 200,120" fill="#3E7BEC"/>
-              <polygon class="zone" data-z="DAICO" points="340,45 490,60 470,160 330,130" fill="#6FA3FF"/>
-              <polygon class="zone" data-z="DAENT" points="60,140 200,120 215,240 80,250" fill="#8FBAFF"/>
-              <polygon class="zone" data-z="DABEL" points="200,120 330,130 340,235 215,240" fill="#2E6BE6"/>
-              <polygon class="zone" data-z="DASAC" points="330,130 470,160 460,250 340,235" fill="#1D5FE0"/>
-              <polygon class="zone" data-z="DAOUT" points="80,250 215,240 230,345 100,350" fill="#4F86EE"/>
-              <polygon class="zone" data-z="DAMOS" points="215,240 340,235 350,340 230,345" fill="#B7D0FF"/>
-            </g>
-            <g fill="#04101F" font-family="Inter,sans-serif" font-size="11" font-weight="600" pointer-events="none">
-              <text x="82" y="90">DABEN</text><text x="240" y="92">DAGUA</text><text x="382" y="105">DAICO</text>
-              <text x="108" y="195">DAENT</text><text x="248" y="192">DABEL</text><text x="378" y="200">DASAC</text>
-              <text x="128" y="300">DAOUT</text><text x="258" y="295">DAMOS</text>
-            </g>
-          </svg>
-
-          <div class="mininfo">
-            <span style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#6FA3FF;font-weight:700">Leitura do território</span>
-            <b id="z-name" style="margin-top:6px">Selecione um distrito</b>
-            <div class="minigrid">
-              <div><b id="z-eq">—</b><span>equipes de APS</span></div>
-              <div><b id="z-cob" style="color:#6FA3FF">—</b><span>cobertura vacinal</span></div>
-              <div><b id="z-acs">—</b><span>agentes comunitários</span></div>
-              <div><b id="z-un">—</b><span>unidades na rede</span></div>
-            </div>
-            <p class="note" style="margin-top:16px">Valores ilustrativos nesta demonstração pública. Na plataforma cada polígono consome a base oficial atualizada.</p>
-          </div>
-        </div>
+      <div class="apscell">
+        <span>04</span>
+        <h3>Território e cobertura</h3>
+        <p>Indicador, cobertura vacinal, composição do CNES e população cadastrada amarrados ao mesmo território e à mesma unidade.</p>
       </div>
     </div>
+
+    <div class="apsnums">
+      <div><b>15</b><span>indicadores de qualidade acompanhados</span></div>
+      <div><b>300</b><span>equipes de atenção primária</span></div>
+      <div><b>8</b><span>distritos administrativos de saúde</span></div>
+      <div><b>1</b><span>leitura única por equipe e competência</span></div>
+    </div>
+
+    <p class="note">A classificação oficial continua sendo a recebida do SIAPS por equipe e competência. O painel antecipa essa leitura para que a equipe consiga agir antes do fechamento.</p>
   </div>
 </section>
 
@@ -809,129 +667,6 @@ function markDots(id){
   if(rail) rail.addEventListener('scroll',function(){markDots(id);},{passive:true});
 });
 window.addEventListener('resize',function(){ buildDots('rail-res'); buildDots('rail-dom'); });
-
-/* abas */
-var tabs=document.querySelectorAll('.tab');
-tabs.forEach(function(t){
-  t.addEventListener('click',function(){
-    tabs.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false');});
-    document.querySelectorAll('.pane').forEach(function(p){p.classList.remove('on');});
-    t.classList.add('on'); t.setAttribute('aria-selected','true');
-    var p=document.getElementById(t.getAttribute('data-pane')); if(p)p.classList.add('on');
-  });
-});
-
-/* ---------- INDICADORES eSF/eAP ---------- */
-var EQUIPES=11;
-function faixa(v,d){
-  if(v>=d.otm) return {nome:'Ótimo',pts:100,cls:'otm'};
-  if(v>=d.bom) return {nome:'Bom',pts:75,cls:'bom'};
-  if(v>=d.suf) return {nome:'Suficiente',pts:50,cls:'suf'};
-  if(v>=d.reg) return {nome:'Regular',pts:25,cls:'reg'};
-  return {nome:'Insuficiente',pts:0,cls:'reg'};
-}
-var irows=[].slice.call(document.querySelectorAll('.irow'));
-irows.forEach(function(row,i){
-  var base=parseFloat(row.getAttribute('data-base'));
-  row.innerHTML =
-    '<div class="irow__name">'+row.getAttribute('data-nome')+'<small>eSF/eAP · '+EQUIPES+' equipes</small></div>'+
-    '<div class="full"><div class="irow__val"><span data-out>'+base.toFixed(1).replace('.',',')+'</span><small>resultado (%)</small></div>'+
-    '<input class="irange" type="range" min="0" max="100" step="0.1" value="'+base+'" aria-label="Resultado de '+row.getAttribute('data-nome')+'"></div>'+
-    '<div><span class="bdg" data-bdg>—</span></div>'+
-    '<div class="irow__val"><span data-pts>—</span><small>pts</small></div>'+
-    '<div><span class="prob" data-prob>—</span></div>';
-  row.querySelector('input').addEventListener('input',calcInd);
-});
-function calcInd(){
-  var soma=0, prio=0;
-  irows.forEach(function(row){
-    var d={reg:+row.getAttribute('data-reg'),suf:+row.getAttribute('data-suf'),bom:+row.getAttribute('data-bom'),otm:+row.getAttribute('data-otm')};
-    var v=parseFloat(row.querySelector('input').value);
-    var f=faixa(v,d);
-    row.querySelector('[data-out]').textContent=v.toFixed(1).replace('.',',');
-    var b=row.querySelector('[data-bdg]');
-    b.textContent=f.nome; b.className='bdg bdg--'+f.cls;
-    row.querySelector('[data-pts]').textContent=f.pts.toFixed(1).replace('.',',');
-    var p=row.querySelector('[data-prob]');
-    if(f.pts<=25){p.textContent='Prioritário';p.className='prob prob--prio';prio++;}
-    else if(f.pts===50){p.textContent='Acompanhar';p.className='prob prob--ac';}
-    else {p.textContent='OK';p.className='prob prob--ok';}
-    soma+=f.pts;
-  });
-  var media=soma/irows.length;
-  document.getElementById('idx-final').textContent=media.toFixed(1).replace('.',',');
-  document.getElementById('idx-faixa').textContent = media>=70?'Incentivo integral':(media>=40?'Acompanhamento':'Plano de ação');
-  document.getElementById('idx-prio').textContent=prio;
-}
-calcInd();
-
-/* ---------- BOAS PRÁTICAS ---------- */
-var bprows=[].slice.call(document.querySelectorAll('.bprow'));
-var REF=343, PESO=20;
-bprows.forEach(function(row){
-  var real=+row.getAttribute('data-real');
-  row.innerHTML =
-    '<div class="bp__name">'+row.getAttribute('data-nome')+'<small>'+row.getAttribute('data-sub')+' · peso oficial 20,0 pts</small></div>'+
-    '<div class="full"><div class="bp__num"><span data-real>'+real+'</span> / '+REF+'<small>registros realizados</small></div>'+
-    '<input class="irange" type="range" min="0" max="'+REF+'" value="'+real+'" aria-label="Realizado de '+row.getAttribute('data-nome')+'"></div>'+
-    '<div class="bp__pts"><span data-pts>—</span><small style="display:block;font-family:var(--body);font-size:.68rem;color:#7A93BA;font-weight:400">contribuição</small></div>'+
-    '<div class="bp__num"><span data-pct>—</span><small>da referência</small></div>';
-  row.querySelector('input').addEventListener('input',calcBP);
-});
-function calcBP(){
-  var total=0;
-  bprows.forEach(function(row){
-    var v=+row.querySelector('input').value;
-    var pts=(v/REF)*PESO;
-    total+=pts;
-    row.querySelector('[data-real]').textContent=v;
-    row.querySelector('[data-pts]').textContent=pts.toFixed(1).replace('.',',')+' pts';
-    row.querySelector('[data-pct]').textContent=((v/REF)*100).toFixed(1).replace('.',',')+'%';
-  });
-  document.getElementById('bp-total').textContent=total.toFixed(1).replace('.',',');
-  var faixaNome = total>=75?'Ótimo':(total>=50?'Bom':(total>=25?'Suficiente':'Regular'));
-  document.getElementById('bp-faixa').textContent=faixaNome;
-  var alvos=[{n:'Suficiente',v:25},{n:'Bom',v:50},{n:'Ótimo',v:75}];
-  var box=document.getElementById('bp-gaps');
-  box.innerHTML='';
-  alvos.forEach(function(a){
-    var d=document.createElement('div');
-    d.className='gap';
-    if(total>=a.v){
-      d.className='gap done';
-      d.innerHTML='<span>'+a.n+'</span><b>Atingida</b><small>faixa já alcançada</small>';
-    }else{
-      var falta=Math.ceil((a.v-total)*REF/PESO);
-      d.innerHTML='<span>'+a.n+'</span><b>+'+falta.toLocaleString('pt-BR')+'</b><small>registros combinados</small>';
-    }
-    box.appendChild(d);
-  });
-}
-calcBP();
-
-/* ---------- mapa ---------- */
-var zd={
-  DABEN:{n:'Distrito de Benguí',eq:38,cob:'78%',acs:212,un:19},
-  DAGUA:{n:'Distrito de Guamá',eq:52,cob:'71%',acs:288,un:24},
-  DAICO:{n:'Distrito de Icoaraci',eq:41,cob:'69%',acs:231,un:18},
-  DAENT:{n:'Distrito de Entroncamento',eq:44,cob:'74%',acs:246,un:20},
-  DABEL:{n:'Distrito de Belém',eq:49,cob:'82%',acs:265,un:26},
-  DASAC:{n:'Distrito de Sacramenta',eq:35,cob:'66%',acs:198,un:16},
-  DAOUT:{n:'Distrito de Outeiro',eq:22,cob:'85%',acs:121,un:9},
-  DAMOS:{n:'Distrito de Mosqueiro',eq:19,cob:'88%',acs:104,un:8}
-};
-document.querySelectorAll('.zone').forEach(function(z){
-  z.addEventListener('click',function(){
-    var d=zd[z.getAttribute('data-z')]; if(!d)return;
-    document.querySelectorAll('.zone').forEach(function(o){o.setAttribute('stroke','#0A1626');o.setAttribute('stroke-width','2');});
-    z.setAttribute('stroke','#FFFFFF'); z.setAttribute('stroke-width','3');
-    document.getElementById('z-name').textContent=d.n;
-    document.getElementById('z-eq').textContent=d.eq;
-    document.getElementById('z-cob').textContent=d.cob;
-    document.getElementById('z-acs').textContent=d.acs;
-    document.getElementById('z-un').textContent=d.un;
-  });
-});
 
 /* acordeão */
 document.querySelectorAll('.acc__btn').forEach(function(b){
